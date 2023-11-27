@@ -1,20 +1,22 @@
 <?php
 
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\ProductController;
+use App\Http\Controllers\UserController;
+use App\Livewire\Cart;
+use App\Livewire\Checkout;
+use App\Livewire\ProductSearch;
 use Illuminate\Support\Facades\Route;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider and all of them will
-| be assigned to the "web" middleware group. Make something great!
-|
-*/
+Route::get('/', [HomeController::class,'index'])->name('home');
+Route::get('/products/search', ProductSearch::class)->name('product.search');
+Route::get('/products/{product}', [ProductController::class, 'details'])->name('product.details');
 
-Route::get('/', function () {
-    return view('welcome');
+Route::middleware(['auth'])->group(function () {
+    Route::get('/cart', Cart::class)->name('cart');
+    Route::get('/checkout', Checkout::class)->name('checkout');
+    Route::get('/user/orders', [UserController::class, 'orders'])->name('user.orders');
+    Route::get('/user/orders/{order}', [UserController::class, 'orderDetails'])->name('user.order.details');
 });
 
 Route::middleware([

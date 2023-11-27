@@ -68,3 +68,6 @@ The Laravel framework is open-sourced software licensed under the [MIT license](
 
 ## Publish whole Jetstream 
 $ php artisan vendor:publish --provider="Laravel\Jetstream\JetstreamServiceProvider"
+
+## Publish livewire config
+$ php artisan livewire:publish --config

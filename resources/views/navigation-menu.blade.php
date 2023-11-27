@@ -12,13 +12,30 @@
 
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                    @auth
                     <x-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
                         {{ __('Dashboard') }}
                     </x-nav-link>
+                    @endauth
+
+                    <x-nav-link href="{{ route('home') }}" :active="request()->routeIs('home')">
+                        {{ __('Home') }}
+                    </x-nav-link>
+
                 </div>
             </div>
 
+
             <div class="hidden sm:flex sm:items-center sm:ms-6">
+
+                <div class="ms-3 relative">
+                    <x-nav-link href="{{ route('cart') }}" :active="request()->routeIs('cart')">
+                        {{ __('Cart') }}
+                    </x-nav-link>
+                </div>
+
+
+                @auth
                 <!-- Teams Dropdown -->
                 @if (Laravel\Jetstream\Jetstream::hasTeamFeatures())
                     <div class="ms-3 relative">
@@ -98,6 +115,11 @@
                                 {{ __('Manage Account') }}
                             </div>
 
+                            <x-dropdown-link href="{{ route('user.orders') }}">
+                                {{ __('Orders') }}
+                            </x-dropdown-link>
+
+
                             <x-dropdown-link href="{{ route('profile.show') }}">
                                 {{ __('Profile') }}
                             </x-dropdown-link>
@@ -122,7 +144,9 @@
                         </x-slot>
                     </x-dropdown>
                 </div>
+                @endauth
             </div>
+
 
             <!-- Hamburger -->
             <div class="-me-2 flex items-center sm:hidden">
@@ -144,6 +168,7 @@
             </x-responsive-nav-link>
         </div>
 
+        @auth
         <!-- Responsive Settings Options -->
         <div class="pt-4 pb-1 border-t border-gray-200">
             <div class="flex items-center px-4">
@@ -215,5 +240,6 @@
                 @endif
             </div>
         </div>
+        @endauth
     </div>
 </nav>
