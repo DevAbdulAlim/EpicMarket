@@ -22,8 +22,18 @@
     <section class="py-8">
         <div class="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
             {{-- Displaying Livewire Product Cards --}}
+            @foreach ($products as $product )
+                <h2>{{$product->name}}</h2>
+                <p>Description: {{$product->description }}</p>
+                <p>Price: ${{ $product->price}}</p>
+                <livewire:add-to-cart-button :productId="$product->id" />
+            @endforeach
             <livewire:product-card />
         </div>
+    </section>
+
+    <section>
+        <livewire:shopping-cart />
     </section>
 
     {{-- Newsletter Section --}}
