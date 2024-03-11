@@ -43,6 +43,7 @@ class ShoppingCart extends Component
     public function refreshCart() {
         $this->cart = session()->get('cart', []);
         $this->calculateTotalItems();
+        $this->openCart();
     }
 
     public function openCart() {
