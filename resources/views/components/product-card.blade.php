@@ -3,5 +3,11 @@
     <h3 class="text-lg font-semibold">{{ $product->name }}</h3>
     <p class="text-gray-600">{{ $product->description }}</p>
     <p class="mt-2 text-xl font-semibold text-gray-800">${{ $product->price }}</p>
-    <livewire:add-to-cart-button :productId="$product->id" />
+    <livewire:add-to-cart-button
+        :productId="$product->id"
+        :productName="$product->name"
+        :productImage="''"
+        :productPrice="$product->price"
+        :productStock="$product->stock"
+    />
 </div>

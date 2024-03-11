@@ -21,14 +21,14 @@ class ShoppingCart extends Component
     }
 
     public function increaseQuantity($productId) {
-        $this->cart[$productId]++;
+        $this->cart[$productId]['quantity']++;
         session()->put('cart', $this->cart);
         $this->refreshCart();
     }
 
     public function decreaseQuantity($productId) {
-        if($this->cart[$productId] > 1) {
-            $this->cart[$productId]--;
+        if($this->cart[$productId]['quantity'] > 1) {
+            $this->cart[$productId]['quantity']--;
             session()->put('cart', $this->cart);
             $this->refreshCart();
         }
