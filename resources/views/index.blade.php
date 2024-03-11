@@ -29,9 +29,7 @@
         </div>
     </section>
 
-    <section>
-        <livewire:shopping-cart />
-    </section>
+
 
     {{-- Newsletter Section --}}
     <section class="py-12 bg-gray-100">
