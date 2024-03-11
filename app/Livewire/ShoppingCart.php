@@ -10,6 +10,30 @@ class ShoppingCart extends Component
 
     protected $listeners = ['productAddedToCart' => 'refreshCart'];
 
+    public function mount() {
+        $this->refreshCart();
+    }
+
+    public function removeFromCart($productId) {
+        unset($this->cart[$productId]);
+        session()->put('cart', $this->cart);
+        $this->refreshCart();
+    }
+
+    public function increaseQuantity($productId) {
+        $this->cart[$productId]++;
+        session()->put('cart', $this->cart);
+        $this->refreshCart();
+    }
+
+    public function decreaseQuantity($productId) {
+        if($this->cart[$productId] > 1) {
+            $this->cart[$productId]--;
+            session()->put('cart', $this->cart);
+            $this->refreshCart();
+        }
+    }
+
     public function refreshCart() {
         $this->cart = session()->get('cart', []);
     }

@@ -2,33 +2,30 @@
 
 
     {{-- Hero Section --}}
-    <section class="bg-gray-800 text-white py-16">
-        <div class="max-w-7xl mx-auto text-center">
-            <h1 class="text-4xl font-bold mb-4">Discover the Latest Trends</h1>
+    <section class="py-16 text-white bg-gray-800">
+        <div class="mx-auto text-center max-w-7xl">
+            <h1 class="mb-4 text-4xl font-bold">Discover the Latest Trends</h1>
             <p class="text-lg">Shop our curated collection for the season's hottest styles.</p>
-            <a href="#" class="mt-4 inline-block px-6 py-3 bg-indigo-500 text-white rounded-full">Explore Now</a>
+            <a href="#" class="inline-block px-6 py-3 mt-4 text-white bg-indigo-500 rounded-full">Explore Now</a>
         </div>
     </section>
 
     {{-- Featured Categories --}}
     <section class="py-12">
-        <div class="max-w-7xl mx-auto">
-            <h2 class="text-2xl font-semibold mb-8">Featured Categories</h2>
+        <div class="mx-auto max-w-7xl">
+            <h2 class="mb-8 text-2xl font-semibold">Featured Categories</h2>
             {{-- Add your category cards or content here --}}
         </div>
     </section>
 
     {{-- Featured Products --}}
     <section class="py-8">
-        <div class="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
+        <div class="grid grid-cols-1 gap-8 mx-auto max-w-7xl sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
             {{-- Displaying Livewire Product Cards --}}
             @foreach ($products as $product )
-                <h2>{{$product->name}}</h2>
-                <p>Description: {{$product->description }}</p>
-                <p>Price: ${{ $product->price}}</p>
-                <livewire:add-to-cart-button :productId="$product->id" />
+            <x-product-card :product=$product />
             @endforeach
-            <livewire:product-card />
+
         </div>
     </section>
 
@@ -37,13 +34,13 @@
     </section>
 
     {{-- Newsletter Section --}}
-    <section class="bg-gray-100 py-12">
-        <div class="max-w-7xl mx-auto text-center">
-            <h2 class="text-2xl font-semibold mb-4">Subscribe to Our Newsletter</h2>
-            <p class="text-gray-700 mb-6">Stay updated on the latest arrivals and exclusive offers!</p>
+    <section class="py-12 bg-gray-100">
+        <div class="mx-auto text-center max-w-7xl">
+            <h2 class="mb-4 text-2xl font-semibold">Subscribe to Our Newsletter</h2>
+            <p class="mb-6 text-gray-700">Stay updated on the latest arrivals and exclusive offers!</p>
             <form action="#" method="post" class="flex justify-center">
-                <input type="email" name="email" placeholder="Your Email" class="border rounded-l py-2 px-4 focus:outline-none">
-                <button type="submit" class="bg-indigo-500 text-white py-2 px-4 rounded-r">Subscribe</button>
+                <input type="email" name="email" placeholder="Your Email" class="px-4 py-2 border rounded-l focus:outline-none">
+                <button type="submit" class="px-4 py-2 text-white bg-indigo-500 rounded-r">Subscribe</button>
             </form>
         </div>
     </section>
