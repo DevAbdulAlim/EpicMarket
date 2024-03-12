@@ -9,8 +9,9 @@ class ShoppingCart extends Component
     public $cart = [];
     public $cartOpen = false;
     public $totalItems = 0;
+    public $totalPrice = 0;
 
-    protected $listeners = ['productAddedToCart' => 'refreshCart'];
+    protected $listeners = ['productAddedToCart' => 'cartAddListener'];
 
     public function mount() {
         $this->refreshCart();
@@ -40,10 +41,15 @@ class ShoppingCart extends Component
         }
     }
 
+    public function cartAddListener () {
+        $this->openCart();
+        $this->refreshCart();
+    }
+
     public function refreshCart() {
         $this->cart = session()->get('cart', []);
         $this->calculateTotalItems();
-        $this->openCart();
+        $this->calculateTotalPrice();
     }
 
     public function openCart() {
@@ -56,6 +62,12 @@ class ShoppingCart extends Component
 
     public function calculateTotalItems() {
         $this->totalItems = array_sum(array_column($this->cart, 'quantity'));
+    }
+
+    public function calculateTotalPrice() {
+        $this->totalPrice = collect($this->cart)->reduce(function ($carry, $item) {
+            return $carry + ($item['price'] * $item['quantity']);
+        });
     }
 
     public function render()

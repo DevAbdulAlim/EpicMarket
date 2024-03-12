@@ -44,7 +44,11 @@
                 @else
                     <p class="text-lg">Your cart is empty.</p>
                 @endif
+
+                <a href="{{ $totalPrice > 0 ? route('checkout') : '#' }}">Checkout total ${{ $totalPrice }}</a>
             </div>
         </div>
     @endif
+
+
 </div>
