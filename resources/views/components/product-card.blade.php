@@ -1,13 +1,8 @@
 <div class="p-4 bg-white rounded-lg shadow-md">
     <img src="" alt="{{ $product->name }}" class="object-cover w-full h-40 mb-4 rounded-lg">
-    <h3 class="text-lg font-semibold">{{ $product->name }}</h3>
-    <p class="text-gray-600">{{ $product->description }}</p>
+    <a href="{{ route('product.details', ['product' => $product->id]) }}"
+        class="text-lg font-semibold hover:underline">{{ $product->name }}</a>
     <p class="mt-2 text-xl font-semibold text-gray-800">${{ $product->price }}</p>
-    <livewire:add-to-cart-button
-        :productId="$product->id"
-        :productName="$product->name"
-        :productImage="''"
-        :productPrice="$product->price"
-        :productStock="$product->stock"
-    />
+    <livewire:add-to-cart-button :productId="$product->id" :productName="$product->name" :productImage="''" :productPrice="$product->price"
+        :productStock="$product->stock" />
 </div>
