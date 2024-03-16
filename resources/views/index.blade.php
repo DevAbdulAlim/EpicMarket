@@ -18,7 +18,7 @@
             <div class="grid grid-cols-6 gap-4">
                 @foreach ($categories as $category)
                     <div class="p-4 bg-white rounded-md shadow">
-                        <h3>{{ $category->name }}</h3>
+                        <a href="{{route('product.search', ['category' => $category->name])}}" class="hover:underline">{{ $category->name }}</a>
                     </div>
                 @endforeach
             </div>

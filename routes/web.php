@@ -5,12 +5,11 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\UserController;
 use App\Livewire\Cart;
 use App\Livewire\Checkout;
-use App\Livewire\ProductSearch;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', [HomeController::class,'index'])->name('home');
-Route::get('/products/search', ProductSearch::class)->name('product.search');
-Route::get('/products/{product}', [ProductController::class, 'details'])->name('product.details');
+Route::get('/product/search', [ProductController::class, 'search'])->name('product.search');
+Route::get('/product/{product}', [ProductController::class, 'details'])->name('product.details');
 
 Route::middleware(['auth'])->group(function () {
     Route::get('/cart', Cart::class)->name('cart');
