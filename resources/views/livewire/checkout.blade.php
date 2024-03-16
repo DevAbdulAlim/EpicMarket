@@ -4,8 +4,28 @@
     </h2>
 </x-slot>
 
+
+
 <section class="py-8">
     <div class="mx-auto max-w-7xl">
+        @if (session()->has('message'))
+            <div class="alert alert-info">
+                {{ session('message') }}
+            </div>
+        @endif
+
+        @if (session()->has('success'))
+            <div class="alert alert-success">
+                {{ session('success') }}
+            </div>
+        @endif
+
+        @if (session()->has('error'))
+            <div class="alert alert-danger">
+                {{ session('error') }}
+            </div>
+        @endif
+
         <form wire:submit="save">
             {{-- Shipping Address --}}
             <div class="p-6 mb-8 bg-white rounded-lg shadow-md">
@@ -86,26 +106,26 @@
                 <!-- Add your payment method options here -->
                 <div class="flex items-center mb-4 space-x-4">
                     <!-- Cash on Delivery -->
-                    <input type="radio" wire:model="cash" id="cash" name="paymentMethod" value="cash"
+                    <input type="radio" wire:model="paymentMethod" id="cash" name="paymentMethod" value="cash"
                         class="w-4 h-4 text-indigo-500 focus:ring-indigo-500" required>
                     <label for="cash" class="ml-2 text-gray-600">Cash on Delivery</label>
                     <!-- Credit Card -->
-                    <input type="radio" wire:model="creditCard" id="creditCard" name="paymentMethod"
+                    <input type="radio" wire:model="paymentMethod" id="creditCard" name="paymentMethod"
                         value="creditCard" class="w-4 h-4 text-indigo-500 focus:ring-indigo-500" required>
                     <label for="creditCard" class="ml-2 text-gray-600">Credit Card</label>
 
                     <!-- PayPal -->
-                    <input type="radio" wire:model="paypal" id="paypal" name="paymentMethod" value="paypal"
-                        class="w-4 h-4 text-indigo-500 focus:ring-indigo-500" required>
+                    <input type="radio" wire:model="paymentMethod" id="paypal" name="paymentMethod"
+                        value="paypal" class="w-4 h-4 text-indigo-500 focus:ring-indigo-500" required>
                     <label for="paypal" class="ml-2 text-gray-600">PayPal</label>
 
                     <!-- Stripe -->
-                    <input type="radio" wire:model="stripe" id="stripe" name="paymentMethod" value="stripe"
-                        class="w-4 h-4 text-indigo-500 focus:ring-indigo-500" required>
+                    <input type="radio" wire:model="paymentMethod" id="stripe" name="paymentMethod"
+                        value="stripe" class="w-4 h-4 text-indigo-500 focus:ring-indigo-500" required>
                     <label for="stripe" class="ml-2 text-gray-600">Stripe</label>
 
                     <!-- Apple Pay -->
-                    <input type="radio" wire:model="applePay" id="applePay" name="paymentMethod"
+                    <input type="radio" wire:model="paymentMethod" id="applePay" name="paymentMethod"
                         value="applePay" class="w-4 h-4 text-indigo-500 focus:ring-indigo-500" required>
                     <label for="applePay" class="ml-2 text-gray-600">Apple Pay</label>
                 </div>

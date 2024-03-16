@@ -32,6 +32,7 @@ class AddToCartButton extends Component
         } else {
             // Add the product to the cart with its details if it's not already in the cart
             $cart[$this->productId] = [
+                'product_id' => $this->productId,
                 'name' => $this->productName,
                 'image' => $this->productImage,
                 'price' => $this->productPrice,

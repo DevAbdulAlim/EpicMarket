@@ -42,48 +42,46 @@ class Checkout extends Component
 
     public function save() {
         $userId = Auth::id();
-
-        $address = Address::firstOrCreate(
-            ['user_id' => $userId],
-            [
-                'first_name' => $this->firstName,
-                'last_name' => $this->lastName,
-                'address1' => $this->address1,
-                'address2' => $this->address2,
-                'city' => $this->city,
-                'state' => $this->state,
-                'zip_code' => $this->zipCode,
-                'country' => $this->country,
-                'phone' => $this->phone,
-            ]
-        );
-
-
-        // Create order
-        $order = Order::create([
-            'address_id' => $address->id,
-            'payment_method' => $this->paymentMethod,
-            'subtotal' => $this->subtotal,
-            'tax' => $this->tax,
-            'shipping' => $this->shipping,
-            'total' => $this->total,
-        ]);
-
-        // Create order items
-        foreach ($this->cart as $item) {
-            OrderItem::create([
-                'order_id' => $order->id,
-                'product_id' => $item['product_id'],
-                'quantity' => $item['quantity'],
-                'price' => $item['price'],
-            ]);
-        }
-
         // If payment method is not cash, display message
         if ($this->paymentMethod !== 'cash') {
             session()->flash('message', 'We only accept cash right now.');
         } else {
-            // Clear the cart after successful order
+            $address = Address::firstOrCreate(
+                ['user_id' => $userId],
+                [
+                    'first_name' => $this->firstName,
+                    'last_name' => $this->lastName,
+                    'address1' => $this->address1,
+                    'address2' => $this->address2,
+                    'city' => $this->city,
+                    'state' => $this->state,
+                    'zip_code' => $this->zipCode,
+                    'country' => $this->country,
+                    'phone' => $this->phone,
+                ]
+            );
+
+
+            // Create order
+            $order = Order::create([
+                'user_id' => $userId,
+                'address_id' => $address->id,
+                'payment_method' => $this->paymentMethod,
+                'subtotal' => $this->subtotal,
+                'tax' => $this->tax,
+                'shipping' => $this->shipping,
+                'total' => $this->total,
+            ]);
+
+            // Create order items
+            foreach ($this->cart as $item) {
+                OrderItem::create([
+                    'order_id' => $order->id,
+                    'product_id' => $item['product_id'],
+                    'quantity' => $item['quantity'],
+                    'price' => $item['price'],
+                ]);
+            }
             session()->forget('cart');
             session()->flash('success', 'Order placed successfully!');
         }
