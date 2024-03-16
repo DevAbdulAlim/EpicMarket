@@ -6,7 +6,7 @@
 
 <section class="py-8">
     <div class="mx-auto max-w-7xl">
-        <form>
+        <form wire:submit="save">
             {{-- Shipping Address --}}
             <div class="p-6 mb-8 bg-white rounded-lg shadow-md">
                 <h2 class="mb-4 text-xl font-semibold">Shipping Address</h2>
@@ -16,64 +16,64 @@
                     <!-- First Name -->
                     <div class="mb-4">
                         <label for="firstName" class="block text-sm font-medium text-gray-600">First Name</label>
-                        <input type="text" id="firstName" name="firstName" value="{{ $firstName }}"
-                            class="w-full p-2 mt-1 border rounded-md" required>
+                        <input type="text" wire:model="firstName" id="firstName" name="firstName"
+                            value="{{ $firstName }}" class="w-full p-2 mt-1 border rounded-md" required>
                     </div>
 
                     <!-- Last Name -->
                     <div class="mb-4">
                         <label for="lastName" class="block text-sm font-medium text-gray-600">Last Name</label>
-                        <input type="text" id="lastName" name="lastName" value="{{ $lastName }}"
-                            class="w-full p-2 mt-1 border rounded-md">
+                        <input type="text" wire:model="lastName" id="lastName" name="lastName"
+                            value="{{ $lastName }}" class="w-full p-2 mt-1 border rounded-md">
                     </div>
 
                     <!-- Address Line 1 -->
                     <div class="col-span-2 mb-4">
                         <label for="address1" class="block text-sm font-medium text-gray-600">Address Line 1</label>
-                        <input type="text" id="address1" name="address1" value="{{ $address1 }}"
-                            class="w-full p-2 mt-1 border rounded-md" required>
+                        <input type="text" wire:model="address1" id="address1" name="address1"
+                            value="{{ $address1 }}" class="w-full p-2 mt-1 border rounded-md" required>
                     </div>
 
                     <!-- Address Line 2 -->
                     <div class="col-span-2 mb-4">
                         <label for="address2" class="block text-sm font-medium text-gray-600">Address Line 2</label>
-                        <input type="text" id="address2" name="address2" value="{{ $address2 }}"
-                            class="w-full p-2 mt-1 border rounded-md">
+                        <input type="text" wire:model="address2" id="address2" name="address2"
+                            value="{{ $address2 }}" class="w-full p-2 mt-1 border rounded-md">
                     </div>
 
                     <!-- City -->
                     <div class="mb-4">
                         <label for="city" class="block text-sm font-medium text-gray-600">City</label>
-                        <input type="text" id="city" name="city" value="{{ $city }}"
-                            class="w-full p-2 mt-1 border rounded-md" required>
+                        <input type="text" wire:model="city" id="city" name="city"
+                            value="{{ $city }}" class="w-full p-2 mt-1 border rounded-md" required>
                     </div>
 
                     <!-- State -->
                     <div class="mb-4">
                         <label for="state" class="block text-sm font-medium text-gray-600">State</label>
-                        <input type="text" id="state" name="state" value="{{ $state }}"
-                            class="w-full p-2 mt-1 border rounded-md" required>
+                        <input type="text" wire:model="state" id="state" name="state"
+                            value="{{ $state }}" class="w-full p-2 mt-1 border rounded-md" required>
                     </div>
 
                     <!-- ZIP Code -->
                     <div class="mb-4">
                         <label for="zipCode" class="block text-sm font-medium text-gray-600">ZIP Code</label>
-                        <input type="text" id="zipCode" name="zipCode" value="{{ $zipCode }}"
-                            class="w-full p-2 mt-1 border rounded-md" required>
+                        <input type="text" wire:model="zipCode" id="zipCode" name="zipCode"
+                            value="{{ $zipCode }}" class="w-full p-2 mt-1 border rounded-md" required>
                     </div>
 
                     <!-- Country -->
                     <div class="mb-4">
                         <label for="country" class="block text-sm font-medium text-gray-600">Country</label>
-                        <input type="text" id="country" name="country" value="{{ $country }}"
-                            class="w-full p-2 mt-1 border rounded-md" required>
+                        <input type="text" wire:model="country" id="country" name="country"
+                            value="{{ $country }}" class="w-full p-2 mt-1 border rounded-md" required>
                     </div>
 
                     <!-- Phone Number -->
                     <div class="col-span-2 mb-4">
                         <label for="phone" class="block text-sm font-medium text-gray-600">Phone Number</label>
-                        <input type="tel" id="phone" name="phone" value="{{ $phone }}"
-                            class="w-full p-2 mt-1 border rounded-md" required>
+                        <input type="tel" wire:model="phone" id="phone" name="phone"
+                            value="{{ $phone }}" class="w-full p-2 mt-1 border rounded-md" required>
                     </div>
                 </div>
 
@@ -86,30 +86,30 @@
                 <!-- Add your payment method options here -->
                 <div class="flex items-center mb-4 space-x-4">
                     <!-- Cash on Delivery -->
-                    <input type="radio" id="cash" name="paymentMethod" value="cash"
+                    <input type="radio" wire:model="cash" id="cash" name="paymentMethod" value="cash"
                         class="w-4 h-4 text-indigo-500 focus:ring-indigo-500" required>
                     <label for="cash" class="ml-2 text-gray-600">Cash on Delivery</label>
                     <!-- Credit Card -->
-                    <input type="radio" id="creditCard" name="paymentMethod" value="creditCard"
-                        class="w-4 h-4 text-indigo-500 focus:ring-indigo-500" required>
+                    <input type="radio" wire:model="creditCard" id="creditCard" name="paymentMethod"
+                        value="creditCard" class="w-4 h-4 text-indigo-500 focus:ring-indigo-500" required>
                     <label for="creditCard" class="ml-2 text-gray-600">Credit Card</label>
 
                     <!-- PayPal -->
-                    <input type="radio" id="paypal" name="paymentMethod" value="paypal"
+                    <input type="radio" wire:model="paypal" id="paypal" name="paymentMethod" value="paypal"
                         class="w-4 h-4 text-indigo-500 focus:ring-indigo-500" required>
                     <label for="paypal" class="ml-2 text-gray-600">PayPal</label>
 
                     <!-- Stripe -->
-                    <input type="radio" id="stripe" name="paymentMethod" value="stripe"
+                    <input type="radio" wire:model="stripe" id="stripe" name="paymentMethod" value="stripe"
                         class="w-4 h-4 text-indigo-500 focus:ring-indigo-500" required>
                     <label for="stripe" class="ml-2 text-gray-600">Stripe</label>
 
                     <!-- Apple Pay -->
-                    <input type="radio" id="applePay" name="paymentMethod" value="applePay"
-                        class="w-4 h-4 text-indigo-500 focus:ring-indigo-500" required>
+                    <input type="radio" wire:model="applePay" id="applePay" name="paymentMethod"
+                        value="applePay" class="w-4 h-4 text-indigo-500 focus:ring-indigo-500" required>
                     <label for="applePay" class="ml-2 text-gray-600">Apple Pay</label>
                 </div>
-                <!-- Add more payment options as needed -->
+
             </div>
 
 
@@ -172,7 +172,7 @@
 
                 <!-- Place Order Button -->
                 <div class="mt-4">
-                    <button
+                    <button type="submit"
                         class="px-4 py-2 text-white transition duration-300 bg-indigo-500 rounded-full hover:bg-indigo-600">
                         Place Order
                     </button>
