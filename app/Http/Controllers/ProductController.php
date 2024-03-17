@@ -9,9 +9,8 @@ use Illuminate\Http\Request;
 class ProductController extends Controller
 {
     public function search(Request $request) {
-        $categories = Category::take(8)->get();
         $products = Product::paginate(2);
-        return view('product.search', compact('categories', 'products'));
+        return view('product.search', compact('products'));
     }
     public function details(Product $product) {
         return view('product.details', compact('product'));
