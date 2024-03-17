@@ -1,4 +1,4 @@
-<div class="p-4 bg-white rounded-lg shadow-md">
+<div class="p-4 bg-white border rounded-lg hover:shadow-md">
     <img src="" alt="{{ $product->name }}" class="object-cover w-full h-40 mb-4 rounded-lg">
     <a href="{{ route('product.details', ['product' => $product->id]) }}"
         class="text-lg font-semibold hover:underline">{{ $product->name }}</a>

@@ -27,7 +27,7 @@
 <body class="font-sans antialiased">
     <x-banner />
 
-    <div class="flex flex-col min-h-screen bg-gray-100">
+    <div class="flex flex-col min-h-screen ">
         @livewire('navigation-menu')
 
         <!-- Page Heading -->
