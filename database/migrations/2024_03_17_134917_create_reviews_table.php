@@ -20,6 +20,9 @@ return new class extends Migration
             $table->integer('rating');
             $table->text('comment');
             $table->timestamps();
+
+            // one user can have one review per product
+            $table->unique(['user_id', 'product_id']);
         });
     }
 

@@ -1,10 +1,4 @@
 <x-app-layout>
-    <x-slot name="header">
-        <h2 class="text-xl font-semibold leading-tight text-gray-800">
-            {{ __('Product Details') }}
-        </h2>
-    </x-slot>
-
     <section class="py-8">
         <div class="mx-auto max-w-7xl">
             <div class="grid grid-cols-1 gap-8 md:grid-cols-2">
@@ -41,6 +35,12 @@
 
                 </div>
             </div>
+        </div>
+    </section>
+
+    <section class="py-8">
+        <div class="mx-auto max-w-7xl">
+            <livewire:product-review :productId="$product->id" />
         </div>
     </section>
 </x-app-layout>
