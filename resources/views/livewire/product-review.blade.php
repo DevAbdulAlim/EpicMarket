@@ -11,6 +11,7 @@
             <textarea wire:model="comment" id="comment" rows="3" class="w-full px-3 py-2 border border-gray-300 rounded"></textarea>
         </div>
         <div>
+            @auth
             <button type="submit" class="px-4 py-2 font-semibold text-white bg-blue-500 rounded hover:bg-blue-600">
                 @if ($userReview)
                     Update Review
@@ -18,6 +19,9 @@
                     Submit Review
                 @endif
             </button>
+            @else
+            <a class="px-4 py-2 font-semibold text-white bg-blue-500 rounded hover:bg-blue-600" href="{{route('login')}}">Login to add review</a>
+            @endauth
         </div>
     </form>
 
