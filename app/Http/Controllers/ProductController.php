@@ -10,6 +10,7 @@ class ProductController extends Controller
 {
     public function search(Request $request) {
         $products = Product::paginate(2);
+        $products->appends($request->except('page'));
         return view('product.search', compact('products'));
     }
     public function details(Product $product) {
