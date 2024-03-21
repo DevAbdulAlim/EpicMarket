@@ -3,7 +3,6 @@
 namespace App\Livewire;
 
 use App\Models\Category;
-use Illuminate\Http\Request;
 use Livewire\Component;
 
 class ProductFilters extends Component
@@ -12,74 +11,59 @@ class ProductFilters extends Component
     public $maxPrice = '';
     public $categories;
     public $selectedCategories = [];
+    public $queryParams;
 
     public function mount()
     {
-        $request = request();
+        $this->queryParams = request()->query();
         $this->categories = Category::take(8)->get();
 
-        // Set minPrice and maxPrice from the query parameters
-        $this->minPrice = $request->query('minPrice');
-        $this->maxPrice = $request->query('maxPrice');
+        $this->minPrice = $this->queryParams['minPrice'] ?? '';
+        $this->maxPrice = $this->queryParams['maxPrice'] ?? '';
 
-        // Set selectedCategories from the query parameters
-        $selectedCategoriesFromUrl = $request->query('categories');
-
-        if ($selectedCategoriesFromUrl && is_array($selectedCategoriesFromUrl)) {
-            // Convert the array to a string
-            $selectedCategoriesFromUrl = implode(',', $selectedCategoriesFromUrl);
-        }
-
-        if ($selectedCategoriesFromUrl) {
-            $this->selectedCategories = explode(',', $selectedCategoriesFromUrl);
+        if (isset ($this->queryParams['categories'])) {
+            $selectedCategoriesFromUrl = $this->queryParams['categories'];
+            $this->selectedCategories = is_array($selectedCategoriesFromUrl) ? $selectedCategoriesFromUrl : explode(',', $selectedCategoriesFromUrl);
         }
     }
 
-
-
     public function priceFilter()
     {
-        $queryParams = $this->generateQueryParams();
-
-        $this->redirect(route('product.search', $queryParams));
+        $this->generateQueryParams();
+        $this->redirect(route('product.search', $this->queryParams));
     }
 
     public function updateSelectedCategories($value)
     {
         if (in_array($value, $this->selectedCategories)) {
-            // Remove the selected category from the array
             $this->selectedCategories = array_diff($this->selectedCategories, [$value]);
         } else {
-            // Add the selected category to the array
             $this->selectedCategories[] = $value;
         }
 
-        // Build query parameters array
-        $queryParams = $this->generateQueryParams();
-
-        // Redirect to the product.search route with the updated query parameters
-        $this->redirect(route('product.search', $queryParams));
+        $this->generateQueryParams();
+        $this->redirect(route('product.search', $this->queryParams));
     }
 
     private function generateQueryParams()
     {
-        $queryParams = [];
 
-        if (!empty ($this->minPrice)) {
-            $queryParams['minPrice'] = $this->minPrice;
+
+        if (!empty ($this->minPrice) && is_numeric($this->minPrice)) {
+            $this->queryParams['minPrice'] = $this->minPrice;
         }
 
-        if (!empty ($this->maxPrice)) {
-            $queryParams['maxPrice'] = $this->maxPrice;
+        if (!empty ($this->maxPrice) && is_numeric($this->maxPrice)) {
+            $this->queryParams['maxPrice'] = $this->maxPrice;
         }
 
         if (!empty ($this->selectedCategories)) {
-            $queryParams['categories'] = implode(',', $this->selectedCategories);
+            $this->queryParams['categories'] = implode(',', $this->selectedCategories);
         }
 
-        return $queryParams;
-    }
+        dd($this->queryParams);
 
+    }
 
     public function render()
     {
