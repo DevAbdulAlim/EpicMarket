@@ -61,7 +61,6 @@ class ProductFilters extends Component
             $this->queryParams['categories'] = implode(',', $this->selectedCategories);
         }
 
-        dd($this->queryParams);
 
     }
 
