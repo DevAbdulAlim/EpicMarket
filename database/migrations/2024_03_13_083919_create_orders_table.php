@@ -15,11 +15,13 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('address_id');
-            $table->string('payment_method');
+            $table->enum('payment_method', ['cash', 'credit_card', 'paypal', 'stripe', 'bank_transfer'])->default('cash');
+            $table->enum('payment_status', ['pending', 'completed', 'failed'])->default('pending')->default('pending');
             $table->decimal('subtotal', 10, 2);
             $table->decimal('tax', 10, 2);
             $table->decimal('shipping', 10, 2);
             $table->decimal('total', 10, 2);
+            $table->enum('status', ['pending', 'initiated', 'processing', 'shipped', 'delivered', 'canceled'])->default('initiated');
             $table->timestamps();
 
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
