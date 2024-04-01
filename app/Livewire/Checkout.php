@@ -5,11 +5,16 @@ namespace App\Livewire;
 use App\Models\Address;
 use App\Models\Order;
 use App\Models\OrderItem;
+use Illuminate\Support\Facades\DB;
 use Livewire\Component;
 use Illuminate\Support\Facades\Auth;
 
 class Checkout extends Component
 {
+
+    public $errors;
+    public $stockAvailable;
+
     // Shipping Address
     public $firstName = '';
     public $lastName = '';
@@ -36,11 +41,56 @@ class Checkout extends Component
         $this->cart = session()->get('cart', []);
         $this->calculateSubtotal();
         $this->calculateTotal();
+        $this->checkAvailability();
     }
 
 
+    public function checkAvailability()
+    {
+        // Retrieve cart items from session
+        $cartItems = $this->cart;
 
-    public function save() {
+        // Get all product IDs from the cart
+        $productIds = array_column($cartItems, 'product_id');
+
+        // Query the product table to fetch product information including stock
+        $products = DB::table('products')
+            ->whereIn('id', $productIds)
+            ->select('id', 'name', 'stock')
+            ->get();
+
+        // Map product IDs to product data for easier access
+        $productData = [];
+        foreach ($products as $product) {
+            $productData[$product->id] = $product;
+        }
+
+        $this->errors = [];
+
+        // Check availability for each product in the cart
+        $this->stockAvailable = true;
+
+        foreach ($cartItems as $cartItem) {
+            $productId = $cartItem['product_id'];
+            $requestedQuantity = $cartItem['quantity'];
+
+            // Retrieve product information
+            $product = $productData[$productId] ?? null;
+
+            // Check if the product exists and if it has sufficient stock
+            if (!$product) {
+                $this->stockAvailable = false;
+                $this->errors[$productId] = 'Product not found.';
+            } elseif ($product->stock < $requestedQuantity) {
+                $this->stockAvailable = false;
+                $this->errors[$productId] = 'Insufficient stock.';
+            }
+        }
+
+    }
+
+    public function save()
+    {
         $userId = Auth::id();
         // If payment method is not cash, display message
         if ($this->paymentMethod !== 'cash') {
@@ -87,13 +137,15 @@ class Checkout extends Component
         }
     }
 
-    public function calculateSubtotal() {
+    public function calculateSubtotal()
+    {
         $this->subtotal = collect($this->cart)->reduce(function ($carry, $item) {
             return $carry + ($item['price'] * $item['quantity']);
         });
     }
 
-    public function calculateTotal() {
+    public function calculateTotal()
+    {
         $this->tax = $this->subtotal * $this->tax;
         $this->total = $this->subtotal + $this->tax + $this->shipping;
 

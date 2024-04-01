@@ -146,14 +146,20 @@
                         <ul class="pl-4 list-disc">
                             @foreach ($cart as $item)
                                 <li class="flex justify-between">
-                                    <div> <span>{{ $item['name'] }}</span>
+                                    <div>
+                                        <span>{{ $item['name'] }}</span>
                                         <span class="text-indigo-500 text-start">${{ $item['price'] }} x
                                             {{ $item['quantity'] }}</span>
+                                        @if (isset($availability['errors'][$item['product_id']]))
+                                            <span
+                                                class="text-red-500">({{ $availability['errors'][$item['product_id']] }})</span>
+                                            @endif @if (isset($errors[$item['product_id']]))
+                                                <span class="text-red-500">{{ $errors[$item['product_id']] }}</span>
+                                            @endif
                                     </div>
                                     <span class="text-indigo-500">${{ $item['price'] * $item['quantity'] }}</span>
                                 </li>
                             @endforeach
-
                         </ul>
                     </div>
                 @endif
@@ -193,9 +199,12 @@
                 <!-- Place Order Button -->
                 <div class="mt-4">
                     <button type="submit"
-                        class="px-4 py-2 text-white transition duration-300 bg-indigo-500 rounded-full hover:bg-indigo-600">
+                        class="px-4 py-2 text-white transition duration-300 rounded-full
+                           {{ $stockAvailable ? 'bg-indigo-500 hover:bg-indigo-600' : 'bg-gray-400 hover:bg-gray-400 cursor-not-allowed' }}"
+                        {{ $stockAvailable ? '' : 'disabled' }}>
                         Place Order
                     </button>
+
                 </div>
             </div>
 

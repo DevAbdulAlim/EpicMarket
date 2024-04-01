@@ -26,10 +26,23 @@ class ShoppingCart extends Component
     }
 
     public function increaseQuantity($productId) {
-        $this->cart[$productId]['quantity']++;
-        session()->put('cart', $this->cart);
-        $this->refreshCart();
-        $this->calculateTotalItems();
+        // Check if the product exists in the cart
+        if (isset($this->cart[$productId])) {
+            $product = $this->cart[$productId];
+            $stock = $product['stock'];
+
+            // Check if the quantity does not exceed the available stock
+            if ($product['quantity'] < $stock) {
+                // Increase the quantity
+                $this->cart[$productId]['quantity']++;
+                session()->put('cart', $this->cart);
+                $this->refreshCart();
+                $this->calculateTotalItems();
+            } else {
+                // Flash a message indicating that the quantity cannot be increased further
+                session()->flash('error', 'Stock limit exceeded.');
+            }
+        }
     }
 
     public function decreaseQuantity($productId) {
