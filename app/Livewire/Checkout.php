@@ -3,8 +3,11 @@
 namespace App\Livewire;
 
 use App\Models\Address;
+use App\Models\Cart;
+use App\Models\CartItem;
 use App\Models\Order;
 use App\Models\OrderItem;
+use App\Models\Product;
 use Illuminate\Support\Facades\DB;
 use Livewire\Component;
 use Illuminate\Support\Facades\Auth;
@@ -42,7 +45,82 @@ class Checkout extends Component
         $this->calculateSubtotal();
         $this->calculateTotal();
         $this->checkAvailability();
+        if ($this->stockAvailable) {
+            $this->recordStock();
+        }
     }
+
+    public function recordStock()
+{
+    $userId = auth()->id();
+
+    // Start a database transaction
+    DB::beginTransaction();
+
+    try {
+        // Retrieve all cart items
+        $cartItems = $this->cart;
+
+        // Retrieve all product IDs from the cart items
+        $productIds = array_column($cartItems, 'product_id');
+
+        // Retrieve the quantities for all products
+        $productQuantities = [];
+        foreach ($cartItems as $item) {
+            $productQuantities[$item['product_id']] = $item['quantity'];
+        }
+
+        // Retrieve all products to update
+        $productsToUpdate = Product::whereIn('id', $productIds)->get();
+
+        // Prepare the bulk update array
+        $bulkUpdateArray = [];
+        foreach ($productsToUpdate as $product) {
+            $productId = $product->id;
+            $quantity = $productQuantities[$productId] ?? 0; // Get quantity from cart items
+
+            // Calculate the new stock value
+            $newStock = max(0, $product->stock - $quantity); // Ensure stock doesn't go below 0
+
+            // Add product ID and new stock value to bulk update array
+            $bulkUpdateArray[$productId] = $newStock;
+        }
+
+        // Perform bulk update for all products
+        Product::whereIn('id', array_keys($bulkUpdateArray))->update(['stock' => DB::raw('CASE id ' . implode(' ', array_map(function ($productId, $newStock) {
+            return "WHEN $productId THEN $newStock ";
+        }, array_keys($bulkUpdateArray), $bulkUpdateArray)) . ' END')]);
+
+        // Create cart in the database
+        $cart = Cart::firstOrCreate(['user_id' => $userId]);
+
+
+        // Delete existing cart items associated with the user's cart
+        CartItem::where('cart_id', $cart->id)->delete();
+
+        // Prepare data for cart items insertion
+        $cartItemsData = [];
+        foreach ($cartItems as $item) {
+            $cartItemsData[] = [
+                'cart_id' => $cart->id,
+                'product_id' => $item['product_id'],
+                'quantity' => $item['quantity'],
+            ];
+        }
+
+        // Insert all the cart items to the CartItem
+        CartItem::insert($cartItemsData);
+
+        // Commit the transaction
+        DB::commit();
+    } catch (\Exception $e) {
+        // Rollback the transaction on error
+        DB::rollBack();
+        // Handle the exception, log or throw it if necessary
+        throw $e;
+    }
+}
+
 
 
     public function checkAvailability()
