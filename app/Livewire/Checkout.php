@@ -2,6 +2,7 @@
 
 namespace App\Livewire;
 
+use App\Jobs\CheckOrderStatus;
 use App\Models\Address;
 use App\Models\Cart;
 use App\Models\CartItem;
@@ -110,6 +111,9 @@ class Checkout extends Component
 
         // Insert all the cart items to the CartItem
         CartItem::insert($cartItemsData);
+
+        // Dispatch the job to rollback stock if checkout failed
+        CheckOrderStatus::dispatch($cart->id)->delay(now()->addMinutes(1));
 
         // Commit the transaction
         DB::commit();
