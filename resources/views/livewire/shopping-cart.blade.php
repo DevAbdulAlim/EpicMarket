@@ -6,6 +6,12 @@
         <i class="fas fa-shopping-cart"></i>
     </button>
 
+    <div wire:loading>
+        <div class="fixed top-0 left-0 w-full h-full flex items-center  justify-center z-50">
+                <i class="fas fa-spinner fa-3x text-blue-500 animate-spin"></i>
+        </div>
+    </div>
+
 
     @if ($cartOpen)
         <div class="fixed top-0 right-0 z-30 h-full overflow-y-auto bg-white shadow-lg w-96">

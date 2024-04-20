@@ -59,7 +59,6 @@ class CheckOrderStatus implements ShouldQueue
         // Delete the cart items
         CartItem::where('cart_id', $cartId)->delete();
 
-        dd('hi');
     }
 
 
