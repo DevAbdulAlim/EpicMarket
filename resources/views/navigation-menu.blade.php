@@ -5,8 +5,9 @@
             <div class="flex">
                 <!-- Logo -->
                 <div class="flex items-center shrink-0">
-                    <a href="{{ route('dashboard') }}">
-                        <x-application-mark class="block w-auto h-9" />
+                    <a href="{{ route('home') }}" class="flex items-center text-green-500">
+                        <span class="block w-auto text-green-500 text-2xl"><i class="fa-solid fa-seedling"></i></span>
+                        <span class="font-bold text-2xl">Grocify</span>
                     </a>
                 </div>
 
@@ -16,11 +17,12 @@
                         <x-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
                             {{ __('Dashboard') }}
                         </x-nav-link>
+
+                        <x-nav-link href="{{ route('home') }}" :active="request()->routeIs('home')">
+                            {{ __('Shop') }}
+                        </x-nav-link>
                     @endauth
 
-                    <x-nav-link href="{{ route('home') }}" :active="request()->routeIs('home')">
-                        {{ __('Home') }}
-                    </x-nav-link>
 
                 </div>
             </div>

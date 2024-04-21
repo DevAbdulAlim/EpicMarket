@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 class ProductController extends Controller
 {
     public function search(Request $request) {
-        $products = Product::paginate(2);
+        $products = Product::paginate(8);
         $products->appends($request->except('page'));
         return view('product.search', compact('products'));
     }

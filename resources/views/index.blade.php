@@ -2,23 +2,33 @@
 
 
     {{-- Hero Section --}}
-    <section class="py-16 text-white bg-gray-800">
-        <div class="mx-auto text-center max-w-7xl">
-            <h1 class="mb-4 text-4xl font-bold">Discover the Latest Trends</h1>
-            <p class="text-lg">Shop our curated collection for the season's hottest styles.</p>
-            <a href="#" class="inline-block px-6 py-3 mt-4 text-white bg-indigo-500 rounded-full">Explore Now</a>
+    <section class="pt-20 px-4 text-gray-800 bg-gray-100">
+        <div class="container mx-auto space-x-8 flex flex-col lg:flex-row items-center justify-between px-4">
+            <div class="lg:w-1/2 flex justify-center mb-6 lg:mb-0">
+                <img src="images/hero-image.webp" alt="hero image" class="rounded-lg max-h-96">
+            </div>
+            <div class="lg:w-1/2 lg:text-left text-center">
+                <h1 class="mb-4 text-4xl lg:text-5xl font-bold leading-tight">Fresh & Flavorful Groceries Await</h1>
+                <p class="text-lg lg:text-xl mb-6">Explore our handpicked selection of the finest produce and essentials.
+                </p>
+                <a href="#"
+                    class="inline-block px-8 py-4 mt-4 text-white bg-green-500 rounded-full hover:bg-green-600 transition duration-300">Start
+                    Shopping</a>
+            </div>
         </div>
     </section>
 
+
     {{-- Featured Categories --}}
-    <section class="py-12">
+    <section class="py-12 px-4">
         <div class="mx-auto max-w-7xl">
             <h2 class="mb-8 text-2xl font-semibold">Featured Categories</h2>
             {{-- Add your category cards or content here --}}
             <div class="grid grid-cols-6 gap-4">
                 @foreach ($categories as $category)
                     <div class="p-4 bg-white rounded-md shadow">
-                        <a href="{{route('product.search', ['category' => $category->name])}}" class="hover:underline">{{ $category->name }}</a>
+                        <a href="{{ route('product.search', ['category' => $category->name]) }}"
+                            class="hover:underline">{{ $category->name }}</a>
                     </div>
                 @endforeach
             </div>
@@ -26,7 +36,7 @@
     </section>
 
     {{-- Featured Products --}}
-    <section class="py-8">
+    <section class="py-8 px-4">
         <div class="mx-auto max-w-7xl">
             <h2 class="mb-8 text-2xl font-semibold">Featured Products</h2>
             <div class="grid grid-cols-1 gap-8 mx-auto max-w-7xl sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
