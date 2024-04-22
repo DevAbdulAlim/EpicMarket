@@ -27,12 +27,57 @@
                 </div>
             </div>
 
+            {{-- Search Form --}}
+            <div class="hidden md:flex relative items-center flex-grow py-3 max-w-md">
+                <div class="absolute mx-2 border-r">
+                    <x-dropdown align="left" width="48" dropdownClasses="bg-gray-100">
+                        <x-slot name="trigger">
+                            <button class="flex items-center"><span class="whitespace-nowrap mr-1">All Categories
+                                </span><i class="fa-solid fa-chevron-down mr-2"></i></button>
+                        </x-slot>
+                        <x-slot name="content">
+                            <!-- Dropdown content goes here -->
+                            <ul class="p-4">
+                                <li>Electronics</li>
+                                <li>Clothing</li>
+                                <li>Home & Garden</li>
+                                <li>Books</li>
+                                <li>Health & Beauty</li>
+                                <li>Toys & Games</li>
+                                <li>Sports & Outdoors</li>
+                                <li>Automotive</li>
+                                <li>Pets</li>
+                                <li>Food & Grocery</li>
+                            </ul>
+                        </x-slot>
+                    </x-dropdown>
+                </div>
+
+                <form action="/search" method="GET" class="flex justify-center w-full">
+                    <x-input type="text" name="search" placeholder="Search..."
+                        class="md:pl-36 md:pr-10 md:w-full" />
+                    <x-button type="submit" class="-ml-8">Search</x-button>
+                </form>
+            </div>
+
 
             <div class="hidden sm:flex sm:items-center sm:ms-6">
 
-                <div class="relative ms-3">
+                <div class="relative text-xl ms-8">
+                    <i class="fa-solid fa-heart"></i>
+                </div>
+
+                <div class="relative text-xl ms-8">
                     <livewire:shopping-cart />
                 </div>
+
+                @guest
+                    <div class="relative text-xl ms-8">
+                        <a href="{{ route('login') }}"> <i class="fa-solid fa-user"></i></a>
+                    </div>
+                @endguest
+
+
 
 
                 @auth
@@ -254,4 +299,35 @@
             </div>
         @endauth
     </div>
+
+    <!-- Mobile Bottom Navbar -->
+    <div class="fixed bottom-0 w-full bg-green-800 text-white p-4 md:hidden">
+        <ul class="flex justify-between">
+            <li>
+                <a href="#" class="flex flex-col items-center">
+                    <i class="fas fa-home"></i>
+                    <span class="text-xs">Home</span>
+                </a>
+            </li>
+            <li>
+                <a href="#" class="flex flex-col items-center">
+                    <i class="fas fa-search"></i>
+                    <span class="text-xs">Search</span>
+                </a>
+            </li>
+            <li>
+                <a href="#" class="flex flex-col items-center">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span class="text-xs">Cart</span>
+                </a>
+            </li>
+            <li>
+                <a href="#" class="flex flex-col items-center">
+                    <i class="fas fa-user"></i>
+                    <span class="text-xs">Account</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+
 </nav>

@@ -8,7 +8,7 @@
 
     <div wire:loading>
         <div class="fixed top-0 left-0 w-full h-full flex items-center  justify-center z-50">
-                <i class="fas fa-spinner fa-3x text-blue-500 animate-spin"></i>
+            <i class="fas fa-spinner fa-3x text-green-500 animate-spin"></i>
         </div>
     </div>
 

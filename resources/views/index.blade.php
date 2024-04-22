@@ -2,7 +2,7 @@
 
 
     {{-- Hero Section --}}
-    <section class="pt-20 px-4 text-gray-800 bg-gray-100">
+    <section class="pt-20 px-4 text-gray-800 bg-green-100">
         <div class="container mx-auto space-x-8 flex flex-col lg:flex-row items-center justify-between px-4">
             <div class="lg:w-1/2 flex justify-center mb-6 lg:mb-0">
                 <img src="images/hero-image.webp" alt="hero image" class="rounded-lg max-h-96">
