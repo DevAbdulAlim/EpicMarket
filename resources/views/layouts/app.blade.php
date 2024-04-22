@@ -28,6 +28,7 @@
     <x-banner />
 
     <div class="flex flex-col min-h-screen ">
+        @include('partials.topbar')
         @livewire('navigation-menu')
 
         <!-- Page Heading -->

@@ -6,7 +6,7 @@
         <i class="fas fa-shopping-cart"></i>
     </button>
 
-    <div wire:loading>
+    <div wire:loading class="fixed">
         <div class="fixed top-0 left-0 w-full h-full flex items-center  justify-center z-50">
             <i class="fas fa-spinner fa-3x text-green-500 animate-spin"></i>
         </div>
@@ -14,7 +14,7 @@
 
 
     @if ($cartOpen)
-        <div class="fixed top-0 right-0 z-30 h-full overflow-y-auto bg-white shadow-lg w-96">
+        <div class="fixed top-0 right-0 z-50 h-full overflow-y-auto bg-white shadow-lg w-96">
             <div class="p-4">
                 <div class="flex justify-between pb-2 mb-4 text-xl font-semibold border-b">
                     <h2>Shopping Cart</h2>

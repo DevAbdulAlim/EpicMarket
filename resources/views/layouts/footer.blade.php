@@ -49,8 +49,21 @@
 
         </div>
 
+        {{-- Newsletter Section --}}
+
+        <div class="mx-auto text-center py-12 max-w-7xl">
+            <h2 class="mb-4 text-2xl font-semibold">Subscribe to Our Newsletter</h2>
+            <p class="mb-6 ">Stay updated on the latest arrivals and exclusive offers!</p>
+            <form action="#" method="post" class="flex justify-center">
+                <input type="email" name="email" placeholder="Your Email"
+                    class="px-4 py-2 border rounded-l focus:outline-none">
+                <button type="submit" class="px-4 py-2 text-white bg-green-500 rounded-r">Subscribe</button>
+            </form>
+        </div>
+
+
         <!-- Copyright -->
-        <div class="mt-8 text-center text-gray-500">
+        <div class="mt-8 text-center text-gray-400">
             <p>&copy; 2023 EpicMarket. All rights reserved.</p>
         </div>
     </div>

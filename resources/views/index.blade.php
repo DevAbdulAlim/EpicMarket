@@ -8,7 +8,8 @@
                 <img src="images/hero-image.webp" alt="hero image" class="rounded-lg max-h-96">
             </div>
             <div class="lg:w-1/2 lg:text-left text-center">
-                <h1 class="mb-4 text-4xl lg:text-5xl font-bold leading-tight">Fresh & Flavorful Groceries Await</h1>
+                <h1 class="mb-4 text-4xl lg:text-5xl font-bold leading-tight"><span class="text-green-500">Fresh</span> &
+                    Flavorful Groceries Await</h1>
                 <p class="text-lg lg:text-xl mb-6">Explore our handpicked selection of the finest produce and essentials.
                 </p>
                 <a href="#"
@@ -50,17 +51,11 @@
     </section>
 
 
+    @include('partials.why-us');
 
-    {{-- Newsletter Section --}}
-    <section class="py-12 bg-gray-100">
-        <div class="mx-auto text-center max-w-7xl">
-            <h2 class="mb-4 text-2xl font-semibold">Subscribe to Our Newsletter</h2>
-            <p class="mb-6 text-gray-700">Stay updated on the latest arrivals and exclusive offers!</p>
-            <form action="#" method="post" class="flex justify-center">
-                <input type="email" name="email" placeholder="Your Email"
-                    class="px-4 py-2 border rounded-l focus:outline-none">
-                <button type="submit" class="px-4 py-2 text-white bg-indigo-500 rounded-r">Subscribe</button>
-            </form>
-        </div>
-    </section>
+    @include('partials.recent-post')
+
+
+
+
 </x-app-layout>
