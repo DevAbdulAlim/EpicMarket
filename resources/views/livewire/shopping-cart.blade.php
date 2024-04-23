@@ -15,7 +15,7 @@
 
     @if ($cartOpen)
         <div class="fixed top-0 right-0 z-50 h-full overflow-y-auto bg-white shadow-lg w-96">
-            <div class="p-4">
+            <div class="p-4 relative h-full">
                 <div class="flex justify-between pb-2 mb-4 text-xl font-semibold border-b">
                     <h2>Shopping Cart</h2>
                     <button wire:click="closeCart">X</button>
@@ -51,7 +51,7 @@
                     <p class="text-lg">Your cart is empty.</p>
                 @endif
 
-                <a href="{{ $totalPrice > 0 ? route('checkout') : '#' }}">Checkout total ${{ $totalPrice }}</a>
+                <div class="flex justify-center p-4"><a href="{{ $totalPrice > 0 ? route('checkout') : '#' }}" class="bg-green-500 left-2 right-2 absolute bottom-2 hover:bg-green-600 text-white font-bold py-2 px-4 rounded">Checkout total ${{ $totalPrice }}</a></div>
             </div>
         </div>
     @endif
