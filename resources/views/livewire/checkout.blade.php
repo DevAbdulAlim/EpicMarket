@@ -107,26 +107,26 @@
                 <div class="flex items-center mb-4 space-x-4">
                     <!-- Cash on Delivery -->
                     <input type="radio" wire:model="paymentMethod" id="cash" name="paymentMethod" value="cash"
-                        class="w-4 h-4 text-indigo-500 focus:ring-indigo-500" required>
+                        class="w-4 h-4 text-green-500 focus:ring-green-500" required>
                     <label for="cash" class="ml-2 text-gray-600">Cash on Delivery</label>
                     <!-- Credit Card -->
                     <input type="radio" wire:model="paymentMethod" id="creditCard" name="paymentMethod"
-                        value="creditCard" class="w-4 h-4 text-indigo-500 focus:ring-indigo-500" required>
+                        value="creditCard" class="w-4 h-4 text-green-500 focus:ring-green-500" required>
                     <label for="creditCard" class="ml-2 text-gray-600">Credit Card</label>
 
                     <!-- PayPal -->
                     <input type="radio" wire:model="paymentMethod" id="paypal" name="paymentMethod"
-                        value="paypal" class="w-4 h-4 text-indigo-500 focus:ring-indigo-500" required>
+                        value="paypal" class="w-4 h-4 text-green-500 focus:ring-green-500" required>
                     <label for="paypal" class="ml-2 text-gray-600">PayPal</label>
 
                     <!-- Stripe -->
                     <input type="radio" wire:model="paymentMethod" id="stripe" name="paymentMethod"
-                        value="stripe" class="w-4 h-4 text-indigo-500 focus:ring-indigo-500" required>
+                        value="stripe" class="w-4 h-4 text-green-500 focus:ring-green-500" required>
                     <label for="stripe" class="ml-2 text-gray-600">Stripe</label>
 
                     <!-- Apple Pay -->
                     <input type="radio" wire:model="paymentMethod" id="applePay" name="paymentMethod"
-                        value="applePay" class="w-4 h-4 text-indigo-500 focus:ring-indigo-500" required>
+                        value="applePay" class="w-4 h-4 text-green-500 focus:ring-green-500" required>
                     <label for="applePay" class="ml-2 text-gray-600">Apple Pay</label>
                 </div>
 
@@ -135,7 +135,7 @@
 
 
             {{-- Payment Summary --}}
-            <div class="p-6 bg-white rounded-lg shadow-md">
+            <div class="p-6 bg-green-100 rounded-lg shadow-md">
                 <h2 class="mb-4 text-xl font-semibold">Payment Summary</h2>
 
                 @if (count($cart) > 0)
@@ -148,7 +148,7 @@
                                 <li class="flex justify-between">
                                     <div>
                                         <span>{{ $item['name'] }}</span>
-                                        <span class="text-indigo-500 text-start">${{ $item['price'] }} x
+                                        <span class="text-green-500 text-start">${{ $item['price'] }} x
                                             {{ $item['quantity'] }}</span>
                                         @if (isset($availability['errors'][$item['product_id']]))
                                             <span
@@ -157,7 +157,7 @@
                                                 <span class="text-red-500">{{ $errors[$item['product_id']] }}</span>
                                             @endif
                                     </div>
-                                    <span class="text-indigo-500">${{ $item['price'] * $item['quantity'] }}</span>
+                                    <span class="text-green-500">${{ $item['price'] * $item['quantity'] }}</span>
                                 </li>
                             @endforeach
                         </ul>
@@ -168,7 +168,7 @@
                 <div class="flex items-center justify-between mb-2">
                     <p class="text-gray-600">Subtotal:</p>
                     <!-- Replace with dynamic data -->
-                    <p class="font-semibold text-indigo-500">${{ $subtotal }}</p>
+                    <p class="font-semibold text-green-500">${{ $subtotal }}</p>
                 </div>
 
                 <!-- Additional Charges -->
@@ -178,11 +178,11 @@
                     <ul class="pl-4 list-disc">
                         <li class="flex justify-between">
                             <span>Tax</span>
-                            <span class="text-indigo-500">${{ number_format($tax, 2) }}</span>
+                            <span class="text-green-500">${{ number_format($tax, 2) }}</span>
                         </li>
                         <li class="flex justify-between">
                             <span>Shipping</span>
-                            <span class="text-indigo-500">${{ number_format($shipping, 2) }}</span>
+                            <span class="text-green-500">${{ number_format($shipping, 2) }}</span>
                         </li>
                         <!-- Add more charges as needed -->
                     </ul>
@@ -193,14 +193,14 @@
                 <div class="flex items-center justify-between mb-2">
                     <p class="text-gray-600">Total:</p>
                     <!-- Replace with dynamic data -->
-                    <p class="font-bold text-indigo-500">${{ number_format($total, 2) }}</p>
+                    <p class="font-bold text-green-500">${{ number_format($total, 2) }}</p>
                 </div>
 
                 <!-- Place Order Button -->
                 <div class="mt-4">
                     <button type="submit"
                         class="px-4 py-2 text-white transition duration-300 rounded-full
-                           {{ $stockAvailable ? 'bg-indigo-500 hover:bg-indigo-600' : 'bg-gray-400 hover:bg-gray-400 cursor-not-allowed' }}"
+                           {{ $stockAvailable ? 'bg-green-500 hover:bg-green-600' : 'bg-gray-400 hover:bg-gray-400 cursor-not-allowed' }}"
                         {{ $stockAvailable ? '' : 'disabled' }}>
                         Place Order
                     </button>
