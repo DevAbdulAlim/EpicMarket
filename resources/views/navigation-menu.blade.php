@@ -301,7 +301,7 @@
     </div>
 
     <!-- Mobile Bottom Navbar -->
-    <div class="fixed bottom-0 w-full bg-green-800 text-white p-4 md:hidden">
+    <div class="fixed bottom-0 w-full bg-green-800 text-white p-4 md:hidden shadow-2xl">
         <ul class="flex justify-between">
             <li>
                 <a href="#" class="flex flex-col items-center">

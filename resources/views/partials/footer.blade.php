@@ -1,6 +1,6 @@
-<footer class="bg-green-900 px-3 text-white py-12">
+<footer class="bg-green-800 px-4 text-white py-12">
     <div class="max-w-7xl mx-auto">
-        <div class="container mx-auto grid grid-cols-1  md:grid-cols-2 xl:grid-cols-4 gap-8">
+        <div class="grid grid-cols-1  md:grid-cols-2 xl:grid-cols-4 gap-8">
 
             <!-- About Us -->
             <div class="mb-8 md:mb-0">
@@ -60,12 +60,5 @@
                 <button type="submit" class="px-4 py-2 text-white bg-green-500 rounded-r">Subscribe</button>
             </form>
         </div>
-
-
-        <!-- Copyright -->
-        <div class="mt-8 text-center text-gray-400">
-            <p>&copy; 2023 EpicMarket. All rights reserved.</p>
-        </div>
     </div>
-
 </footer>

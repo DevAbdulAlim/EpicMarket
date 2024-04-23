@@ -45,7 +45,8 @@
             {{ $slot }}
         </main>
 
-        @include('layouts.footer')
+        @include('partials.footer')
+        @include('partials.copyright')
 
 
     </div>
