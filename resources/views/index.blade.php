@@ -19,26 +19,23 @@
         </div>
     </section>
 
-    {{-- Featured Categories --}}
-    <section class="py-12 px-4">
-        <div class="mx-auto max-w-7xl">
-            <div class="text-center mb-8">
-                <h2 class="text-3xl font-semibold mb-2">Featured Categories</h2>
-                <p class="text-gray-600">Explore our curated selection</p>
-            </div>
-            {{-- Add your category cards or content here --}}
-            <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
-                @foreach ($categories as $category)
-                    <div class="relative group">
-                        <div class="overflow-hidden text-center bg-white rounded-xl">
-                            <a href="{{ route('product.search', ['category' => $category->name]) }}"
-                                class="block relative overflow-hidden">
-                                <div class="h-40 bg-cover bg-center rounded-md"
-                                    style="background-image: url('/images/categories/{{ $category->image }}');">
-                                    <div class="absolute inset-0 bg-green-500 opacity-10 group-hover:opacity-80"></div>
-                                    <div class="absolute inset-0 flex items-center justify-center">
-                                        <span class="text-white text-lg font-semibold hidden group-hover:block">{{ $category->name }}</span>
-                                    </div>
+{{-- Featured Categories --}}
+<section class="py-12 px-4">
+    <div class="mx-auto max-w-7xl">
+        <div class="text-center mb-8">
+            <h2 class="text-3xl font-semibold mb-2">Featured Categories</h2>
+            <p class="text-gray-600">Explore our curated selection</p>
+        </div>
+        {{-- Add your category cards or content here --}}
+        <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
+            @foreach ($categories as $category)
+                <div class="relative group">
+                    <div class="overflow-hidden bg-white rounded-xl">
+                        <a href="{{ route('product.search', ['category' => $category->name]) }}" class="block relative overflow-hidden">
+                            <div class="h-40 bg-cover bg-center rounded-md" style="background-image: url('{{ asset('/images/categories/' . $category->image) }}');">
+                                <div class="absolute inset-0 bg-green-500 opacity-10 group-hover:opacity-80"></div>
+                                <div class="absolute inset-0 flex items-center justify-center">
+                                    <span class="text-white text-lg font-semibold">{{ $category->name }}</span>
                                 </div>
                             </a>
                             <span class="text-lg font-semibold group-hover:hidden">{{ $category->name }}</span>

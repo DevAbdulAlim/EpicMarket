@@ -6,7 +6,7 @@
         <p class="text-gray-600 text-center mb-8">Check out our latest articles</p>
         <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
             <div class="bg-white rounded-lg hover:shadow-2xl group">
-                <div class="overflow-hidden"><img src="/images/post-2.jpg" alt="Post Image"
+                <div class="overflow-hidden"><img src="{{asset('/images/post-2.jpg')}}" alt="Post Image"
                         class="w-full h-80 ease-in-out duration-300 group-hover:scale-110 object-cover rounded-t-lg">
                 </div>
                 <div class="p-6">
@@ -18,7 +18,7 @@
                 </div>
             </div>
             <div class="bg-white rounded-lg hover:shadow-2xl group">
-                <div class="overflow-hidden"><img src="/images/post-3.jpg" alt="Post Image"
+                <div class="overflow-hidden"><img src="{{asset('/images/post-3.jpg')}}" alt="Post Image"
                         class="w-full h-80 ease-in-out duration-300 group-hover:scale-110 object-cover rounded-t-lg">
                 </div>
                 <div class="p-6">
@@ -30,7 +30,7 @@
                 </div>
             </div>
             <div class="bg-white rounded-lg hover:shadow-2xl group">
-                <div class="overflow-hidden"><img src="/images/post-1.jpg" alt="Post Image"
+                <div class="overflow-hidden"><img src="{{asset('/images/post-1.jpg')}}" alt="Post Image"
                         class="w-full h-80 ease-in-out duration-300 group-hover:scale-110 object-cover rounded-t-lg">
                 </div>
                 <div class="p-6">

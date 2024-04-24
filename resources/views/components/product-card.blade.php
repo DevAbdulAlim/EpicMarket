@@ -1,6 +1,6 @@
 <div class="p-4 bg-white  rounded-lg hover:shadow-xl">
     <a href="{{ route('product.details', ['product' => $product->id]) }}">
-        <img src="/images/product.webp" alt="" class="object-cover w-full h-40 mb-4 rounded-lg">
+        <img src="{{ asset('images/product.webp') }}" alt="" class="object-cover w-full h-40 mb-4 rounded-lg">
     </a>
     <h3 class="text-lg font-semibold">{{ $product->name }}</h3>
     <div class="flex justify-between">
