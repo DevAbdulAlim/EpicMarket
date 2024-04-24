@@ -11,7 +11,7 @@
     {{-- Sorting --}}
     <div class="flex items-center space-x-2">
         <label for="sort" class="block text-gray-600">Sort by: </label>
-        <select id="sort" name="sort" class="text-sm border rounded-full" wire:model="sortValue"
+        <select id="sort" name="sort" class="text-sm border rounded-full focus:outline-none focus:ring-0 px-4 py-2" wire:model="sortValue"
             wire:change="handleSort">
             <option value="price-asc">Price Low to High</option>
             <option value="price-desc" selected>Price High to Low</option>

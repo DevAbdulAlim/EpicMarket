@@ -51,7 +51,7 @@
                     <p class="text-lg">Your cart is empty.</p>
                 @endif
 
-                <div class="flex justify-center p-4"><a href="{{ $totalPrice > 0 ? route('checkout') : '#' }}" class="bg-green-500 left-2 right-2 absolute bottom-2 hover:bg-green-600 text-white font-bold py-2 px-4 rounded">Checkout total ${{ $totalPrice }}</a></div>
+                <div class="flex justify-center text-center p-4"><a href="{{ $totalPrice > 0 ? route('checkout') : '#' }}" class="bg-green-800 left-2 right-2 text-white absolute bottom-2 hover:bg-green-900  font-bold py-2 px-4 rounded">Checkout<span class="font-bold"> ${{ $totalPrice }}</span></a></div>
             </div>
         </div>
     @endif
