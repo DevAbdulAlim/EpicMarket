@@ -32,7 +32,7 @@
                 <div class="relative group">
                     <div class="overflow-hidden bg-white rounded-xl">
                         <a href="{{ route('product.search', ['category' => $category->name]) }}" class="block relative overflow-hidden">
-                            <div class="h-40 bg-cover bg-center rounded-md" style="background-image: url('/images/categories/{{ $category->image }}');">
+                            <div class="h-40 bg-cover bg-center rounded-md" style="background-image: url('{{ asset('/images/categories/' . $category->image) }}');">
                                 <div class="absolute inset-0 bg-green-500 opacity-10 group-hover:opacity-80"></div>
                                 <div class="absolute inset-0 flex items-center justify-center">
                                     <span class="text-white text-lg font-semibold">{{ $category->name }}</span>

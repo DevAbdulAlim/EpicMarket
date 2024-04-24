@@ -27,7 +27,7 @@
                             <li class="flex items-center justify-between py-2 border-b">
                                 <div class="flex items-center space-x-2">
                                     <div class="flex-shrink-0 w-16 h-16 overflow-hidden bg-gray-200 rounded-md">
-                                        <img src="/images/product.webp" alt="{{ $item['name'] }}"
+                                        <img src="{{asset('/images/product.webp')}}" alt="{{ $item['name'] }}"
                                             class="object-cover w-full h-full">
                                     </div>
                                     <div>
