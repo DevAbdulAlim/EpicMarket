@@ -1,4 +1,4 @@
-<x-app-layout>
+<x-user-dashboard>
     <x-slot name="header">
         <h2 class="font-bold text-2xl text-gray-800 leading-tight">
             {{ __('Order Listings') }}
@@ -66,4 +66,4 @@
         </div>
     </section>
 
-</x-app-layout>
+</x-user-dashboard>
