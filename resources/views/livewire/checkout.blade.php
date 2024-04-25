@@ -36,64 +36,64 @@
                     <!-- First Name -->
                     <div class="mb-4">
                         <label for="firstName" class="block text-sm font-medium text-gray-600">First Name</label>
-                        <input type="text" wire:model="firstName" id="firstName" name="firstName"
-                            value="{{ $firstName }}" class="w-full p-2 mt-1 border rounded-md" required>
+                        <x-input type="text" wire:model="firstName" id="firstName" name="firstName"
+                            value="{{ $firstName }}" class="w-full p-2 mt-1" required />
                     </div>
 
                     <!-- Last Name -->
                     <div class="mb-4">
                         <label for="lastName" class="block text-sm font-medium text-gray-600">Last Name</label>
-                        <input type="text" wire:model="lastName" id="lastName" name="lastName"
-                            value="{{ $lastName }}" class="w-full p-2 mt-1 border rounded-md">
+                        <x-input type="text" wire:model="lastName" id="lastName" name="lastName"
+                            value="{{ $lastName }}" class="w-full p-2 mt-1" />
                     </div>
 
                     <!-- Address Line 1 -->
                     <div class="col-span-2 mb-4">
                         <label for="address1" class="block text-sm font-medium text-gray-600">Address Line 1</label>
-                        <input type="text" wire:model="address1" id="address1" name="address1"
-                            value="{{ $address1 }}" class="w-full p-2 mt-1 border rounded-md" required>
+                        <x-input type="text" wire:model="address1" id="address1" name="address1"
+                            value="{{ $address1 }}" class="w-full p-2 mt-1" required />
                     </div>
 
                     <!-- Address Line 2 -->
                     <div class="col-span-2 mb-4">
                         <label for="address2" class="block text-sm font-medium text-gray-600">Address Line 2</label>
-                        <input type="text" wire:model="address2" id="address2" name="address2"
-                            value="{{ $address2 }}" class="w-full p-2 mt-1 border rounded-md">
+                        <x-input type="text" wire:model="address2" id="address2" name="address2"
+                            value="{{ $address2 }}" class="w-full p-2 mt-1" />
                     </div>
 
                     <!-- City -->
                     <div class="mb-4">
                         <label for="city" class="block text-sm font-medium text-gray-600">City</label>
-                        <input type="text" wire:model="city" id="city" name="city"
-                            value="{{ $city }}" class="w-full p-2 mt-1 border rounded-md" required>
+                        <x-input type="text" wire:model="city" id="city" name="city"
+                            value="{{ $city }}" class="w-full p-2 mt-1" required />
                     </div>
 
                     <!-- State -->
                     <div class="mb-4">
                         <label for="state" class="block text-sm font-medium text-gray-600">State</label>
-                        <input type="text" wire:model="state" id="state" name="state"
-                            value="{{ $state }}" class="w-full p-2 mt-1 border rounded-md" required>
+                        <x-input type="text" wire:model="state" id="state" name="state"
+                            value="{{ $state }}" class="w-full p-2 mt-1" required />
                     </div>
 
                     <!-- ZIP Code -->
                     <div class="mb-4">
                         <label for="zipCode" class="block text-sm font-medium text-gray-600">ZIP Code</label>
-                        <input type="text" wire:model="zipCode" id="zipCode" name="zipCode"
-                            value="{{ $zipCode }}" class="w-full p-2 mt-1 border rounded-md" required>
+                        <x-input type="text" wire:model="zipCode" id="zipCode" name="zipCode"
+                            value="{{ $zipCode }}" class="w-full p-2 mt-1" required />
                     </div>
 
                     <!-- Country -->
                     <div class="mb-4">
                         <label for="country" class="block text-sm font-medium text-gray-600">Country</label>
-                        <input type="text" wire:model="country" id="country" name="country"
-                            value="{{ $country }}" class="w-full p-2 mt-1 border rounded-md" required>
+                        <x-input type="text" wire:model="country" id="country" name="country"
+                            value="{{ $country }}" class="w-full p-2 mt-1" required />
                     </div>
 
                     <!-- Phone Number -->
                     <div class="col-span-2 mb-4">
                         <label for="phone" class="block text-sm font-medium text-gray-600">Phone Number</label>
-                        <input type="tel" wire:model="phone" id="phone" name="phone"
-                            value="{{ $phone }}" class="w-full p-2 mt-1 border rounded-md" required>
+                        <x-input type="tel" wire:model="phone" id="phone" name="phone"
+                            value="{{ $phone }}" class="w-full p-2 mt-1" required />
                     </div>
                 </div>
 
@@ -104,33 +104,41 @@
             <div class="p-6 mb-8 bg-white rounded-lg shadow-md">
                 <h2 class="mb-4 text-xl font-semibold">Payment Method</h2>
                 <!-- Add your payment method options here -->
-                <div class="flex items-center mb-4 space-x-4">
+                <div
+                    class="flex flex-wrap items-center justify-center md:justify-start mb-4 space-y-2 md:space-y-0 md:space-x-4">
                     <!-- Cash on Delivery -->
-                    <input type="radio" wire:model="paymentMethod" id="cash" name="paymentMethod" value="cash"
-                        class="w-4 h-4 text-green-500 focus:ring-green-500" required>
-                    <label for="cash" class="ml-2 text-gray-600">Cash on Delivery</label>
+                    <div class="flex items-center">
+                        <input type="radio" wire:model="paymentMethod" id="cash" name="paymentMethod"
+                            value="cash" class="w-4 h-4 text-green-500 focus:ring-green-500" required>
+                        <label for="cash" class="ml-2 text-gray-600">Cash on Delivery</label>
+                    </div>
                     <!-- Credit Card -->
-                    <input type="radio" wire:model="paymentMethod" id="creditCard" name="paymentMethod"
-                        value="creditCard" class="w-4 h-4 text-green-500 focus:ring-green-500" required>
-                    <label for="creditCard" class="ml-2 text-gray-600">Credit Card</label>
-
+                    <div class="flex items-center">
+                        <input type="radio" wire:model="paymentMethod" id="creditCard" name="paymentMethod"
+                            value="creditCard" class="w-4 h-4 text-green-500 focus:ring-green-500" required>
+                        <label for="creditCard" class="ml-2 text-gray-600">Credit Card</label>
+                    </div>
                     <!-- PayPal -->
-                    <input type="radio" wire:model="paymentMethod" id="paypal" name="paymentMethod"
-                        value="paypal" class="w-4 h-4 text-green-500 focus:ring-green-500" required>
-                    <label for="paypal" class="ml-2 text-gray-600">PayPal</label>
-
+                    <div class="flex items-center">
+                        <input type="radio" wire:model="paymentMethod" id="paypal" name="paymentMethod"
+                            value="paypal" class="w-4 h-4 text-green-500 focus:ring-green-500" required>
+                        <label for="paypal" class="ml-2 text-gray-600">PayPal</label>
+                    </div>
                     <!-- Stripe -->
-                    <input type="radio" wire:model="paymentMethod" id="stripe" name="paymentMethod"
-                        value="stripe" class="w-4 h-4 text-green-500 focus:ring-green-500" required>
-                    <label for="stripe" class="ml-2 text-gray-600">Stripe</label>
-
+                    <div class="flex items-center">
+                        <input type="radio" wire:model="paymentMethod" id="stripe" name="paymentMethod"
+                            value="stripe" class="w-4 h-4 text-green-500 focus:ring-green-500" required>
+                        <label for="stripe" class="ml-2 text-gray-600">Stripe</label>
+                    </div>
                     <!-- Apple Pay -->
-                    <input type="radio" wire:model="paymentMethod" id="applePay" name="paymentMethod"
-                        value="applePay" class="w-4 h-4 text-green-500 focus:ring-green-500" required>
-                    <label for="applePay" class="ml-2 text-gray-600">Apple Pay</label>
+                    <div class="flex items-center">
+                        <input type="radio" wire:model="paymentMethod" id="applePay" name="paymentMethod"
+                            value="applePay" class="w-4 h-4 text-green-500 focus:ring-green-500" required>
+                        <label for="applePay" class="ml-2 text-gray-600">Apple Pay</label>
+                    </div>
                 </div>
-
             </div>
+
 
 
 

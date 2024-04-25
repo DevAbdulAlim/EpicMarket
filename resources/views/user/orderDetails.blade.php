@@ -28,7 +28,7 @@
                 <!-- Total Price -->
                 <div class="p-6 border-b">
                     <p class="text-gray-600">Total Price:</p>
-                    <p class="text-green-500 font-bold">${{ number_format($order->total_price, 2) }}</p>
+                    <p class="text-green-500 font-bold">${{ number_format($order->total, 2) }}</p>
                 </div>
 
                 <!-- Order Items List -->
@@ -38,7 +38,7 @@
                         <!-- Loop through order items -->
                         @foreach ($order->orderItems as $item)
                         <li class="flex justify-between">
-                            <span>{{ $item->product_name }}</span>
+                            <span>{{ $item->product->name }}</span>
                             <span class="text-green-500">x{{ $item->quantity }}</span>
                             <span class="text-green-500">${{ number_format($item->price, 2) }}</span>
                         </li>

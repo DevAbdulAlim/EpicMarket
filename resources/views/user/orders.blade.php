@@ -42,7 +42,7 @@
                             </div>
                             <div class="mb-2 md:mr-6 w-full md:w-auto">
                                 <p class="text-gray-600">Total Price:</p>
-                                <p class="text-green-500 font-bold">${{ number_format($order->total_price, 2) }}</p>
+                                <p class="text-green-500 font-bold">${{ number_format($order->total, 2) }}</p>
                             </div>
                             <div class="w-full md:w-auto">
                                 <a href="{{ route('user.order.details', ['order' => $order->id]) }}" class="text-green-500 hover:text-green-700">View Details</a>

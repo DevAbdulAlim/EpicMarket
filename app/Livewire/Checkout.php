@@ -40,7 +40,7 @@ class Checkout extends Component
     public $subtotal = 0;
     public $total = 0;
 
-    private $cart_id; // database Cart id to store in the order for tracking order
+    public $cart_id; // database Cart id to store in the order for tracking order
 
     public function mount()
     {
