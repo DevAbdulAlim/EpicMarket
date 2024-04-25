@@ -40,6 +40,8 @@ class Checkout extends Component
     public $subtotal = 0;
     public $total = 0;
 
+    private $cart_id; // database Cart id to store in the order for tracking order
+
     public function mount()
     {
         $this->cart = session()->get('cart', []);
@@ -94,6 +96,7 @@ class Checkout extends Component
 
         // Create cart in the database
         $cart = Cart::firstOrCreate(['user_id' => $userId]);
+        $this->cart_id = $cart->id;
 
 
         // Delete existing cart items associated with the user's cart
@@ -198,6 +201,7 @@ class Checkout extends Component
             $order = Order::create([
                 'user_id' => $userId,
                 'address_id' => $address->id,
+                'cart_id' => $this->cart_id,
                 'payment_method' => $this->paymentMethod,
                 'subtotal' => $this->subtotal,
                 'tax' => $this->tax,

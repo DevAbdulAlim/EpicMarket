@@ -41,10 +41,10 @@
 
         <!-- Main Content -->
         <div class="flex-grow p-4 md:p-8">
-            <div class="bg-white rounded-lg shadow-md p-6">
+
                 <!-- Child Content Placeholder -->
                 {{ $slot }}
-            </div>
+
         </div>
     </div>
 

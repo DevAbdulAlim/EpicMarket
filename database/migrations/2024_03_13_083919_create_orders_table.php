@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('address_id');
+            $table->unsignedBigInteger('cart_id')->unique()->nullable();
             $table->enum('payment_method', ['cash', 'credit_card', 'paypal', 'stripe', 'bank_transfer'])->default('cash');
             $table->enum('payment_status', ['pending', 'completed', 'failed'])->default('pending')->default('pending');
             $table->decimal('subtotal', 10, 2);
@@ -26,6 +27,7 @@ return new class extends Migration
 
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->foreign('address_id')->references('id')->on('addresses');
+            $table->foreign('cart_id')->references('id')->on('carts')->onDelete('set null');
         });
     }
 

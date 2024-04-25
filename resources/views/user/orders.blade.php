@@ -27,25 +27,25 @@
                     <!-- Loop through orders -->
                     @foreach ($orders as $order)
                     <div class="mb-4 border-b pb-4">
-                        <div class="flex justify-between items-center">
-                            <div>
+                        <div class="flex flex-wrap justify-between items-center">
+                            <div class="mb-2 md:mr-6 w-full md:w-auto">
                                 <p class="text-gray-600">Order Date:</p>
-                                <p class="text-indigo-500 font-bold">{{ $order->created_at->format('F d, Y') }}</p>
+                                <p class="text-green-500 font-bold">{{ $order->created_at->format('F d, Y') }}</p>
                             </div>
-                            <div>
+                            <div class="mb-2 md:mr-6 w-full md:w-auto">
                                 <p class="text-gray-600">Order ID:</p>
-                                <p class="text-indigo-500 font-bold">{{ $order->id }}</p>
+                                <p class="text-green-500 font-bold">{{ $order->id }}</p>
                             </div>
-                            <div>
+                            <div class="mb-2 md:mr-6 w-full md:w-auto">
                                 <p class="text-gray-600">Status:</p>
-                                <p class="text-indigo-500 font-bold">{{ $order->status }}</p>
+                                <p class="text-green-500 font-bold">{{ $order->status }}</p>
                             </div>
-                            <div>
+                            <div class="mb-2 md:mr-6 w-full md:w-auto">
                                 <p class="text-gray-600">Total Price:</p>
-                                <p class="text-indigo-500 font-bold">${{ number_format($order->total_price, 2) }}</p>
+                                <p class="text-green-500 font-bold">${{ number_format($order->total_price, 2) }}</p>
                             </div>
-                            <div>
-                                <a href="{{ route('user.order.details', ['order' => $order->id]) }}" class="text-indigo-500 hover:text-indigo-700">View Details</a>
+                            <div class="w-full md:w-auto">
+                                <a href="{{ route('user.order.details', ['order' => $order->id]) }}" class="text-green-500 hover:text-green-700">View Details</a>
                             </div>
                         </div>
                     </div>
