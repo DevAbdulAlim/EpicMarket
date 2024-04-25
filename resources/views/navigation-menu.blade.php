@@ -81,7 +81,7 @@
 
 
                 @auth
-                    <!-- Teams Dropdown -->
+                    {{-- <!-- Teams Dropdown -->
                     @if (Laravel\Jetstream\Jetstream::hasTeamFeatures())
                         <div class="relative ms-3">
                             <x-dropdown align="right" width="60">
@@ -134,7 +134,7 @@
                                 </x-slot>
                             </x-dropdown>
                         </div>
-                    @endif
+                    @endif --}}
 
                     <!-- Settings Dropdown -->
                     <div class="relative ms-3">

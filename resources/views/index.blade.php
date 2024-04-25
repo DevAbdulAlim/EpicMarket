@@ -7,7 +7,7 @@
             <div class="lg:w-1/2 flex justify-center mb-6 lg:mb-0">
                 <img src="images/hero-image.webp" alt="hero image" class="rounded-lg max-h-96">
             </div>
-            <div class="lg:w-1/2 lg:text-left text-center">
+            <div class="lg:w-1/2 lg:text-left py-5 md:py-0 text-center">
                 <h1 class="mb-4 text-4xl lg:text-5xl font-bold leading-tight"><span class="text-green-500">Fresh</span> &
                     Flavorful Groceries Await</h1>
                 <p class="text-lg lg:text-xl mb-6">Explore our handpicked selection of the finest produce and essentials.

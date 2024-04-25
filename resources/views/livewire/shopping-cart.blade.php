@@ -17,7 +17,7 @@
         <div class="fixed top-0 right-0 z-50 h-full overflow-y-auto bg-white shadow-lg w-96">
             <div class="p-4 relative h-full">
                 <div class="flex justify-between pb-2 mb-4 text-xl font-semibold border-b">
-                    <h2>Shopping Cart</h2>
+                    <h2>Shopping Cart ({{ count($cart) }} items)</h2>
                     <button wire:click="closeCart">X</button>
                 </div>
 
@@ -51,7 +51,12 @@
                     <p class="text-lg">Your cart is empty.</p>
                 @endif
 
-                <div class="flex justify-center text-center p-4"><a href="{{ $totalPrice > 0 ? route('checkout') : '#' }}" class="bg-green-800 left-2 right-2 text-white absolute bottom-2 hover:bg-green-900  font-bold py-2 px-4 rounded">Checkout<span class="font-bold"> ${{ $totalPrice }}</span></a></div>
+                <div class="flex justify-center text-center p-4">
+                    <a href="{{ $totalPrice > 0 ? route('checkout') : '#' }}" class="bg-green-800 left-2 right-2 text-white absolute bottom-2 hover:bg-green-900 font-bold py-2 px-4 rounded">
+                        Checkout{{ $totalPrice > 0 ? ' (Total $'.$totalPrice.')' : '' }}
+                    </a>
+                </div>
+
             </div>
         </div>
     @endif

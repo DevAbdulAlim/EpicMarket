@@ -6,6 +6,8 @@
 
         <x-validation-errors class="mb-4" />
 
+        <h2 class="text-lg text-center font-semibold mb-2">Sign up</h2>
+
         <form method="POST" action="{{ route('register') }}">
             @csrf
 
