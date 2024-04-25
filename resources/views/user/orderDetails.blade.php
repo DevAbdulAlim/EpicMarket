@@ -14,11 +14,11 @@
                 <div class="grid grid-cols-2 gap-4">
                     <div>
                         <p class="text-gray-600">Name:</p>
-                        <p class="text-indigo-500 font-bold">John Doe</p>
+                        <p class="text-indigo-500 font-bold">{{ auth()->user()->name }}</p>
                     </div>
                     <div>
                         <p class="text-gray-600">Email:</p>
-                        <p class="text-indigo-500 font-bold">john.doe@example.com</p>
+                        <p class="text-indigo-500 font-bold">{{ auth()->user()->email }}</p>
                     </div>
                 </div>
             </div>
@@ -27,50 +27,57 @@
             <div class="bg-white rounded-lg shadow-md">
                 <h2 class="text-2xl font-bold p-6 border-b">Order History</h2>
 
-                <!-- Order Items -->
-                <div class="p-6">
-                    <!-- Example: Display a list of orders with details -->
+                <!-- Loop through orders -->
+                @foreach ($orders as $order)
+                <div class="p-6 border-b">
+                    <!-- Order Date -->
                     <div class="mb-4">
                         <p class="text-gray-600">Order Date:</p>
-                        <p class="text-indigo-500 font-bold">June 15, 2023</p>
+                        <p class="text-indigo-500 font-bold">{{ $order->created_at->format('F d, Y') }}</p>
                     </div>
+
+                    <!-- Order ID -->
                     <div class="mb-4">
                         <p class="text-gray-600">Order ID:</p>
-                        <p class="text-indigo-500 font-bold">ODR123456</p>
+                        <p class="text-indigo-500 font-bold">{{ $order->id }}</p>
                     </div>
+
+                    <!-- Total Items -->
                     <div class="mb-4">
                         <p class="text-gray-600">Total Items:</p>
-                        <p class="text-indigo-500 font-bold">3</p>
+                        <p class="text-indigo-500 font-bold">{{ $order->items()->count() }}</p>
                     </div>
+
+                    <!-- Total Price -->
                     <div class="mb-4">
                         <p class="text-gray-600">Total Price:</p>
-                        <p class="text-indigo-500 font-bold">$150.00</p>
+                        <p class="text-indigo-500 font-bold">${{ number_format($order->total_price, 2) }}</p>
                     </div>
 
                     <!-- Order Items List -->
                     <div>
                         <h3 class="text-xl font-bold mb-2">Order Items</h3>
                         <ul class="list-disc pl-4">
+                            <!-- Loop through order items -->
+                            @foreach ($order->items as $item)
                             <li class="flex justify-between">
-                                <span>Product 1</span>
-                                <span class="text-indigo-500">x2</span>
-                                <span class="text-indigo-500">$50.00</span>
+                                <span>{{ $item->product_name }}</span>
+                                <span class="text-indigo-500">x{{ $item->quantity }}</span>
+                                <span class="text-indigo-500">${{ number_format($item->price, 2) }}</span>
                             </li>
-                            <li class="flex justify-between">
-                                <span>Product 2</span>
-                                <span class="text-indigo-500">x1</span>
-                                <span class="text-indigo-500">$40.00</span>
-                            </li>
-                            <!-- Add more items as needed -->
+                            @endforeach
                         </ul>
                     </div>
                 </div>
+                @endforeach
 
-                <!-- Repeat similar order details for each order -->
+                <!-- Pagination Links -->
+                <div class="p-6">
+                    {{ $orders->links() }}
+                </div>
 
             </div>
         </div>
     </section>
-
 
 </x-user-dashboard>

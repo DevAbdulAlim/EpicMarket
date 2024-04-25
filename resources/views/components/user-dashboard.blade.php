@@ -8,21 +8,21 @@
                     <li>
                         <a href="{{ route('user.dashboard') }}"
                            class="block py-2 px-4 rounded
-                                  {{ request()->routeIs('user.dashboard') ? 'bg-green-700 text-white' : 'hover:bg-green-700 hover:text-white' }}">
+                                  {{ request()->routeIs('user.dashboard') ? 'bg-green-700 text-white' : 'hover:bg-green-200 ' }}">
                             Dashboard
                         </a>
                     </li>
                     <li>
                         <a href="{{ route('user.orders') }}"
                            class="block py-2 px-4 rounded
-                                  {{ request()->routeIs('user.orders') ? 'bg-green-700 text-white' : 'hover:bg-green-700 hover:text-white' }}">
+                                  {{ request()->routeIs('user.orders') ? 'bg-green-700 text-white' : 'hover:bg-green-200 ' }}">
                             Orders
                         </a>
                     </li>
                     <li>
                         <a href="{{ route('profile.show') }}"
                            class="block py-2 px-4 rounded
-                                  {{ request()->routeIs('profile.show') ? 'bg-green-700 text-white' : 'hover:bg-green-700 hover:text-white' }}">
+                                  {{ request()->routeIs('profile.show') ? 'bg-green-700 text-white' : 'hover:bg-green-200 ' }}">
                             Profile
                         </a>
                     </li>

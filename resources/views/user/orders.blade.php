@@ -19,48 +19,42 @@
             </div>
 
             {{-- Order Listings --}}
-            <div class="bg-white rounded-lg shadow-md">
+            <div class="bg-white rounded-lg">
                 <h2 class="text-2xl font-bold p-6 border-b">Order Listings</h2>
 
                 <!-- Order Items -->
                 <div class="p-6">
-                    <!-- Example: Display a list of orders with details -->
+                    <!-- Loop through orders -->
+                    @foreach ($orders as $order)
                     <div class="mb-4 border-b pb-4">
                         <div class="flex justify-between items-center">
                             <div>
                                 <p class="text-gray-600">Order Date:</p>
-                                <p class="text-indigo-500 font-bold">June 15, 2023</p>
+                                <p class="text-indigo-500 font-bold">{{ $order->created_at->format('F d, Y') }}</p>
                             </div>
                             <div>
                                 <p class="text-gray-600">Order ID:</p>
-                                <p class="text-indigo-500 font-bold">ODR123456</p>
+                                <p class="text-indigo-500 font-bold">{{ $order->id }}</p>
                             </div>
                             <div>
                                 <p class="text-gray-600">Status:</p>
-                                <p class="text-indigo-500 font-bold">Pending</p>
+                                <p class="text-indigo-500 font-bold">{{ $order->status }}</p>
                             </div>
                             <div>
                                 <p class="text-gray-600">Total Price:</p>
-                                <p class="text-indigo-500 font-bold">$150.00</p>
+                                <p class="text-indigo-500 font-bold">${{ number_format($order->total_price, 2) }}</p>
                             </div>
                             <div>
-                                <a href="{{route('user.order.details', ['order' => 1])}}" class="text-indigo-500 hover:text-indigo-700">View Details</a>
+                                <a href="{{ route('user.order.details', ['order' => $order->id]) }}" class="text-indigo-500 hover:text-indigo-700">View Details</a>
                             </div>
                         </div>
                     </div>
+                    @endforeach
 
-                    <!-- Repeat similar order details for each order -->
-
-                </div>
-
-                <!-- Pagination -->
-                <div class="mt-8 flex justify-center">
-                    <nav class="flex items-center justify-between">
-                        <a href="#" class="text-indigo-500 hover:text-indigo-700">1</a>
-                        <a href="#" class="ml-4 text-gray-500 hover:text-indigo-700">2</a>
-                        <a href="#" class="ml-4 text-gray-500 hover:text-indigo-700">3</a>
-                        <!-- Add more pages as needed -->
-                    </nav>
+                    <!-- Pagination -->
+                    <div class="mt-8 flex justify-center">
+                        {{ $orders->links() }}
+                    </div>
                 </div>
             </div>
         </div>

@@ -304,25 +304,25 @@
     <div class="fixed bottom-0 w-full bg-green-800 text-white p-4 md:hidden shadow-2xl">
         <ul class="flex justify-between">
             <li>
-                <a href="#" class="flex flex-col items-center">
+                <a href="{{route('home')}}" class="flex flex-col items-center">
                     <i class="fas fa-home"></i>
                     <span class="text-xs">Home</span>
                 </a>
             </li>
             <li>
-                <a href="#" class="flex flex-col items-center">
+                <a href="{{route('product.search')}}" class="flex flex-col items-center">
                     <i class="fas fa-search"></i>
                     <span class="text-xs">Search</span>
                 </a>
             </li>
             <li>
-                <a href="#" class="flex flex-col items-center">
+                <a href="{{route('cart')}}" class="flex flex-col items-center">
                     <i class="fas fa-shopping-cart"></i>
                     <span class="text-xs">Cart</span>
                 </a>
             </li>
             <li>
-                <a href="#" class="flex flex-col items-center">
+                <a href="{{route('user.dashboard')}}" class="flex flex-col items-center">
                     <i class="fas fa-user"></i>
                     <span class="text-xs">Account</span>
                 </a>

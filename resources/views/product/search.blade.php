@@ -1,5 +1,5 @@
 <x-app-layout>
-    <section class="py-8">
+    <section class="py-8 px-4">
         <div class="flex mx-auto max-w-7xl">
             {{-- Filters Section --}}
             <div class="w-1/4 pr-8">
