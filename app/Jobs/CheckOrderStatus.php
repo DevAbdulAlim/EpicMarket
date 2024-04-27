@@ -43,17 +43,23 @@ class CheckOrderStatus implements ShouldQueue
             ->groupBy('product_id')
             ->pluck('total_quantity', 'product_id');
 
+        // Convert the collection to an array
+        $orderItemQuantitiesArray = $orderItemQuantities->toArray();
+
         // Construct the SQL query for bulk update
         $caseStatements = '';
-        foreach ($orderItemQuantities as $productId => $quantity) {
+        foreach ($orderItemQuantitiesArray as $productId => $quantity) {
+            // Ensure $quantity is treated as a string
+            $quantity = (string) $quantity;
             $caseStatements .= "WHEN $productId THEN stock + $quantity ";
         }
 
         // Bulk update the product stock
-        $sql = "UPDATE products SET stock = CASE id $caseStatements END WHERE id IN (" . implode(',', array_keys($orderItemQuantities)) . ")";
+        $sql = "UPDATE products SET stock = CASE id $caseStatements END WHERE id IN (" . implode(',', array_keys($orderItemQuantitiesArray)) . ")";
         DB::update($sql);
 
         // Delete all order items associated with the order
         OrderItem::where('order_id', $orderId)->delete();
     }
+
 }

@@ -124,8 +124,7 @@ class Checkout extends Component
         OrderItem::insert($orderItemsData);
 
         // Dispatch the job to rollback stock if checkout failed
-        // CheckOrderStatus::dispatch($order->id)->delay(now()->addMinutes(1));
-        CheckOrderStatus::dispatch($order->id);
+        CheckOrderStatus::dispatch($order->id)->delay(now()->addMinutes(1));
 
         session()->forget('cart');
 
