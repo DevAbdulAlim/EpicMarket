@@ -94,29 +94,28 @@ class Checkout extends Component
             return "WHEN $productId THEN $newStock ";
         }, array_keys($bulkUpdateArray), $bulkUpdateArray)) . ' END')]);
 
-        // Create cart in the database
-        $cart = Cart::firstOrCreate(['user_id' => $userId]);
-        $this->cart_id = $cart->id;
 
+        // create empty order
+        $order = Order::create([
+            'user_id' => $userId,
+        ]);
 
-        // Delete existing cart items associated with the user's cart
-        CartItem::where('cart_id', $cart->id)->delete();
-
-        // Prepare data for cart items insertion
-        $cartItemsData = [];
-        foreach ($cartItems as $item) {
-            $cartItemsData[] = [
-                'cart_id' => $cart->id,
+        // Prepare data for order items insertion
+        $orderItemsData = [];
+        foreach ($this->cart as $item) {
+            $orderItemsData[] = [
+                'order_id' => $order->id,
                 'product_id' => $item['product_id'],
                 'quantity' => $item['quantity'],
+                'price' => $item['price'],
             ];
         }
 
-        // Insert all the cart items to the CartItem
-        CartItem::insert($cartItemsData);
+        // Insert all the order items to the CartItem
+        OrderItem::insert($orderItemsData);
 
         // Dispatch the job to rollback stock if checkout failed
-        CheckOrderStatus::dispatch($cart->id)->delay(now()->addMinutes(1));
+        CheckOrderStatus::dispatch($order->id)->delay(now()->addMinutes(1));
 
         // Commit the transaction
         DB::commit();
