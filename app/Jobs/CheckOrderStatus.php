@@ -2,10 +2,9 @@
 
 namespace App\Jobs;
 
-use App\Models\CartItem;
+use App\Models\OrderItem;
 use App\Models\Product;
 use Illuminate\Bus\Queueable;
-use Illuminate\Contracts\Queue\ShouldBeUnique;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
@@ -16,10 +15,11 @@ class CheckOrderStatus implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
-    protected $cartId;
-    public function __construct($cartId)
+    protected $orderId;
+
+    public function __construct($orderId)
     {
-        $this->cartId = $cartId;
+        $this->orderId = $orderId;
     }
 
     /**
@@ -27,40 +27,33 @@ class CheckOrderStatus implements ShouldQueue
      */
     public function handle(): void
     {
-        $this->rollbackStock($this->cartId);
+        try {
+            $this->rollbackStock($this->orderId);
+        } catch (\Exception $e) {
+            // Handle exceptions (e.g., log or notify administrators)
+            \Log::error('Error occurred during CheckOrderStatus job: ' . $e->getMessage());
+        }
     }
 
-    protected function rollbackStock($cartId)
+    protected function rollbackStock($orderId)
     {
-        // Retrieve the cart items
-        $cartItems = CartItem::where('cart_id', $cartId)
+        // Retrieve the order items and sum the quantities
+        $orderItemQuantities = OrderItem::where('order_id', $orderId)
             ->select('product_id', DB::raw('SUM(quantity) as total_quantity'))
             ->groupBy('product_id')
-            ->get();
-
-        // Prepare data for bulk update
-        $updateData = [];
-        foreach ($cartItems as $cartItem) {
-            $productId = $cartItem->product_id;
-            $totalQuantity = $cartItem->total_quantity;
-            $updateData[$productId] = $totalQuantity;
-        }
+            ->pluck('total_quantity', 'product_id');
 
         // Construct the SQL query for bulk update
         $caseStatements = '';
-        foreach ($updateData as $productId => $quantity) {
+        foreach ($orderItemQuantities as $productId => $quantity) {
             $caseStatements .= "WHEN $productId THEN stock + $quantity ";
         }
 
-        // Bulk update the stock
-        $sql = "UPDATE products SET stock = CASE id $caseStatements END WHERE id IN (" . implode(',', array_keys($updateData)) . ")";
+        // Bulk update the product stock
+        $sql = "UPDATE products SET stock = CASE id $caseStatements END WHERE id IN (" . implode(',', array_keys($orderItemQuantities)) . ")";
         DB::update($sql);
 
-        // Delete the cart items
-        CartItem::where('cart_id', $cartId)->delete();
-
+        // Delete all order items associated with the order
+        OrderItem::where('order_id', $orderId)->delete();
     }
-
-
-
 }

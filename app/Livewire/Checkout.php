@@ -12,6 +12,7 @@ use App\Models\Product;
 use Illuminate\Support\Facades\DB;
 use Livewire\Component;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Redirect;
 
 class Checkout extends Component
 {
@@ -40,11 +41,15 @@ class Checkout extends Component
     public $subtotal = 0;
     public $total = 0;
 
-    public $cart_id; // database Cart id to store in the order for tracking order
+    public $order_id; // database order id to store in the order for tracking order
 
     public function mount()
     {
         $this->cart = session()->get('cart', []);
+        if (empty($this->cart)) {
+            // Redirect to the home page
+            return Redirect::route('home');
+        }
         $this->calculateSubtotal();
         $this->calculateTotal();
         $this->checkAvailability();
@@ -100,6 +105,10 @@ class Checkout extends Component
             'user_id' => $userId,
         ]);
 
+        // store order id for further processing
+        $this->order_id = $order->id;
+
+
         // Prepare data for order items insertion
         $orderItemsData = [];
         foreach ($this->cart as $item) {
@@ -115,7 +124,10 @@ class Checkout extends Component
         OrderItem::insert($orderItemsData);
 
         // Dispatch the job to rollback stock if checkout failed
-        CheckOrderStatus::dispatch($order->id)->delay(now()->addMinutes(1));
+        // CheckOrderStatus::dispatch($order->id)->delay(now()->addMinutes(1));
+        CheckOrderStatus::dispatch($order->id);
+
+        session()->forget('cart');
 
         // Commit the transaction
         DB::commit();
@@ -196,29 +208,21 @@ class Checkout extends Component
             );
 
 
-            // Create order
-            $order = Order::create([
-                'user_id' => $userId,
+            // Define the attributes for the order
+            $orderAttributes = [
                 'address_id' => $address->id,
-                'cart_id' => $this->cart_id,
                 'payment_method' => $this->paymentMethod,
                 'subtotal' => $this->subtotal,
                 'tax' => $this->tax,
                 'shipping' => $this->shipping,
                 'total' => $this->total,
-            ]);
+            ];
 
-            // Create order items
-            foreach ($this->cart as $item) {
-                OrderItem::create([
-                    'order_id' => $order->id,
-                    'product_id' => $item['product_id'],
-                    'quantity' => $item['quantity'],
-                    'price' => $item['price'],
-                ]);
-            }
-            session()->forget('cart');
+            // Update the existing order or fail if not found
+            Order::findOrFail($this->order_id)->update($orderAttributes);
             session()->flash('success', 'Order placed successfully!');
+
+
         }
     }
 
