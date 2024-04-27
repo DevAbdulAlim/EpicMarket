@@ -38,16 +38,9 @@
                         <x-slot name="content">
                             <!-- Dropdown content goes here -->
                             <ul class="p-4">
-                                <li>Electronics</li>
-                                <li>Clothing</li>
-                                <li>Home & Garden</li>
-                                <li>Books</li>
-                                <li>Health & Beauty</li>
-                                <li>Toys & Games</li>
-                                <li>Sports & Outdoors</li>
-                                <li>Automotive</li>
-                                <li>Pets</li>
-                                <li>Food & Grocery</li>
+                                @foreach ($composerCategories as $category)
+                                    <x-dropdown-link href="{{ route('product.search', ['category' => $category->slug]) }}">{{ $category->name }}</x-dropdown-link>
+                                @endforeach
                             </ul>
                         </x-slot>
                     </x-dropdown>
@@ -219,14 +212,16 @@
     <!-- Responsive Navigation Menu -->
     <div :class="{ 'block': open, 'hidden': !open }" class="hidden sm:hidden">
         <div class="pt-2 pb-3 space-y-1">
-            <x-responsive-nav-link href="{{ route('user.dashboard') }}" :active="request()->routeIs('user.dashboard')">
-                {{ __('Dashboard') }}
+            @foreach($composerCategories as $category)
+            <x-responsive-nav-link href="{{ route('product.search', ['category' => $category->slug]) }}">
+                {{ $category->name }}
             </x-responsive-nav-link>
+        @endforeach
         </div>
 
         @auth
             <!-- Responsive Settings Options -->
-            <div class="pt-4 pb-1 border-t border-gray-200">
+            <div class="pt-4 pb-4 border-t border-gray-200">
                 <div class="flex items-center px-4">
                     @if (Laravel\Jetstream\Jetstream::managesProfilePhotos())
                         <div class="shrink-0 me-3">
@@ -304,25 +299,25 @@
     <div class="fixed bottom-0 w-full bg-green-800 text-white p-4 md:hidden shadow-2xl">
         <ul class="flex justify-between">
             <li>
-                <a href="{{route('home')}}" class="flex flex-col items-center">
+                <a href="{{ route('home') }}" class="flex flex-col items-center">
                     <i class="fas fa-home"></i>
                     <span class="text-xs">Home</span>
                 </a>
             </li>
             <li>
-                <a href="{{route('product.search')}}" class="flex flex-col items-center">
+                <a href="{{ route('product.search') }}" class="flex flex-col items-center">
                     <i class="fas fa-search"></i>
                     <span class="text-xs">Search</span>
                 </a>
             </li>
             <li>
-                <a href="{{route('cart')}}" class="flex flex-col items-center">
+                <a href="{{ route('cart') }}" class="flex flex-col items-center">
                     <i class="fas fa-shopping-cart"></i>
                     <span class="text-xs">Cart</span>
                 </a>
             </li>
             <li>
-                <a href="{{route('user.dashboard')}}" class="flex flex-col items-center">
+                <a href="{{ route('user.dashboard') }}" class="flex flex-col items-center">
                     <i class="fas fa-user"></i>
                     <span class="text-xs">Account</span>
                 </a>

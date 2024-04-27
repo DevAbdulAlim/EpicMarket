@@ -4,14 +4,16 @@ namespace App\View\Components;
 
 use Illuminate\View\Component;
 use Illuminate\View\View;
+use App\Models\Category;
 
 class AppLayout extends Component
 {
-    /**
-     * Get the view / contents that represents the component.
-     */
     public function render(): View
     {
-        return view('layouts.app');
+        // Fetch 10 categories from the database
+        $categories = Category::take(10)->get();
+
+        // Pass the categories to the view
+        return view('layouts.app', ['categories' => $categories]);
     }
 }
