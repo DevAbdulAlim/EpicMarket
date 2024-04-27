@@ -1,6 +1,6 @@
 <div>
-    <x-button type="button" class="focus:ring-0" wire:click="addToCart">
-        +
-    </x-button>
+    <button type="button" class="py-2 px-4 bg-green-800 text-white rounded-md hover:bg-green-900" wire:click="addToCart">
+        Add To Cart
+    </button>
 
 </div>

@@ -1,4 +1,4 @@
-<div class="p-4 bg-white  rounded-lg hover:shadow-xl">
+<div class="p-4 bg-white border rounded-lg hover:shadow-xl">
     <a href="{{ route('product.details', ['product' => $product->id]) }}">
         <img src="{{ asset('images/product.webp') }}" alt="" class="object-cover w-full h-40 mb-4 rounded-lg">
     </a>

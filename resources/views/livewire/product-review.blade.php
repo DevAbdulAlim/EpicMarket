@@ -3,16 +3,16 @@
     <form wire:submit.prevent="updateOrCreateReview" class="mb-4">
         <div class="mb-2">
             <label for="rating" class="block font-semibold">Rating:</label>
-            <input type="number" wire:model="rating" id="rating" min="1" max="5" required
-                class="w-full px-3 py-2 border border-gray-300 rounded">
+            <x-input type="number" wire:model="rating" id="rating" min="1" max="5" required
+                class="w-full" />
         </div>
         <div class="mb-2">
             <label for="comment" class="block font-semibold">Comment:</label>
-            <textarea wire:model="comment" id="comment" rows="3" class="w-full px-3 py-2 border border-gray-300 rounded"></textarea>
+            <textarea wire:model="comment" id="comment" rows="3" class="w-full focus:ring-green-500 focus:border-green-500 px-3 py-2 border border-gray-300 rounded"></textarea>
         </div>
         <div>
             @auth
-            <button type="submit" class="px-4 py-2 font-semibold text-white bg-blue-500 rounded hover:bg-blue-600">
+            <button type="submit" class="px-4 py-2 font-semibold text-white bg-green-500 rounded hover:bg-green-600">
                 @if ($userReview)
                     Update Review
                 @else
@@ -20,7 +20,7 @@
                 @endif
             </button>
             @else
-            <a class="px-4 py-2 font-semibold text-white bg-blue-500 rounded hover:bg-blue-600" href="{{route('login')}}">Login to add review</a>
+            <a class="px-4 py-2 font-semibold text-white bg-green-500 rounded hover:bg-green-600" href="{{route('login')}}">Login to add review</a>
             @endauth
         </div>
     </form>

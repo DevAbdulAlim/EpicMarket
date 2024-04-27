@@ -20,7 +20,7 @@
                                     2,
                                 );
                             @endphp
-                            <span class="mr-2 text-xl font-bold text-indigo-500">${{ $discountedPrice }}</span>
+                            <span class="mr-2 text-xl font-bold text-green-500">${{ $discountedPrice }}</span>
                         @endif
 
                         <span class="text-gray-500 line-through">${{ $product->price }}</span>
