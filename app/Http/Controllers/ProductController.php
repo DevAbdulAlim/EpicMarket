@@ -21,8 +21,8 @@ class ProductController extends Controller
         }
 
         // Filter by product name
-        if ($request->filled('search')) {
-            $query->where('name', 'like', '%' . $request->search . '%');
+        if ($request->filled('product')) {
+            $query->where('name', 'like', '%' . $request->product . '%');
         }
 
         // Filter by minPrice

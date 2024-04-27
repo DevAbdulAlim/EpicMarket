@@ -47,7 +47,7 @@
                 </div>
 
                 <form action="/product/search?" method="GET" class="flex justify-center w-full">
-                    <x-input type="text" name="search" placeholder="Search..."
+                    <x-input type="text" name="product" placeholder="Search..."
                         class="md:pl-36 md:pr-10 md:w-full" />
                     <x-button type="submit" class="-ml-8">Search</x-button>
                 </form>
