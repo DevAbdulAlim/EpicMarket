@@ -39,14 +39,14 @@
                             <!-- Dropdown content goes here -->
                             <ul class="p-4">
                                 @foreach ($composerCategories as $category)
-                                    <x-dropdown-link href="{{ route('product.search', ['category' => $category->slug]) }}">{{ $category->name }}</x-dropdown-link>
+                                    <x-dropdown-link href="{{ route('product.search', ['categories' => $category->slug]) }}">{{ $category->name }}</x-dropdown-link>
                                 @endforeach
                             </ul>
                         </x-slot>
                     </x-dropdown>
                 </div>
 
-                <form action="/search" method="GET" class="flex justify-center w-full">
+                <form action="/product/search?" method="GET" class="flex justify-center w-full">
                     <x-input type="text" name="search" placeholder="Search..."
                         class="md:pl-36 md:pr-10 md:w-full" />
                     <x-button type="submit" class="-ml-8">Search</x-button>
@@ -213,7 +213,7 @@
     <div :class="{ 'block': open, 'hidden': !open }" class="hidden sm:hidden">
         <div class="pt-2 pb-3 space-y-1">
             @foreach($composerCategories as $category)
-            <x-responsive-nav-link href="{{ route('product.search', ['category' => $category->slug]) }}">
+            <x-responsive-nav-link href="{{ route('product.search', ['categories' => $category->slug]) }}">
                 {{ $category->name }}
             </x-responsive-nav-link>
         @endforeach
