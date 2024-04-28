@@ -1,7 +1,7 @@
 <div>
     <x-action-message on="click" class="fixed left-5 top-20 z-50">
         @if ($message)
-            <div class=" bg-green-500 text-white px-5 py-2 flex items-center shadow-lg">
+            <div class=" bg-green-500 text-white px-2 py-2 w-40 flex items-center shadow-lg">
                 <i class="fas fa-check-circle mr-2"></i>
                 {{ $message }}
             </div>
