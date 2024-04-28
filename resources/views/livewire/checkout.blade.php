@@ -218,6 +218,12 @@
 
         </form>
 
+        <x-action-message on="OrderPlaced">
+            <!-- Content of the action message -->
+            This is an action message.
+        </x-action-message>
+
+
 
     </div>
 </section>

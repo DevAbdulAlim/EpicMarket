@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\DB;
 use Livewire\Component;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
+use App\Events\OrderPlaced;
 
 class Checkout extends Component
 {
@@ -59,84 +60,86 @@ class Checkout extends Component
     }
 
     public function recordStock()
-{
-    $userId = auth()->id();
+    {
+        $userId = auth()->id();
 
-    // Start a database transaction
-    DB::beginTransaction();
+        // Start a database transaction
+        DB::beginTransaction();
 
-    try {
-        // Retrieve all cart items
-        $cartItems = $this->cart;
+        try {
+            // Retrieve all cart items
+            $cartItems = $this->cart;
 
-        // Retrieve all product IDs from the cart items
-        $productIds = array_column($cartItems, 'product_id');
+            // Retrieve all product IDs from the cart items
+            $productIds = array_column($cartItems, 'product_id');
 
-        // Retrieve the quantities for all products
-        $productQuantities = [];
-        foreach ($cartItems as $item) {
-            $productQuantities[$item['product_id']] = $item['quantity'];
+            // Retrieve the quantities for all products
+            $productQuantities = [];
+            foreach ($cartItems as $item) {
+                $productQuantities[$item['product_id']] = $item['quantity'];
+            }
+
+            // Retrieve all products to update
+            $productsToUpdate = Product::whereIn('id', $productIds)->get();
+
+            // Prepare the bulk update array
+            $bulkUpdateArray = [];
+            foreach ($productsToUpdate as $product) {
+                $productId = $product->id;
+                $quantity = $productQuantities[$productId] ?? 0; // Get quantity from cart items
+
+                // Calculate the new stock value
+                $newStock = max(0, $product->stock - $quantity); // Ensure stock doesn't go below 0
+
+                // Add product ID and new stock value to bulk update array
+                $bulkUpdateArray[$productId] = $newStock;
+            }
+
+            // Perform bulk update for all products
+            Product::whereIn('id', array_keys($bulkUpdateArray))->update([
+                'stock' => DB::raw('CASE id ' . implode(' ', array_map(function ($productId, $newStock) {
+                    return "WHEN $productId THEN $newStock ";
+                }, array_keys($bulkUpdateArray), $bulkUpdateArray)) . ' END')
+            ]);
+
+
+            // create empty order
+            $order = Order::create([
+                'user_id' => $userId,
+            ]);
+
+            // store order id for further processing
+            $this->order_id = $order->id;
+
+
+            // Prepare data for order items insertion
+            $orderItemsData = [];
+            foreach ($this->cart as $item) {
+                $orderItemsData[] = [
+                    'order_id' => $order->id,
+                    'product_id' => $item['product_id'],
+                    'quantity' => $item['quantity'],
+                    'price' => $item['price'],
+                ];
+            }
+
+            // Insert all the order items to the CartItem
+            OrderItem::insert($orderItemsData);
+
+            // Dispatch the job to rollback stock if checkout failed
+            CheckOrderStatus::dispatch($order->id)->delay(now()->addMinutes(1));
+
+            session()->forget('cart');
+
+            // Commit the transaction
+            DB::commit();
+        } catch (\Exception $e) {
+            // Rollback the transaction on error
+            DB::rollBack();
+            // Handle the exception, log or throw it if necessary
+            throw $e;
         }
-
-        // Retrieve all products to update
-        $productsToUpdate = Product::whereIn('id', $productIds)->get();
-
-        // Prepare the bulk update array
-        $bulkUpdateArray = [];
-        foreach ($productsToUpdate as $product) {
-            $productId = $product->id;
-            $quantity = $productQuantities[$productId] ?? 0; // Get quantity from cart items
-
-            // Calculate the new stock value
-            $newStock = max(0, $product->stock - $quantity); // Ensure stock doesn't go below 0
-
-            // Add product ID and new stock value to bulk update array
-            $bulkUpdateArray[$productId] = $newStock;
-        }
-
-        // Perform bulk update for all products
-        Product::whereIn('id', array_keys($bulkUpdateArray))->update(['stock' => DB::raw('CASE id ' . implode(' ', array_map(function ($productId, $newStock) {
-            return "WHEN $productId THEN $newStock ";
-        }, array_keys($bulkUpdateArray), $bulkUpdateArray)) . ' END')]);
-
-
-        // create empty order
-        $order = Order::create([
-            'user_id' => $userId,
-        ]);
-
-        // store order id for further processing
-        $this->order_id = $order->id;
-
-
-        // Prepare data for order items insertion
-        $orderItemsData = [];
-        foreach ($this->cart as $item) {
-            $orderItemsData[] = [
-                'order_id' => $order->id,
-                'product_id' => $item['product_id'],
-                'quantity' => $item['quantity'],
-                'price' => $item['price'],
-            ];
-        }
-
-        // Insert all the order items to the CartItem
-        OrderItem::insert($orderItemsData);
-
-        // Dispatch the job to rollback stock if checkout failed
-        CheckOrderStatus::dispatch($order->id)->delay(now()->addMinutes(1));
-
-        session()->forget('cart');
-
-        // Commit the transaction
-        DB::commit();
-    } catch (\Exception $e) {
-        // Rollback the transaction on error
-        DB::rollBack();
-        // Handle the exception, log or throw it if necessary
-        throw $e;
     }
-}
 
 
 
@@ -207,6 +210,9 @@ class Checkout extends Component
             );
 
 
+            // Find the order or fail if not found
+            $order = Order::findOrFail($this->order_id);
+
             // Define the attributes for the order
             $orderAttributes = [
                 'address_id' => $address->id,
@@ -217,9 +223,10 @@ class Checkout extends Component
                 'total' => $this->total,
             ];
 
-            // Update the existing order or fail if not found
-            Order::findOrFail($this->order_id)->update($orderAttributes);
+            // Update the existing order with the new attributes
+            $order->update($orderAttributes);
             session()->flash('success', 'Order placed successfully!');
+            event(new OrderPlaced($order));
 
 
         }
