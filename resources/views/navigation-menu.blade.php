@@ -210,7 +210,7 @@
     </div>
 
     <!-- Responsive Navigation Menu -->
-    <div :class="{ 'block': open, 'hidden': !open }" class="hidden sm:hidden">
+    <div :class="{ 'block': open, 'hidden': !open }" class="hidden sm:hidden overflow-auto">
         <div class="pt-2 pb-3 space-y-1">
             @foreach($composerCategories as $category)
             <x-responsive-nav-link href="{{ route('product.search', ['categories' => $category->slug]) }}">
