@@ -7,7 +7,7 @@ use Livewire\Component;
 class ShoppingCart extends Component
 {
     public $cart = [];
-    public $cartOpen = false;
+    public $open = false;
     public $totalItems = 0;
     public $totalPrice = 0;
 
@@ -55,22 +55,14 @@ class ShoppingCart extends Component
     }
 
     public function cartAddListener () {
-        $this->openCart();
         $this->refreshCart();
+        $this->open = true;
     }
 
     public function refreshCart() {
         $this->cart = session()->get('cart', []);
         $this->calculateTotalItems();
         $this->calculateTotalPrice();
-    }
-
-    public function openCart() {
-        $this->cartOpen = true;
-    }
-
-    public function closeCart() {
-        $this->cartOpen = false;
     }
 
     public function calculateTotalItems() {

@@ -1,7 +1,8 @@
-<div x-data="{ open: false }">
+<div x-data="{ open: @entangle('open') }">
 
     <button x-on:click="open = true" class="relative">
-        <span class="absolute inline-flex items-center justify-center w-6 h-6 -mt-2 -mr-2 text-white bg-red-500 rounded-full -top-1 -right-1">{{ count($cart) }}</span>
+        <span
+            class="absolute inline-flex items-center justify-center w-6 h-6 -mt-2 -mr-2 text-white bg-red-500 rounded-full -top-1 -right-1">{{ count($cart) }}</span>
         <i class="fas fa-shopping-cart"></i>
     </button>
 
@@ -11,7 +12,8 @@
         </div>
     </div>
 
-    <div x-show="open" @click.outside="open=false" class="fixed top-0 right-0 z-50 h-full overflow-y-auto bg-white shadow-lg w-96">
+    <div x-show="open" x-cloak @click.outside="open=false"
+        class="fixed top-0 right-0 z-50 h-full overflow-y-auto bg-white shadow-lg w-96">
         <div class="p-4 relative h-full">
             <div class="flex justify-between pb-2 mb-4 text-xl font-semibold border-b">
                 <h2>Shopping Cart ({{ count($cart) }} items)</h2>
@@ -24,7 +26,7 @@
                         <li class="flex items-center justify-between py-2 border-b">
                             <div class="flex items-center space-x-2">
                                 <div class="flex-shrink-0 w-16 h-16 overflow-hidden bg-gray-200 rounded-md">
-                                    <img src="{{asset('/images/product.webp')}}" alt="{{ $item['name'] }}"
+                                    <img src="{{ asset('/images/product.webp') }}" alt="{{ $item['name'] }}"
                                         class="object-cover w-full h-full">
                                 </div>
                                 <div>
@@ -49,8 +51,9 @@
             @endif
 
             <div class="flex justify-center text-center p-4">
-                <a href="{{ $totalPrice > 0 ? route('checkout') : '#' }}" class="bg-green-800 left-2 right-2 text-white absolute bottom-2 hover:bg-green-900 font-bold py-2 px-4 rounded">
-                    Checkout{{ $totalPrice > 0 ? ' (Total $'.$totalPrice.')' : '' }}
+                <a href="{{ $totalPrice > 0 ? route('checkout') : '#' }}"
+                    class="bg-green-800 left-2 right-2 text-white absolute bottom-2 hover:bg-green-900 font-bold py-2 px-4 rounded">
+                    Checkout{{ $totalPrice > 0 ? ' (Total $' . $totalPrice . ')' : '' }}
                 </a>
             </div>
         </div>
