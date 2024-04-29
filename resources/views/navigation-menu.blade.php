@@ -1,4 +1,4 @@
-<nav x-data="{ open: false }" class="sticky top-0 z-30 bg-green-100">
+<nav x-data="{ open: false, isSticky: false }" x-init="window.addEventListener('scroll', () => {isSticky = window.scrollY > 0})" :class="{ 'bg-white shadow-md': isSticky, '': !isSticky }"  class="sticky top-0 z-30 bg-green-100">
     <!-- Primary Navigation Menu -->
     <div class="px-4 mx-auto max-w-7xl">
         <div class="flex justify-between h-16">
