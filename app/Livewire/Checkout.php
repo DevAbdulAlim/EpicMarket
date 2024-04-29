@@ -227,6 +227,8 @@ class Checkout extends Component
             $order->update($orderAttributes);
             session()->flash('success', 'Order placed successfully!');
             event(new OrderPlaced($order));
+            session()->put('order_success', true);
+            return redirect()->route('order-success');
 
 
         }

@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [HomeController::class,'index'])->name('home');
 Route::get('/product/search', [ProductController::class, 'search'])->name('product.search');
 Route::get('/product/{product}', [ProductController::class, 'details'])->name('product.details');
+Route::get('/order-success', [UserController::class, 'orderSuccess'])->name('order-success');
 
 
 Route::middleware(['auth', 'verified'])->group(function () {

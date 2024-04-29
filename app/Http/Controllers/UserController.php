@@ -40,4 +40,14 @@ class UserController extends Controller
 
         return view('user.orderDetails', ['order' => $orderWithItems]);
     }
+
+    public function orderSuccess()
+    {
+        if (session()->has('order_success')) {
+            session()->forget('order_success');
+            return view('order-success');
+        } else {
+            abort(404);
+        }
+    }
 }
