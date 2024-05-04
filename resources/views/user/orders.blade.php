@@ -45,8 +45,10 @@
                                 <p class="text-green-500 font-bold">${{ number_format($order->total, 2) }}</p>
                             </div>
                             <div class="w-full md:w-auto">
-                                <a href="{{ route('user.order.details', ['order' => $order->id]) }}" class="text-green-500 hover:text-green-700">View Details</a>
-                            </div>
+                                <a href="{{ route('user.order.details', ['order' => $order->id]) }}" class="text-green-500 hover:text-green-700">
+                                    <i class="fa-solid fa-arrow-right"></i>
+                                </a>
+                            </div>                            
                         </div>
                     </div>
                     @endforeach
