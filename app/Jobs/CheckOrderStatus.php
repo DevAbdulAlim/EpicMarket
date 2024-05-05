@@ -2,6 +2,7 @@
 
 namespace App\Jobs;
 
+use App\Models\Order;
 use App\Models\OrderItem;
 use App\Models\Product;
 use Illuminate\Bus\Queueable;
@@ -27,18 +28,28 @@ class CheckOrderStatus implements ShouldQueue
      */
     public function handle(): void
     {
-        try {
-            $this->rollbackStock($this->orderId);
-        } catch (\Exception $e) {
-            // Handle exceptions (e.g., log or notify administrators)
-            \Log::error('Error occurred during CheckOrderStatus job: ' . $e->getMessage());
+        $order = Order::find($this->orderId);
+        
+
+        // Check if the order exists
+        if ($order) {
+            // Check if the payment method is not cash and the order status is initiated
+            if ($order->status == 'initiated' || $order->status == 'pending') {
+                try {
+                    // Call the rollbackStock method
+                    $this->rollbackStock($order);
+                } catch (\Exception $e) {
+                    // Handle exceptions (e.g., log or notify administrators)
+                    \Log::error('Error occurred during CheckOrderStatus job: ' . $e->getMessage());
+                }
+            }
         }
     }
 
-    protected function rollbackStock($orderId)
+    protected function rollbackStock($order)
     {
         // Retrieve the order items and sum the quantities
-        $orderItemQuantities = OrderItem::where('order_id', $orderId)
+        $orderItemQuantities = OrderItem::where('order_id', $order->id)
             ->select('product_id', DB::raw('SUM(quantity) as total_quantity'))
             ->groupBy('product_id')
             ->pluck('total_quantity', 'product_id');
@@ -58,8 +69,20 @@ class CheckOrderStatus implements ShouldQueue
         $sql = "UPDATE products SET stock = CASE id $caseStatements END WHERE id IN (" . implode(',', array_keys($orderItemQuantitiesArray)) . ")";
         DB::update($sql);
 
-        // Delete all order items associated with the order
-        OrderItem::where('order_id', $orderId)->delete();
+        if($order->status == 'initiated') {
+
+         // Delete all order items associated with the order
+         OrderItem::where('order_id', $order->id)->delete();
+
+         // Delete the order
+         $order->delete();
+
+        //  dd('hi');
+        } else {
+            // change the order status to cancelled
+            $order->status = 'canceled';
+            $order->save();
+        }
     }
 
 }

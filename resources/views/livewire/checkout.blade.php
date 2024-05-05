@@ -115,7 +115,7 @@
                     <!-- Credit Card -->
                     <div class="flex items-center">
                         <input type="radio" wire:model="paymentMethod" id="creditCard" name="paymentMethod"
-                            value="creditCard" class="w-4 h-4 text-green-500 focus:ring-green-500" required>
+                            value="credit_card" class="w-4 h-4 text-green-500 focus:ring-green-500" required>
                         <label for="creditCard" class="ml-2 text-gray-600">Credit Card</label>
                     </div>
                     <!-- PayPal -->
