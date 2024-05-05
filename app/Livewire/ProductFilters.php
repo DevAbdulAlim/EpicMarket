@@ -14,20 +14,6 @@ class ProductFilters extends Component
     public $selectedCategories = [];
     public $queryParams;
 
-
-    public $sidebarOpen = false;
-
-
-    #[On('filterOpened')]
-    public function openFilter() {
-        $this->sidebarOpen = true;
-    }
-
-    public function closeFilter() {
-        $this->sidebarOpen = false;
-    }
-
-
     public function mount()
     {
         $this->queryParams = request()->query();

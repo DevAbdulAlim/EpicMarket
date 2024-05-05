@@ -1,14 +1,13 @@
-<div x-data="{sidebarOpen : @entangle('sidebarOpen')}" x-bind:class="{'block': sidebarOpen, 'hidden': !sidebarOpen}"
-@open-filter.window="window.alert('hi')"
-class="relative lg:block lg:w-1/4 pr-8"   @click.outside="sidebarOpen = false">
-    <div wire:loading  class="fixed">
+<div x-data="{ sidebarOpen: false }" x-bind:class="{ 'block': sidebarOpen, 'hidden': !sidebarOpen }"
+    @open-filter.window="sidebarOpen = true" class="relative lg:block lg:w-1/4 pr-8">
+    <div wire:loading class="fixed">
         <div class="fixed top-0 left-0 w-full h-full flex items-center  justify-center z-50">
             <i class="fas fa-spinner fa-3x text-green-500 animate-spin"></i>
         </div>
     </div>
 
-    <div x-bind:class="{'fixed h-full shadow-md z-30 p-4 top-0 left-0 bg-white' : sidebarOpen}">
-        <button wire:click="closeFilter" class="absolute top-4 right-4 lg:hidden focus:outline-none">
+    <div x-bind:class="{ 'fixed h-full shadow-md z-30 p-4 top-0 left-0 bg-white': sidebarOpen }">
+        <button @click="sidebarOpen = false" class="absolute top-4 right-4 lg:hidden focus:outline-none">
             <i class="fas fa-times text-gray-600"></i>
         </button>
 
@@ -35,7 +34,8 @@ class="relative lg:block lg:w-1/4 pr-8"   @click.outside="sidebarOpen = false">
                     <li>
                         <label class="flex items-center space-x-2">
                             <!-- Use the provided Blade component -->
-                            <x-checkbox wire:click="updateSelectedCategories('{{ $category->name }}')" :checked="in_array($category->name, $selectedCategories)" />
+                            <x-checkbox wire:click="updateSelectedCategories('{{ $category->name }}')"
+                                :checked="in_array($category->name, $selectedCategories)" />
                             <span
                                 class="{{ in_array($category->name, $selectedCategories) ? 'font-bold text-green-500' : '' }}">
                                 {{ $category->name }}
@@ -48,3 +48,4 @@ class="relative lg:block lg:w-1/4 pr-8"   @click.outside="sidebarOpen = false">
         </div>
     </div>
 </div>
+
