@@ -4,6 +4,7 @@ namespace App\Livewire;
 
 use App\Models\Category;
 use Livewire\Component;
+use Livewire\Attributes\On;
 
 class ProductFilters extends Component
 {
@@ -12,6 +13,20 @@ class ProductFilters extends Component
     public $categories;
     public $selectedCategories = [];
     public $queryParams;
+
+
+    public $sidebarOpen = false;
+
+
+    #[On('filterOpened')]
+    public function openFilter() {
+        $this->sidebarOpen = true;
+    }
+
+    public function closeFilter() {
+        $this->sidebarOpen = false;
+    }
+
 
     public function mount()
     {

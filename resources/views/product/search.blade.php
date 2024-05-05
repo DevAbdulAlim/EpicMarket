@@ -2,15 +2,13 @@
     <section class="py-8 px-4">
         <div class="flex mx-auto max-w-7xl">
             {{-- Filters Section --}}
-            <div class="w-1/4 pr-8">
                 <livewire:product-filters />
-            </div>
             {{-- Search Results Section --}}
-            <div class="w-3/4">
+            <div class="w-full lg:w-3/4">
                 <livewire:product-sort :total="$products->total()" />
 
                 {{-- Search Results --}}
-                <div class="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3 ">
+                <div class="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3 ">
                     <!-- Product Cards -->
                     @foreach ($products as $product)
                         <x-product-card :product=$product />
