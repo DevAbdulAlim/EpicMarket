@@ -6,6 +6,7 @@ use Livewire\Component;
 
 class ShoppingCart extends Component
 {
+    public $title;
     public $cart = [];
     public $open = false;
     public $totalItems = 0;

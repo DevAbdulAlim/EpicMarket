@@ -311,10 +311,7 @@
                 </a>
             </li>
             <li>
-                <a href="{{ route('cart') }}" class="flex flex-col items-center">
-                    <i class="fas fa-shopping-cart"></i>
-                    <span class="text-xs">Cart</span>
-                </a>
+                <livewire:shopping-cart :title="'Cart'" />
             </li>
             <li>
                 <a href="{{ route('user.dashboard') }}" class="flex flex-col items-center">

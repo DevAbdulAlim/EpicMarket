@@ -1,9 +1,12 @@
 <div x-data="{ open: @entangle('open') }">
 
-    <button x-on:click="open = true" class="relative">
+    <button x-on:click="open = true" class="relative flex flex-col items-center">
         <span
             class="absolute inline-flex items-center justify-center w-6 h-6 -mt-2 -mr-2 text-white bg-red-500 rounded-full -top-1 -right-1">{{ count($cart) }}</span>
         <i class="fas fa-shopping-cart"></i>
+        @if ($title)
+            <p class="text-xs"> {{ $title }}</p>
+        @endif
     </button>
 
     <div wire:loading class="fixed">
@@ -13,7 +16,7 @@
     </div>
 
     <div x-show="open" x-cloak @click.outside="open=false"
-        class="fixed top-0 right-0 z-50 h-full overflow-y-auto bg-white shadow-lg w-96">
+        class="fixed top-0 right-0 z-50 h-full overflow-y-auto text-gray-600 bg-white shadow-lg w-96">
         <div class="p-4 relative h-full">
             <div class="flex justify-between pb-2 mb-4 text-xl font-semibold border-b">
                 <h2>Shopping Cart ({{ count($cart) }} items)</h2>
@@ -50,12 +53,17 @@
                 <p class="text-lg">Your cart is empty.</p>
             @endif
 
-            <div class="flex justify-center text-center p-4">
+            <div class="flex flex-col absolute bottom-2 left-2 right-2 justify-center text-center p-4">
+                <a href="{{ route('cart') }}"
+                    class="bg-green-500 text-white font-bold py-2 px-4 rounded mb-2 hover:bg-green-600">
+                    Show Cart
+                </a>
                 <a href="{{ $totalPrice > 0 ? route('checkout') : '#' }}"
-                    class="bg-green-800 left-2 right-2 text-white absolute bottom-2 hover:bg-green-900 font-bold py-2 px-4 rounded">
+                    class="bg-red-800 text-white font-bold py-2 px-4 rounded hover:bg-red-900">
                     Checkout{{ $totalPrice > 0 ? ' (Total $' . $totalPrice . ')' : '' }}
                 </a>
             </div>
+            
         </div>
     </div>
 
