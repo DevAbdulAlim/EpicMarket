@@ -191,7 +191,7 @@ class Checkout extends Component
     {
         $userId = Auth::id();
         // If payment method is not cash, display message
-        if ($this->paymentMethod == 'cash') {
+        if ($this->paymentMethod !== 'cash') {
             session()->flash('message', 'We only accept cash right now.');
         } else {
             $address = Address::firstOrCreate(
