@@ -34,4 +34,9 @@ class Order extends Model
         return $this->belongsTo(Cart::class);
     }
 
+    public function invoices()
+    {
+        return $this->hasMany(Invoice::class);
+    }
+
 }
