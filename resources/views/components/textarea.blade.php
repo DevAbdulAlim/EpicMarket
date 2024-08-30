@@ -1,14 +1,14 @@
 @props([
-    'type' => 'text', // Default input type
+    'rows' => 3, // Default number of rows
+    'cols' => '', // Default column size (empty means full width)
     'size' => 'md', // sm, md, lg
     'variant' => 'outline', // outline, solid
     'color' => 'blue', // predefined colors like 'blue', 'red', 'green', etc.
-    'placeholder' => '', // Input placeholder text
-    'value' => '', // Input value
+    'placeholder' => '', // Textarea placeholder text
 ])
 
 @php
-    // Base classes for all inputs
+    // Base classes for all textareas
     $baseClasses =
         'block w-full rounded-md shadow-sm transition ease-in-out duration-150 focus:outline-none focus:ring-2 focus:ring-offset-2';
 
@@ -43,6 +43,7 @@
     $finalClasses = "$baseClasses $colorClasses $sizeClasses";
 @endphp
 
-<!-- The component merges any additional attributes provided to the component -->
-<input type="{{ $type }}" value="{{ $value }}" placeholder="{{ $placeholder }}"
+<textarea rows="{{ $rows }}" cols="{{ $cols }}" placeholder="{{ $placeholder }}"
     {{ $attributes->merge(['class' => $finalClasses]) }}>
+    {{ $slot }}
+</textarea>
