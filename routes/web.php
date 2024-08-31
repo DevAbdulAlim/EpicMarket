@@ -18,7 +18,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
     Route::post('/logout', [AdminAuthController::class, 'logout'])->name('logout');
 
     // Dashboard
-    Route::middleware('admin')->group(function () {
+    Route::middleware(['auth.admin', 'admin_permission'])->group(function () {
         Route::get('/dashboard', [AdminDashboardController::class, 'index'])->name('dashboard');
 
         Route::get('/categories', [CategoryController::class, 'index'])->name('categories.index');
