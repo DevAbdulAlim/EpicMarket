@@ -1,7 +1,16 @@
+/* 1. Import Font Awesome */
+@import "@fortawesome/fontawesome-free/css/all.min.css";
+
+/* 2. Tailwind Base Styles */
 @tailwind base;
+
+/* 3. Tailwind Components */
 @tailwind components;
+
+/* 4. Tailwind Utilities */
 @tailwind utilities;
 
+/* 5. Custom Styles (e.g., for x-cloak) */
 [x-cloak] {
     display: none !important;
 }

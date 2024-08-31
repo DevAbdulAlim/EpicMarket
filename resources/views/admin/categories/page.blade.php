@@ -2,9 +2,11 @@
     <div class="container mx-auto py-6 px-4 md:px-6">
         <!-- Breadcrumb Component -->
         <x-breadcrumb :items="[
-            ['name' => 'Home', 'url' => '#', 'icon' => 'fa-home'],
-            ['name' => 'Categories', 'url' => '#', 'icon' => 'fa-list'],
+            ['name' => 'Dashboard', 'url' => '/admin', 'icon' => 'fa-chart-line'],
+            ['name' => 'Categories', 'url' => '/admin/categories', 'icon' => 'fa-list'],
         ]" />
+
+
 
         <!-- Header and Title -->
         <div class="flex flex-col md:flex-row justify-between items-center mb-6 space-y-4 md:space-y-0">
