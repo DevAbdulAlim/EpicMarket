@@ -12,77 +12,58 @@ use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\WishlistController;
 use App\Http\Controllers\PaymentController;
 
-// Public Home Route
-Route::controller(HomeController::class)->group(function () {
-    Route::get('/', 'index')->name('home');
-});
-
-// User Routes
-Route::middleware(['auth'])->group(function () {
-
-    Route::controller(UserController::class)->group(function () {
-        Route::get('/user/profile', 'index')->name('user.profile');
-        Route::get('/user/edit', 'editProfile')->name('user.edit');
-        Route::post('/user/update', 'updateProfile')->name('user.update');
-        Route::get('/user/change-password', 'changePassword')->name('user.change-password');
-        Route::post('/user/update-password', 'updatePassword')->name('user.update-password');
-    });
-
-    // Wishlist Routes
-    Route::controller(WishlistController::class)->group(function () {
-        Route::get('/wishlist', 'index')->name('wishlist.index');
-        Route::post('/wishlist/add/{productId}', 'add')->name('wishlist.add');
-        Route::delete('/wishlist/remove/{productId}', 'remove')->name('wishlist.remove');
-    });
-
-    // Orders Routes
-    Route::controller(OrderController::class)->group(function () {
-        Route::get('/orders', 'index')->name('orders.index');
-        Route::get('/orders/{id}', 'show')->name('orders.show');
-        Route::post('/orders/cancel/{id}', 'cancel')->name('orders.cancel');
-    });
-});
+// Home Route
+Route::get('/', [HomeController::class, 'index'])->name('home');
 
 // Product Routes
-Route::controller(ProductController::class)->group(function () {
-    Route::get('/products', 'index')->name('products.index');
-    Route::get('/products/{id}', 'show')->name('products.show');
-});
+Route::get('/products', [ProductController::class, 'index'])->name('products.index');
+Route::get('/products/{id}', [ProductController::class, 'show'])->name('products.show');
 
 // Cart Routes
-Route::controller(CartController::class)->group(function () {
-    Route::get('/cart', 'index')->name('cart.index');
-    Route::post('/cart/add/{productId}', 'add')->name('cart.add');
-    Route::put('/cart/update/{productId}', 'update')->name('cart.update');
-    Route::delete('/cart/remove/{productId}', 'remove')->name('cart.remove');
-    Route::delete('/cart/clear', 'clear')->name('cart.clear');
-});
+Route::get('/cart', [CartController::class, 'index'])->name('cart.index');
+Route::post('/cart/add/{productId}', [CartController::class, 'add'])->name('cart.add');
+Route::put('/cart/update/{productId}', [CartController::class, 'update'])->name('cart.update');
+Route::delete('/cart/remove/{productId}', [CartController::class, 'remove'])->name('cart.remove');
+Route::delete('/cart/clear', [CartController::class, 'clear'])->name('cart.clear');
 
 // Checkout Routes
-Route::controller(CheckoutController::class)->group(function () {
-    Route::get('/checkout', 'index')->name('checkout.index');
-    Route::post('/checkout', 'store')->name('checkout.store');
-});
+Route::get('/checkout', [CheckoutController::class, 'index'])->name('checkout.index');
+Route::post('/checkout', [CheckoutController::class, 'store'])->name('checkout.store');
 
 // Review Routes
-Route::controller(ReviewController::class)->group(function () {
-    Route::get('/products/{productId}/reviews', 'index')->name('reviews.index');
-    Route::post('/products/{productId}/reviews', 'store')->name('reviews.store');
-    Route::put('/reviews/{id}', 'update')->name('reviews.update');
-    Route::delete('/reviews/{id}', 'destroy')->name('reviews.destroy');
-});
+Route::get('/products/{productId}/reviews', [ReviewController::class, 'index'])->name('reviews.index');
+Route::post('/products/{productId}/reviews', [ReviewController::class, 'store'])->name('reviews.store');
+Route::put('/reviews/{id}', [ReviewController::class, 'update'])->name('reviews.update');
+Route::delete('/reviews/{id}', [ReviewController::class, 'destroy'])->name('reviews.destroy');
 
 // Payment Routes
-Route::controller(PaymentController::class)->group(function () {
-    Route::get('/payment', 'index')->name('payment.index');
-    Route::post('/payment/process', 'process')->name('payment.process');
-    Route::get('/payment/callback', 'callback')->name('payment.callback');
-});
+Route::get('/payment', [PaymentController::class, 'index'])->name('payment.index');
+Route::post('/payment/process', [PaymentController::class, 'process'])->name('payment.process');
+Route::get('/payment/callback', [PaymentController::class, 'callback'])->name('payment.callback');
 
 // Coupon Routes
-Route::controller(CouponController::class)->group(function () {
-    Route::post('/coupons/apply', 'apply')->name('coupons.apply');
+Route::post('/coupons/apply', [CouponController::class, 'apply'])->name('coupons.apply');
+
+// User Routes (Protected with Auth Middleware)
+Route::middleware(['auth'])->group(function () {
+    // User Profile Routes
+    Route::get('/user/profile', [UserController::class, 'index'])->name('user.profile');
+    Route::get('/user/edit', [UserController::class, 'editProfile'])->name('user.edit');
+    Route::post('/user/update', [UserController::class, 'updateProfile'])->name('user.update');
+    Route::get('/user/change-password', [UserController::class, 'changePassword'])->name('user.change-password');
+    Route::post('/user/update-password', [UserController::class, 'updatePassword'])->name('user.update-password');
+
+    // Wishlist Routes
+    Route::get('/wishlist', [WishlistController::class, 'index'])->name('wishlist.index');
+    Route::post('/wishlist/add/{productId}', [WishlistController::class, 'add'])->name('wishlist.add');
+    Route::delete('/wishlist/remove/{productId}', [WishlistController::class, 'remove'])->name('wishlist.remove');
+
+    // Order Routes
+    Route::get('/orders', [OrderController::class, 'index'])->name('orders.index');
+    Route::get('/orders/{id}', [OrderController::class, 'show'])->name('orders.show');
+    Route::post('/orders/cancel/{id}', [OrderController::class, 'cancel'])->name('orders.cancel');
 });
 
-// Include Admin Routes
+// Include Additional Route Files
+include __DIR__ . '/auth.php';
 include __DIR__ . '/admin.php';
