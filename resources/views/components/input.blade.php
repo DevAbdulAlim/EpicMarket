@@ -2,9 +2,8 @@
     'type' => 'text', // Default input type
     'size' => 'md', // sm, md, lg
     'variant' => 'outline', // outline, solid
-    'color' => 'blue', // predefined colors like 'blue', 'red', 'green', etc.
-    'placeholder' => '', // Input placeholder text
-    'value' => '', // Input value
+    'label' => '', // Optional label text for the input
+    'name' => '', // Name attribute for the input
 ])
 
 @php
@@ -12,25 +11,11 @@
     $baseClasses =
         'block w-full rounded-md shadow-sm transition ease-in-out duration-150 focus:outline-none focus:ring-2 focus:ring-offset-2';
 
-    // Predefined color sets with focus states
-    $colorSets = [
-        'blue' => [
-            'solid' => 'bg-blue-50 text-blue-700 border border-blue-300 focus:ring-blue-500 focus:border-blue-500',
-            'outline' => 'bg-white text-blue-700 border border-blue-300 focus:ring-blue-500 focus:border-blue-500',
-        ],
-        'red' => [
-            'solid' => 'bg-red-50 text-red-700 border border-red-300 focus:ring-red-500 focus:border-red-500',
-            'outline' => 'bg-white text-red-700 border border-red-300 focus:ring-red-500 focus:border-red-500',
-        ],
-        'green' => [
-            'solid' => 'bg-green-50 text-green-700 border border-green-300 focus:ring-green-500 focus:border-green-500',
-            'outline' => 'bg-white text-green-700 border border-green-300 focus:ring-green-500 focus:border-green-500',
-        ],
-        // Add more colors as needed...
-    ];
-
-    // Choose color classes based on props
-    $colorClasses = $colorSets[$color][$variant] ?? $colorSets['blue']['outline']; // Default to blue outline if color/variant is not found
+    // Predefined classes for the input variants
+    $variantClasses =
+        $variant === 'solid'
+            ? 'bg-gray-50 border border-gray-300 focus:ring-blue-500 focus:border-blue-500'
+            : 'bg-white border border-gray-300 focus:ring-blue-500 focus:border-blue-500';
 
     // Determine size classes
     $sizeClasses = match ($size) {
@@ -40,9 +25,11 @@
     };
 
     // Final classes to be applied
-    $finalClasses = "$baseClasses $colorClasses $sizeClasses";
+    $finalClasses = "$baseClasses $variantClasses $sizeClasses";
 @endphp
 
-<!-- The component merges any additional attributes provided to the component -->
-<input type="{{ $type }}" value="{{ $value }}" placeholder="{{ $placeholder }}"
+@if ($label)
+    <label for="{{ $name }}" class="block text-sm font-medium text-gray-700 mb-1">{{ $label }}</label>
+@endif
+<input type="{{ $type }}" name="{{ $name }}" id="{{ $name }}"
     {{ $attributes->merge(['class' => $finalClasses]) }}>

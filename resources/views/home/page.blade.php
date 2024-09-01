@@ -1,6 +1,5 @@
 <x-app-layout>
-    <section class="max-w-7xl mx-auto">
-        <x-title>Home Page</x-title>
-        <x-button>Welcome</x-button>
-    </section>
+    @include('home.hero')
+    @include('home.feature-categories')
+    @include('home.feature-products')
 </x-app-layout>

@@ -9,12 +9,12 @@
     @livewireStyles
 </head>
 
-<body>
-    <header></header>
-    <main>
+<body class="flex flex-col min-h-screen">
+    @include('partial.header')
+    <main class="flex-grow">
         {{ $slot }}
     </main>
-    <footer></footer>
+    @include('partial.footer')
     @livewireScripts
 </body>
 
