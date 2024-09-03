@@ -71,9 +71,10 @@
                     <span class="text-lg font-semibold text-gray-900">Total</span>
                     <span class="text-lg font-semibold text-gray-900">$54.98</span>
                 </div>
-                <button class="mt-6 w-full bg-blue-500 text-white py-2 rounded-md hover:bg-blue-600">
+                <x-link href="{{ route('checkout.index') }}"
+                    class="mt-6 w-full bg-blue-500 text-white py-2 rounded-md hover:bg-blue-600">
                     Proceed to Checkout
-                </button>
+                </x-link>
             </div>
         </div>
     </div>

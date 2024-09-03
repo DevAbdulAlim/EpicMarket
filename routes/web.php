@@ -28,7 +28,7 @@ Route::delete('/cart/clear', [CartController::class, 'clear'])->name('cart.clear
 
 // Checkout Routes
 Route::get('/checkout', [CheckoutController::class, 'index'])->name('checkout.index');
-Route::post('/checkout', [CheckoutController::class, 'store'])->name('checkout.store');
+Route::post('/checkout', [CheckoutController::class, 'process'])->name('checkout.process');
 
 // Review Routes
 Route::get('/products/{productId}/reviews', [ReviewController::class, 'index'])->name('reviews.index');
@@ -67,3 +67,4 @@ Route::middleware(['auth'])->group(function () {
 // Include Additional Route Files
 include __DIR__ . '/auth.php';
 include __DIR__ . '/admin.php';
+include __DIR__ . '/docs.php';

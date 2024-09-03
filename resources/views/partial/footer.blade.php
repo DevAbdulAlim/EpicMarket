@@ -1,4 +1,4 @@
-<footer class="bg-gray-900 text-white">
+<footer class="bg-dark text-white">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-8">
 
@@ -42,9 +42,9 @@
                 <form action="#" method="POST" class="flex items-center space-x-2">
                     <input type="email" name="email" placeholder="Enter your email" required
                         class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
-                    <button type="submit" class="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600">
+                    <x-button type="submit">
                         Subscribe
-                    </button>
+                    </x-button>
                 </form>
             </div>
         </div>

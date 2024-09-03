@@ -35,10 +35,7 @@
 
                     <!-- User Options -->
                     <div class="flex items-center space-x-4">
-                        <a href="{{ route('cart.index') }}" class="relative text-gray-700 hover:text-blue-500">
-                            <i class="fas fa-shopping-cart fa-lg"></i>
-                            <span class="absolute top-0 right-0 inline-block w-3 h-3 bg-red-500 rounded-full"></span>
-                        </a>
+                        <x-cart />
 
                         <a href="{{ route('wishlist.index') }}" class="relative text-gray-700 hover:text-blue-500">
                             <i class="fas fa-heart fa-lg"></i>
