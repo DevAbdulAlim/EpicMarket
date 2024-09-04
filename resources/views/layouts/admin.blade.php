@@ -10,14 +10,13 @@
 </head>
 
 <body class="bg-gray-100">
-    <div x-data="{ open: false }" class="flex h-screen">
-        <!-- Sidebar -->
-        <div :class="open ? 'translate-x-0' : '-translate-x-full'"
-            class="fixed inset-y-0 left-0 w-64 bg-gray-800 text-white transform transition-transform duration-300 md:relative md:translate-x-0 md:flex md:flex-col">
+    <div x-data="{ isOpen: false }" class="flex h-screen">
+        <!-- Sidebar Navigation -->
+        <x-sidebar isOpen="isOpen">
             <!-- Sidebar Header -->
             <div class="flex items-center justify-between px-4 py-4 md:hidden">
                 <div class="text-lg font-bold">Admin Panel</div>
-                <button @click="open = false" class="text-white focus:outline-none">
+                <button @click="isOpen = false" class="text-white focus:outline-none">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
                         stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -25,8 +24,7 @@
                     </svg>
                 </button>
             </div>
-
-            <!-- Sidebar Navigation -->
+            <!-- Sidebar items -->
             <nav class="flex flex-col mt-4 space-y-2">
                 <a href="/admin/dashboard" class="flex items-center px-4 py-2 text-sm text-white hover:bg-gray-700">
                     <i class="fas fa-chart-line mr-2"></i> Dashboard
@@ -44,14 +42,13 @@
                     <i class="fas fa-chart-bar mr-2"></i> Reports
                 </a>
             </nav>
-        </div>
-
+        </x-sidebar>
         <!-- Main Content -->
         <div class="flex-1 flex flex-col">
             <!-- Topbar -->
             <header class="flex items-center justify-between bg-white shadow-md p-4">
                 <!-- Hamburger Button for Small Screens -->
-                <button @click="open = !open" class="text-gray-800 bg-gray-200 rounded-md p-2 md:hidden">
+                <button @click="isOpen = !isOpen" class="text-gray-800 bg-gray-200 rounded-md p-2 md:hidden">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
                         stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -74,12 +71,11 @@
             </header>
 
             <!-- Main Content Area -->
-            <main class="flex-1 p-6 bg-gray-100">
+            <main class="flex-1 p-6">
                 {{ $slot }}
             </main>
         </div>
     </div>
-
     @livewireScripts
 </body>
 

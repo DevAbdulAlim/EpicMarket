@@ -10,11 +10,11 @@
 </head>
 
 <body class="flex flex-col min-h-screen">
-    @include('partial.header')
+    @include('layouts.partial.header')
     <main class="flex-grow">
         {{ $slot }}
     </main>
-    @include('partial.footer')
+    @include('layouts.partial.footer')
     @livewireScripts
 </body>
 
