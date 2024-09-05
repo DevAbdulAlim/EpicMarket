@@ -14,8 +14,9 @@
             :class="{ 'w-10': isCompact, 'w-64': !isCompact, }">
             <!-- Sidebar Header -->
             <div class="flex items-center border-b justify-between">
-                <div x-show="!isCompact" class="text-lg p-2 font-bold whitespace-nowrap">Admin Panel</div>
-                <div x-show="isCompact" class="text-lg font-bold p-2 hidden md:block">AP</div>
+                <div :class="{ 'hidden': isCompact }" class="text-lg p-2 font-bold whitespace-nowrap">Admin Panel
+                </div>
+                <div x-show="isCompact" x-cloak class="text-lg font-bold p-2 hidden md:block">AP</div>
                 <button @click="isOpen = false"
                     class="text-primary rounded-full p-2 m-2 bg-light focus:outline-none md:hidden">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
