@@ -28,13 +28,10 @@
                 </button>
 
                 <button @click="isCompact = !isCompact"
-                    class="text-gray-800 bg-gray-200 rounded-md p-2 hidden md:block">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
-                        stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M4 6h16M4 12h16m-7 6h7" />
-                    </svg>
+                    class="text-gray-800 bg-gray-200 rounded-md items-center justify-center h-10 w-10 p-2 hidden md:flex">
+                    <i class="fa-solid fa-bars"></i>
                 </button>
+
 
                 <!-- Topbar Title -->
                 <div class="text-lg font-semibold text-gray-800">{{ config('app.name', 'Laravel') }} Admin</div>

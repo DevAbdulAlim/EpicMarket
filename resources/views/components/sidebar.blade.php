@@ -13,8 +13,8 @@
         <div class="relative h-full bg-gray-800 text-white  flex-1 w-64 transition-all duration-500 ease-in-out"
             :class="{ 'w-8': isCompact, 'w-64': !isCompact, }">
             <!-- Sidebar Header -->
-            <div class="flex items-center justify-between">
-                <div x-show="!isCompact" class="text-lg p-4 font-bold">Admin Panel</div>
+            <div class="flex items-center border-b justify-between">
+                <div x-show="!isCompact" class="text-lg p-2 font-bold whitespace-nowrap">Admin Panel</div>
                 <div x-show="isCompact" class="text-lg font-bold p-1 hidden md:block">AP</div>
                 <button @click="isOpen = false"
                     class="text-primary rounded-full p-2 m-2 bg-light focus:outline-none md:hidden">
