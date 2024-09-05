@@ -1,28 +1,56 @@
 @props([
     'isOpen' => false,
+    'isCompact' => false,
 ])
 
-<div x-data="{ $isOpen: {{ $isOpen ? 'true' : 'false' }}, isCompact: false }" :class="{ '-translate-x-full md:translate-x-0': !isOpen, 'translate-x-0': isOpen }"
-    class="fixed inset-y-0 left-0 transform transition-transform duration-300 bg-gray-800 text-white -translate-x-full md:relative md:translate-x-0">
-    <!-- Drawer -->
-    <div class="h-full flex flex-col">
-        <!-- Drawer Content -->
-        <div class="flex-1 flex flex-col space-y-4 p-4">
-            <!-- Close Button (Visible only on small screens) -->
-            <button @click="isOpen = false" class="lg:hidden text-white mb-4">
-                Close Drawer
-            </button>
+<div x-data="{ $isOpen: {{ $isOpen ? 'true' : 'false' }}, $isCompact }" :class="{ '-translate-x-full md:translate-x-0': !isOpen, 'translate-x-0': isOpen }"
+    class="fixed inset-y-0 left-0 z-30 transition-all duration-500 ease-in-out  -translate-x-full md:relative md:translate-x-0">
 
-            <!-- Toggle Compact Button (Visible only on large screens) -->
-            <button @click="isCompact = !isCompact" class="hidden lg:block text-white mb-4">
-                Toggle Compact
-            </button>
+    <div class="relative h-full w-screen md:w-full">
+        <div @click="isOpen = false" class="absolute w-full h-full"></div>
 
-            <!-- Sidebar Content Area with Compact and Expanded States -->
-            <div class="flex-1 w-64" :class="{ 'w-20': isCompact, 'w-64': !isCompact, }">
-                <!-- Slot for Sidebar or Other Content -->
-                {{ $slot }}
+        <!-- Sidebar Content Area with Compact and Expanded States -->
+        <div class="relative h-full bg-gray-800 text-white  flex-1 w-64 transition-all duration-500 ease-in-out"
+            :class="{ 'w-8': isCompact, 'w-64': !isCompact, }">
+            <!-- Sidebar Header -->
+            <div class="flex items-center justify-between">
+                <div x-show="!isCompact" class="text-lg p-4 font-bold">Admin Panel</div>
+                <div x-show="isCompact" class="text-lg font-bold p-1 hidden md:block">AP</div>
+                <button @click="isOpen = false"
+                    class="text-primary rounded-full p-2 m-2 bg-light focus:outline-none md:hidden">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                        stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                </button>
             </div>
+            <!-- Sidebar items -->
+            <nav class="flex flex-col mt-4 space-y-2">
+                <a href="/admin/dashboard"
+                    class="flex items-center p-2 hover:border-l-2 border-primary text-sm text-white hover:bg-gray-700">
+                    <i class="fas fa-chart-line"></i><span x-show="!isCompact" class="ml-2">
+                        Dashboard</span>
+                </a>
+                <a href="/admin/categories"
+                    class="flex items-center p-2 hover:border-l-2 border-primary text-sm text-white hover:bg-gray-700">
+                    <i class="fas fa-list"></i><span x-show="!isCompact" class="ml-2"> Categories</span>
+                </a>
+                <a href="/admin/users"
+                    class="flex items-center p-2 hover:border-l-2 border-primary text-sm text-white hover:bg-gray-700">
+                    <i class="fas fa-users"></i><span x-show="!isCompact" class="ml-2"> Users</span>
+                </a>
+                <a href="/admin/settings"
+                    class="flex items-center p-2 hover:border-l-2 border-primary text-sm text-white hover:bg-gray-700">
+                    <i class="fas fa-cogs"></i><span x-show="!isCompact" class="ml-2"> Settings</span>
+                </a>
+                <a href="/admin/reports"
+                    class="flex items-center p-2 hover:border-l-2 border-primary text-sm text-white hover:bg-gray-700">
+                    <i class="fas fa-chart-bar"></i><span x-show="!isCompact" class="ml-2"> Reports</span>
+                </a>
+            </nav>
         </div>
+
     </div>
+
 </div>
