@@ -21,6 +21,7 @@ use App\Http\Controllers\Admin\CouponController;
 Route::prefix('admin')
     ->name('admin.')
     ->group(function () {
+        Route::redirect('', '/admin/dashboard');
 
         // Admin Authentication Routes
         Route::prefix('auth')->name('auth.')->group(function () {

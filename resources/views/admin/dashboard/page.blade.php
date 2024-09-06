@@ -1,136 +1,229 @@
 <x-admin-layout>
-    <div class="container mx-auto py-6">
-        <!-- Dashboard Header -->
-        <h1 class="text-3xl font-bold text-gray-800">Welcome to the Admin Dashboard</h1>
-        <p class="text-gray-600 mt-2">Here is an overview of your website’s performance.</p>
-
-        <!-- Dashboard Stats Section -->
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mt-6">
-            <!-- Total Users -->
-            <div class="bg-white shadow-md rounded-lg p-6">
-                <div class="flex items-center">
-                    <div class="flex-shrink-0">
-                        <i class="fas fa-users text-3xl text-primary"></i>
-                    </div>
-                    <div class="ml-4">
-                        <h2 class="text-lg font-semibold text-gray-800">Total Users</h2>
-                        <p class="text-gray-600 text-xl font-bold">1,200</p>
-                    </div>
-                </div>
+    <!-- Breadcrumb Component -->
+    <x-breadcrumb :items="[['name' => 'Dashboard', 'url' => route('admin.index'), 'icon' => 'fa-chart-line']]" />
+    <!-- Statistics Overview -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
+        <!-- Total Sales -->
+        <div
+            class="bg-gradient-to-r from-green-500 to-green-700 text-white p-4 rounded-md shadow-md flex items-center justify-between">
+            <div>
+                <h3 class="text-md font-semibold">Total Sales</h3>
+                <p class="text-2xl font-bold">$56,345</p>
+                <span class="text-xs text-gray-200">+15% from last month</span>
             </div>
-
-            <!-- Total Sales -->
-            <div class="bg-white shadow-md rounded-lg p-6">
-                <div class="flex items-center">
-                    <div class="flex-shrink-0">
-                        <i class="fas fa-dollar-sign text-3xl text-primary"></i>
-                    </div>
-                    <div class="ml-4">
-                        <h2 class="text-lg font-semibold text-gray-800">Total Sales</h2>
-                        <p class="text-gray-600 text-xl font-bold">$23,500</p>
-                    </div>
-                </div>
-            </div>
-
-            <!-- New Orders -->
-            <div class="bg-white shadow-md rounded-lg p-6">
-                <div class="flex items-center">
-                    <div class="flex-shrink-0">
-                        <i class="fas fa-shopping-cart text-3xl text-primary"></i>
-                    </div>
-                    <div class="ml-4">
-                        <h2 class="text-lg font-semibold text-gray-800">New Orders</h2>
-                        <p class="text-gray-600 text-xl font-bold">320</p>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Pending Tickets -->
-            <div class="bg-white shadow-md rounded-lg p-6">
-                <div class="flex items-center">
-                    <div class="flex-shrink-0">
-                        <i class="fas fa-ticket-alt text-3xl text-primary"></i>
-                    </div>
-                    <div class="ml-4">
-                        <h2 class="text-lg font-semibold text-gray-800">Pending Tickets</h2>
-                        <p class="text-gray-600 text-xl font-bold">45</p>
-                    </div>
-                </div>
-            </div>
+            <i class="fas fa-shopping-cart fa-2x"></i>
         </div>
 
-        <!-- Quick Links Section -->
-        <div class="bg-white shadow-md rounded-lg p-6 mt-6">
-            <h2 class="text-lg font-semibold text-gray-800">Quick Links</h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mt-4">
-                <!-- Catalog -->
-                <a href="{{ route('admin.catalog.index') }}" class="block p-4 bg-gray-100 rounded-lg hover:bg-gray-200">
-                    <div class="flex items-center">
-                        <i class="fas fa-box-open text-2xl text-primary"></i>
-                        <span class="ml-4 text-lg text-gray-800 font-semibold">Catalog</span>
-                    </div>
-                </a>
-
-                <!-- Sales -->
-                <a href="{{ route('admin.sales.index') }}" class="block p-4 bg-gray-100 rounded-lg hover:bg-gray-200">
-                    <div class="flex items-center">
-                        <i class="fas fa-shopping-cart text-2xl text-primary"></i>
-                        <span class="ml-4 text-lg text-gray-800 font-semibold">Sales</span>
-                    </div>
-                </a>
-
-                <!-- Marketing -->
-                <a href="{{ route('admin.marketing.index') }}"
-                    class="block p-4 bg-gray-100 rounded-lg hover:bg-gray-200">
-                    <div class="flex items-center">
-                        <i class="fas fa-bullhorn text-2xl text-primary"></i>
-                        <span class="ml-4 text-lg text-gray-800 font-semibold">Marketing</span>
-                    </div>
-                </a>
-
-                <!-- Engagements -->
-                <a href="{{ route('admin.engagements.index') }}"
-                    class="block p-4 bg-gray-100 rounded-lg hover:bg-gray-200">
-                    <div class="flex items-center">
-                        <i class="fas fa-comments text-2xl text-primary"></i>
-                        <span class="ml-4 text-lg text-gray-800 font-semibold">Engagements</span>
-                    </div>
-                </a>
+        <!-- Total Customers -->
+        <div
+            class="bg-gradient-to-r from-blue-500 to-blue-700 text-white p-4 rounded-md shadow-md flex items-center justify-between">
+            <div>
+                <h3 class="text-md font-semibold">Total Customers</h3>
+                <p class="text-2xl font-bold">2,434</p>
+                <span class="text-xs text-gray-200">+8% from last month</span>
             </div>
+            <i class="fas fa-users fa-2x"></i>
         </div>
 
-        <!-- Recent Activity & Charts -->
-        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mt-6">
-            <!-- Recent Activity -->
-            <div class="bg-white shadow-md rounded-lg p-6 lg:col-span-2">
-                <h2 class="text-lg font-semibold text-gray-800">Recent Activity</h2>
-                <ul class="mt-4 space-y-3">
-                    <li class="flex items-center">
-                        <i class="fas fa-user text-primary text-xl"></i>
-                        <p class="ml-4 text-gray-600">New user <strong>John Doe</strong> signed up.</p>
-                    </li>
-                    <li class="flex items-center">
-                        <i class="fas fa-shopping-cart text-primary text-xl"></i>
-                        <p class="ml-4 text-gray-600">Order #12345 has been placed.</p>
-                    </li>
-                    <li class="flex items-center">
-                        <i class="fas fa-ticket-alt text-primary text-xl"></i>
-                        <p class="ml-4 text-gray-600">Ticket #67890 has been opened.</p>
-                    </li>
-                    <li class="flex items-center">
-                        <i class="fas fa-dollar-sign text-primary text-xl"></i>
-                        <p class="ml-4 text-gray-600">New payment of <strong>$200</strong> received.</p>
-                    </li>
-                </ul>
+        <!-- Total Orders -->
+        <div
+            class="bg-gradient-to-r from-yellow-500 to-yellow-700 text-white p-4 rounded-md shadow-md flex items-center justify-between">
+            <div>
+                <h3 class="text-md font-semibold">Total Orders</h3>
+                <p class="text-2xl font-bold">876</p>
+                <span class="text-xs text-gray-200">+5% from last month</span>
             </div>
+            <i class="fas fa-box-open fa-2x"></i>
+        </div>
 
-            <!-- Placeholder for Chart (Static for now) -->
-            <div class="bg-white shadow-md rounded-lg p-6">
-                <h2 class="text-lg font-semibold text-gray-800">Sales Overview</h2>
-                <div class="mt-4 h-40 bg-gray-100 flex items-center justify-center">
-                    <p class="text-gray-500">Chart Placeholder</p>
-                </div>
+        <!-- Revenue -->
+        <div
+            class="bg-gradient-to-r from-red-500 to-red-700 text-white p-4 rounded-md shadow-md flex items-center justify-between">
+            <div>
+                <h3 class="text-md font-semibold">Total Revenue</h3>
+                <p class="text-2xl font-bold">$120,876</p>
+                <span class="text-xs text-gray-200">+12% from last month</span>
             </div>
+            <i class="fas fa-dollar-sign fa-2x"></i>
         </div>
     </div>
+
+    <!-- Core Sections -->
+    <div class="grid mb-5 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        <!-- Reports Section -->
+        <div class="bg-white p-4 rounded-md shadow-md border hover:shadow-lg transform transition hover:scale-105">
+            <h3 class="text-md font-semibold text-red-600 flex items-center">
+                <i class="fas fa-chart-bar mr-2"></i> Reports
+            </h3>
+            <p class="text-xs text-gray-600 mt-1">View and analyze platform reports</p>
+            <a href=""
+                class="inline-block mt-3 px-3 py-1 bg-red-600 text-white text-xs rounded-md hover:bg-red-700 transition">
+                Manage Reports
+            </a>
+        </div>
+        <!-- Catalog Section -->
+        <div class="bg-white p-4 rounded-md shadow-md border hover:shadow-lg transform transition hover:scale-105">
+            <h3 class="text-md font-semibold text-blue-600 flex items-center">
+                <i class="fas fa-boxes mr-2"></i> Catalog
+            </h3>
+            <p class="text-xs text-gray-600 mt-1">Manage categories, products, brands, and more</p>
+            <a href="{{ route('admin.catalog.index') }}"
+                class="inline-block mt-3 px-3 py-1 bg-blue-600 text-white text-xs rounded-md hover:bg-blue-700 transition">Manage
+                Catalog</a>
+        </div>
+
+        <!-- Sales Section -->
+        <div class="bg-white p-4 rounded-md shadow-md border hover:shadow-lg transform transition hover:scale-105">
+            <h3 class="text-md font-semibold text-green-600 flex items-center">
+                <i class="fas fa-shopping-cart mr-2"></i> Sales
+            </h3>
+            <p class="text-xs text-gray-600 mt-1">Track orders, returns, invoices, and transactions</p>
+            <a href="{{ route('admin.sales.index') }}"
+                class="inline-block mt-3 px-3 py-1 bg-green-600 text-white text-xs rounded-md hover:bg-green-700 transition">Manage
+                Sales</a>
+        </div>
+
+        <!-- Marketing Section -->
+        <div class="bg-white p-4 rounded-md shadow-md border hover:shadow-lg transform transition hover:scale-105">
+            <h3 class="text-md font-semibold text-yellow-600 flex items-center">
+                <i class="fas fa-bullhorn mr-2"></i> Marketing
+            </h3>
+            <p class="text-xs text-gray-600 mt-1">Run marketing campaigns and manage discounts</p>
+            <a href="{{ route('admin.marketing.index') }}"
+                class="inline-block mt-3 px-3 py-1 bg-yellow-600 text-white text-xs rounded-md hover:bg-yellow-700 transition">Manage
+                Marketing</a>
+        </div>
+
+        <!-- Engagements Section -->
+        <div class="bg-white p-4 rounded-md shadow-md border hover:shadow-lg transform transition hover:scale-105">
+            <h3 class="text-md font-semibold text-indigo-600 flex items-center">
+                <i class="fas fa-users mr-2"></i> Engagements
+            </h3>
+            <p class="text-xs text-gray-600 mt-1">Manage customers, reviews, and community forums</p>
+            <a href="{{ route('admin.engagements.index') }}"
+                class="inline-block mt-3 px-3 py-1 bg-indigo-600 text-white text-xs rounded-md hover:bg-indigo-700 transition">Manage
+                Engagements</a>
+        </div>
+
+        <!-- Settings Section -->
+        <div class="bg-white p-4 rounded-md shadow-md border hover:shadow-lg transform transition hover:scale-105">
+            <h3 class="text-md font-semibold text-purple-600 flex items-center">
+                <i class="fas fa-cogs mr-2"></i> Settings
+            </h3>
+            <p class="text-xs text-gray-600 mt-1">Configure system settings and integrations</p>
+            <a href="{{ route('admin.settings.index') }}"
+                class="inline-block mt-3 px-3 py-1 bg-purple-600 text-white text-xs rounded-md hover:bg-purple-700 transition">Manage
+                Settings</a>
+        </div>
+    </div>
+
+    <!-- Charts and Analytics -->
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-4 mb-6">
+        <!-- Sales Chart -->
+        <div class="bg-white p-4 rounded-md shadow-md">
+            <h3 class="text-md font-semibold text-gray-700">Sales Overview</h3>
+            <canvas id="salesChart" height="140"></canvas>
+        </div>
+
+        <!-- Revenue Chart -->
+        <div class="bg-white p-4 rounded-md shadow-md">
+            <h3 class="text-md font-semibold text-gray-700">Revenue Overview</h3>
+            <canvas id="revenueChart" height="140"></canvas>
+        </div>
+
+        <!-- Orders Chart -->
+        <div class="bg-white p-4 rounded-md shadow-md">
+            <h3 class="text-md font-semibold text-gray-700">Orders Overview</h3>
+            <canvas id="ordersChart" height="140"></canvas>
+        </div>
+
+        <!-- Customers Chart -->
+        <div class="bg-white p-4 rounded-md shadow-md">
+            <h3 class="text-md font-semibold text-gray-700">Customer Growth</h3>
+            <canvas id="customersChart" height="140"></canvas>
+        </div>
+    </div>
+
+    <!-- Include Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <!-- Sales Chart Script -->
+    <script>
+        var ctxSales = document.getElementById('salesChart').getContext('2d');
+        var salesChart = new Chart(ctxSales, {
+            type: 'line',
+            data: {
+                labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
+                datasets: [{
+                    label: 'Sales',
+                    data: [12000, 15000, 11000, 18000, 20000, 22000],
+                    borderColor: '#10b981',
+                    backgroundColor: 'rgba(16, 185, 129, 0.2)',
+                }]
+            },
+            options: {
+                responsive: true,
+            }
+        });
+    </script>
+
+    <!-- Revenue Chart Script -->
+    <script>
+        var ctxRevenue = document.getElementById('revenueChart').getContext('2d');
+        var revenueChart = new Chart(ctxRevenue, {
+            type: 'bar',
+            data: {
+                labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
+                datasets: [{
+                    label: 'Revenue',
+                    data: [15000, 20000, 17000, 25000, 23000, 26000],
+                    borderColor: '#f59e0b',
+                    backgroundColor: 'rgba(245, 158, 11, 0.7)',
+                }]
+            },
+            options: {
+                responsive: true,
+            }
+        });
+    </script>
+
+    <!-- Orders Chart Script -->
+    <script>
+        var ctxOrders = document.getElementById('ordersChart').getContext('2d');
+        var ordersChart = new Chart(ctxOrders, {
+            type: 'line',
+            data: {
+                labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
+                datasets: [{
+                    label: 'Orders',
+                    data: [800, 850, 900, 950, 1000, 1100],
+                    borderColor: '#fbbf24',
+                    backgroundColor: 'rgba(251, 191, 36, 0.3)',
+                }]
+            },
+            options: {
+                responsive: true,
+            }
+        });
+    </script>
+
+    <!-- Customers Chart Script -->
+    <script>
+        var ctxCustomers = document.getElementById('customersChart').getContext('2d');
+        var customersChart = new Chart(ctxCustomers, {
+            type: 'line',
+            data: {
+                labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
+                datasets: [{
+                    label: 'Customers',
+                    data: [500, 700, 900, 1100, 1300, 1500],
+                    borderColor: '#3b82f6',
+                    backgroundColor: 'rgba(59, 130, 246, 0.3)',
+                }]
+            },
+            options: {
+                responsive: true,
+            }
+        });
+    </script>
 </x-admin-layout>
