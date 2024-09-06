@@ -5,64 +5,57 @@
         ['name' => 'Sales', 'url' => route('admin.sales.index'), 'icon' => 'fa-shopping-cart'],
     ]" />
 
-    <!-- Dashboard Header -->
-    <div class="mb-4 text-center">
-        <h2 class="text-2xl font-bold text-gray-800">Sales Dashboard</h2>
-        <p class="text-sm text-gray-600">An overview of your sales performance</p>
-    </div>
-
     <!-- Statistics Overview -->
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
         <!-- Total Orders -->
         <div
-            class="bg-gradient-to-r from-blue-500 to-blue-700 text-white p-4 rounded-lg shadow-md flex items-center justify-between">
+            class="bg-gradient-to-r from-blue-500 to-blue-700 text-white p-4 rounded-md shadow-md hover:shadow-lg flex items-center justify-between">
             <div>
-                <h3 class="text-lg font-semibold">Orders</h3>
+                <h3 class="text-md font-semibold">Total Orders</h3>
                 <p class="text-2xl font-bold">1,234</p>
                 <span class="text-sm text-gray-200">+12% from last month</span>
             </div>
-            <i class="fas fa-shopping-cart fa-3x"></i>
+            <i class="fas fa-shopping-cart fa-2x"></i>
         </div>
 
         <!-- Total Returns -->
         <div
-            class="bg-gradient-to-r from-red-500 to-red-700 text-white p-4 rounded-lg shadow-md flex items-center justify-between">
+            class="bg-gradient-to-r from-red-500 to-red-700 text-white p-4 rounded-md shadow-md hover:shadow-lg flex items-center justify-between">
             <div>
-                <h3 class="text-lg font-semibold">Returns</h3>
+                <h3 class="text-md font-semibold">Total Returns</h3>
                 <p class="text-2xl font-bold">56</p>
                 <span class="text-sm text-gray-200">+5% from last month</span>
             </div>
-            <i class="fas fa-undo-alt fa-3x"></i>
+            <i class="fas fa-undo-alt fa-2x"></i>
         </div>
 
         <!-- Total Transactions -->
         <div
-            class="bg-gradient-to-r from-green-500 to-green-700 text-white p-4 rounded-lg shadow-md flex items-center justify-between">
+            class="bg-gradient-to-r from-green-500 to-green-700 text-white p-4 rounded-md shadow-md hover:shadow-lg flex items-center justify-between">
             <div>
-                <h3 class="text-lg font-semibold">Transactions</h3>
+                <h3 class="text-md font-semibold">Total Transactions</h3>
                 <p class="text-2xl font-bold">$12,345</p>
                 <span class="text-sm text-gray-200">+8% from last month</span>
             </div>
-            <i class="fas fa-exchange-alt fa-3x"></i>
+            <i class="fas fa-exchange-alt fa-2x"></i>
         </div>
 
         <!-- Total Invoices -->
         <div
-            class="bg-gradient-to-r from-yellow-500 to-yellow-700 text-white p-4 rounded-lg shadow-md flex items-center justify-between">
+            class="bg-gradient-to-r from-yellow-500 to-yellow-700 text-white p-4 rounded-md shadow-md hover:shadow-lg flex items-center justify-between">
             <div>
-                <h3 class="text-lg font-semibold">Invoices</h3>
+                <h3 class="text-md font-semibold">Total Invoices</h3>
                 <p class="text-2xl font-bold">789</p>
                 <span class="text-sm text-gray-200">+3% from last month</span>
             </div>
-            <i class="fas fa-file-invoice fa-3x"></i>
+            <i class="fas fa-file-invoice fa-2x"></i>
         </div>
     </div>
 
     <!-- Detailed Sections -->
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-6">
         <!-- Orders Section -->
-        <div
-            class="bg-white p-4 rounded-lg shadow-md border border-blue-200 hover:shadow-lg transform transition hover:scale-105">
+        <div class="bg-white p-4 rounded-lg shadow-md hover:shadow-lg transform transition">
             <h3 class="text-sm font-semibold text-blue-600 flex items-center">
                 <i class="fas fa-shopping-cart mr-2"></i> Orders
             </h3>
@@ -74,8 +67,7 @@
         </div>
 
         <!-- Returns Section -->
-        <div
-            class="bg-white p-4 rounded-lg shadow-md border border-red-200 hover:shadow-lg transform transition hover:scale-105">
+        <div class="bg-white p-4 rounded-lg shadow-md hover:shadow-lg transform transition">
             <h3 class="text-sm font-semibold text-red-600 flex items-center">
                 <i class="fas fa-undo-alt mr-2"></i> Returns
             </h3>
@@ -87,8 +79,7 @@
         </div>
 
         <!-- Transactions Section -->
-        <div
-            class="bg-white p-4 rounded-lg shadow-md border border-green-200 hover:shadow-lg transform transition hover:scale-105">
+        <div class="bg-white p-4 rounded-lg shadow-md hover:shadow-lg transform transition">
             <h3 class="text-sm font-semibold text-green-600 flex items-center">
                 <i class="fas fa-exchange-alt mr-2"></i> Transactions
             </h3>
@@ -100,8 +91,7 @@
         </div>
 
         <!-- Invoices Section -->
-        <div
-            class="bg-white p-4 rounded-lg shadow-md border border-yellow-200 hover:shadow-lg transform transition hover:scale-105">
+        <div class="bg-white p-4 rounded-lg shadow-md hover:shadow-lg transform transition">
             <h3 class="text-sm font-semibold text-yellow-600 flex items-center">
                 <i class="fas fa-file-invoice mr-2"></i> Invoices
             </h3>
@@ -113,8 +103,7 @@
         </div>
 
         <!-- Quotes Section -->
-        <div
-            class="bg-white p-4 rounded-lg shadow-md border border-purple-200 hover:shadow-lg transform transition hover:scale-105">
+        <div class="bg-white p-4 rounded-lg shadow-md hover:shadow-lg transform transition">
             <h3 class="text-sm font-semibold text-purple-600 flex items-center">
                 <i class="fas fa-file-alt mr-2"></i> Quotes
             </h3>
@@ -126,8 +115,7 @@
         </div>
 
         <!-- Abandoned Carts Section -->
-        <div
-            class="bg-white p-4 rounded-lg shadow-md border border-indigo-200 hover:shadow-lg transform transition hover:scale-105">
+        <div class="bg-white p-4 rounded-lg shadow-md hover:shadow-lg transform transition">
             <h3 class="text-sm font-semibold text-indigo-600 flex items-center">
                 <i class="fas fa-shopping-basket mr-2"></i> Abandoned Carts
             </h3>
@@ -137,5 +125,14 @@
                 View Abandoned Carts
             </a>
         </div>
+    </div>
+
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-4 mt-6">
+
+        <!-- Activity Section -->
+        @include('admin.sales.recent-orders')
+
+        <!-- Notifications Section -->
+        @include('admin.sales.recent-transactions')
     </div>
 </x-admin-layout>

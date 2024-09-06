@@ -5,64 +5,57 @@
         ['name' => 'Marketing', 'url' => route('admin.marketing.index'), 'icon' => 'fa-bullhorn'],
     ]" />
 
-    <!-- Dashboard Header -->
-    <div class="mb-4 text-center">
-        <h2 class="text-2xl font-bold text-gray-800">Marketing Dashboard</h2>
-        <p class="text-sm text-gray-600">An overview of your marketing performance</p>
-    </div>
-
     <!-- Statistics Overview -->
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
         <!-- Total Coupons -->
         <div
-            class="bg-gradient-to-r from-blue-500 to-blue-700 text-white p-4 rounded-lg shadow-md flex items-center justify-between">
+            class="bg-gradient-to-r from-blue-500 to-blue-700 text-white p-4 rounded-md shadow-md hover:shadow-lg flex items-center justify-between">
             <div>
-                <h3 class="text-lg font-semibold">Coupons</h3>
+                <h3 class="text-md font-semibold">Total Coupons</h3>
                 <p class="text-2xl font-bold">89</p>
                 <span class="text-sm text-gray-200">+5% from last month</span>
             </div>
-            <i class="fas fa-tags fa-3x"></i>
+            <i class="fas fa-tags fa-2x"></i>
         </div>
 
         <!-- Total Discounts -->
         <div
-            class="bg-gradient-to-r from-red-500 to-red-700 text-white p-4 rounded-lg shadow-md flex items-center justify-between">
+            class="bg-gradient-to-r from-red-500 to-red-700 text-white p-4 rounded-md shadow-md hover:shadow-lg flex items-center justify-between">
             <div>
-                <h3 class="text-lg font-semibold">Discounts</h3>
+                <h3 class="text-md font-semibold">Total Discounts</h3>
                 <p class="text-2xl font-bold">45</p>
                 <span class="text-sm text-gray-200">+3% from last month</span>
             </div>
-            <i class="fas fa-percentage fa-3x"></i>
+            <i class="fas fa-percentage fa-2x"></i>
         </div>
 
         <!-- Total Email Campaigns -->
         <div
-            class="bg-gradient-to-r from-green-500 to-green-700 text-white p-4 rounded-lg shadow-md flex items-center justify-between">
+            class="bg-gradient-to-r from-green-500 to-green-700 text-white p-4 rounded-md shadow-md hover:shadow-lg flex items-center justify-between">
             <div>
-                <h3 class="text-lg font-semibold">Email Campaigns</h3>
+                <h3 class="text-md font-semibold">Total Email Campaigns</h3>
                 <p class="text-2xl font-bold">12</p>
                 <span class="text-sm text-gray-200">+2% from last month</span>
             </div>
-            <i class="fas fa-envelope fa-3x"></i>
+            <i class="fas fa-envelope fa-2x"></i>
         </div>
 
         <!-- Total Promotions -->
         <div
-            class="bg-gradient-to-r from-yellow-500 to-yellow-700 text-white p-4 rounded-lg shadow-md flex items-center justify-between">
+            class="bg-gradient-to-r from-yellow-500 to-yellow-700 text-white p-4 rounded-md shadow-md hover:shadow-lg flex items-center justify-between">
             <div>
-                <h3 class="text-lg font-semibold">Promotions</h3>
+                <h3 class="text-md font-semibold">Total Promotions</h3>
                 <p class="text-2xl font-bold">27</p>
                 <span class="text-sm text-gray-200">+4% from last month</span>
             </div>
-            <i class="fas fa-bullhorn fa-3x"></i>
+            <i class="fas fa-bullhorn fa-2x"></i>
         </div>
     </div>
 
     <!-- Detailed Sections -->
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-6">
         <!-- Coupons Section -->
-        <div
-            class="bg-white p-4 rounded-lg shadow-md border border-blue-200 hover:shadow-lg transform transition hover:scale-105">
+        <div class="bg-white p-4 rounded-lg shadow-md hover:shadow-lg transform transition">
             <h3 class="text-sm font-semibold text-blue-600 flex items-center">
                 <i class="fas fa-tags mr-2"></i> Coupons
             </h3>
@@ -74,8 +67,7 @@
         </div>
 
         <!-- Discounts Section -->
-        <div
-            class="bg-white p-4 rounded-lg shadow-md border border-red-200 hover:shadow-lg transform transition hover:scale-105">
+        <div class="bg-white p-4 rounded-lg shadow-md hover:shadow-lg transform transition">
             <h3 class="text-sm font-semibold text-red-600 flex items-center">
                 <i class="fas fa-percentage mr-2"></i> Discounts
             </h3>
@@ -87,8 +79,7 @@
         </div>
 
         <!-- Email Campaigns Section -->
-        <div
-            class="bg-white p-4 rounded-lg shadow-md border border-green-200 hover:shadow-lg transform transition hover:scale-105">
+        <div class="bg-white p-4 rounded-lg shadow-md hover:shadow-lg transform transition">
             <h3 class="text-sm font-semibold text-green-600 flex items-center">
                 <i class="fas fa-envelope mr-2"></i> Email Campaigns
             </h3>
@@ -100,8 +91,7 @@
         </div>
 
         <!-- Affiliate Programs Section -->
-        <div
-            class="bg-white p-4 rounded-lg shadow-md border border-indigo-200 hover:shadow-lg transform transition hover:scale-105">
+        <div class="bg-white p-4 rounded-lg shadow-md hover:shadow-lg transform transition">
             <h3 class="text-sm font-semibold text-indigo-600 flex items-center">
                 <i class="fas fa-users mr-2"></i> Affiliate Programs
             </h3>
@@ -113,8 +103,7 @@
         </div>
 
         <!-- Loyalty Programs Section -->
-        <div
-            class="bg-white p-4 rounded-lg shadow-md border border-purple-200 hover:shadow-lg transform transition hover:scale-105">
+        <div class="bg-white p-4 rounded-lg shadow-md hover:shadow-lg transform transition">
             <h3 class="text-sm font-semibold text-purple-600 flex items-center">
                 <i class="fas fa-gift mr-2"></i> Loyalty Programs
             </h3>
@@ -126,8 +115,7 @@
         </div>
 
         <!-- Promotions Section -->
-        <div
-            class="bg-white p-4 rounded-lg shadow-md border border-yellow-200 hover:shadow-lg transform transition hover:scale-105">
+        <div class="bg-white p-4 rounded-lg shadow-md hover:shadow-lg transform transition">
             <h3 class="text-sm font-semibold text-yellow-600 flex items-center">
                 <i class="fas fa-bullhorn mr-2"></i> Promotions
             </h3>
