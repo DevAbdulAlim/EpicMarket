@@ -10,7 +10,7 @@
         <div @click="isOpen = false" class="absolute w-full h-full"></div>
 
         <!-- Sidebar Content Area with Compact and Expanded States -->
-        <div class="relative h-full overflow-y-auto overflow-x-hidden bg-primary text-white  flex-1 w-64 transition-all duration-500 ease-in-out"
+        <div class="relative h-full overflow-y-auto overflow-x-hidden scrollbar-thin scrollbar-thumb-blue-500 scrollbar-track-gray-200 bg-primary text-white  flex-1 w-64 transition-all duration-500 ease-in-out"
             :class="{ 'w-10': isCompact, 'w-64': !isCompact, }">
             <!-- Sidebar Header -->
             <div class="sticky top-0 flex items-center bg-primary z-10 border-b justify-between">

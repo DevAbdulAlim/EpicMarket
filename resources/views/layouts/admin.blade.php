@@ -9,7 +9,7 @@
     @livewireStyles
 </head>
 
-<body x-data="{ isOpen: false, isCompact: false }" class="flex flex-col h-screen">
+<body x-data="{ isOpen: false, isCompact: false }" class="flex flex-col min-h-screen">
     {{-- Screen Loader --}}
     <x-spinner />
 
@@ -18,7 +18,7 @@
 
     <!-- Topbar -->
     <header :class="{ 'md:ml-10': isCompact, 'md:ml-64': !isCompact }"
-        class="sticky top-0 z-10 flex items-center justify-between transition-all md:ml-64 duration-500 ease-in-out bg-white shadow-md p-4">
+        class="sticky top-0 z-10 md:ml-64 flex items-center justify-between transition-all duration-500 ease-in-out bg-white shadow-md p-4">
         <!-- Hamburger Button for Small Screens -->
         <button @click="isOpen = !isOpen, isCompact = false" class="text-gray-800 bg-gray-200 rounded-md p-2 md:hidden">
             <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
@@ -31,7 +31,6 @@
             class="text-gray-800 bg-gray-200 rounded-md items-center justify-center h-10 w-10 p-2 hidden md:flex">
             <i class="fa-solid fa-bars"></i>
         </button>
-
 
         <!-- Topbar Title -->
         <div class="text-lg font-semibold text-gray-800">{{ config('app.name', 'Laravel') }} Admin</div>
@@ -49,7 +48,7 @@
 
     <!-- Main Content Area -->
     <main :class="{ 'md:ml-10': isCompact, 'md:ml-64': !isCompact }"
-        class="flex-1 p-6 transition-all md:ml-64 duration-500 ease-in-out">
+        class="flex-1 p-6 md:ml-64 transition-all duration-500 ease-in-out">
         {{ $slot }}
     </main>
 

@@ -139,5 +139,8 @@ export default {
             },
         },
     },
-    plugins: [],
+    variants: {
+        scrollbar: ["rounded"], // Enable variants
+    },
+    plugins: [require("tailwind-scrollbar")],
 };
