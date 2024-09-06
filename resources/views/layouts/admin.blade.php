@@ -14,7 +14,8 @@
         <!-- Sidebar Navigation -->
         <x-sidebar isOpen="isOpen" isCompact="isCompact" />
         <!-- Main Content -->
-        <div class="flex-1 flex flex-col">
+        <div :class="{ 'md:ml-10': isCompact }"
+            class="flex-1 md:ml-64 flex flex-col transition-all duration-500 ease-in-out">
             <!-- Topbar -->
             <header class="relative flex items-center justify-between bg-white shadow-md p-4">
                 <!-- Hamburger Button for Small Screens -->

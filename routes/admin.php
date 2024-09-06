@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\AdminSettingsController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\AdminAuthController;
 use App\Http\Controllers\Admin\AdminDashboardController;
@@ -60,5 +61,9 @@ Route::prefix('admin')
             Route::get('/users/{id}/edit', [AdminUserController::class, 'edit'])->name('users.edit');
             Route::put('/users/{id}', [AdminUserController::class, 'update'])->name('users.update');
             Route::delete('/users/{id}', [AdminUserController::class, 'destroy'])->name('users.destroy');
+
+            // Settings Routes
+            Route::get('/settings/general', [AdminSettingsController::class, 'editGeneral'])->name('settings.general.edit');
+            Route::post('/settings/general', [AdminSettingsController::class, 'updateGeneral'])->name('settings.general.update');
         });
     });
