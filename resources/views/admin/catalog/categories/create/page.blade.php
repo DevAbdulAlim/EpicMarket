@@ -1,7 +1,7 @@
 <x-admin-layout>
     <div class="container mx-auto py-6">
         <h1 class="text-2xl font-bold mb-6">Create New Category</h1>
-        <form action="{{ route('admin.categories.store') }}" method="POST">
+        <form action="{{ route('admin.catalog.categories.store') }}" method="POST">
             @csrf
             <div class="mb-4">
                 <label for="name" class="block text-gray-700">Name</label>

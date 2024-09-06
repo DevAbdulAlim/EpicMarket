@@ -1,7 +1,7 @@
 <x-admin-layout>
     <div class="container mx-auto py-6">
         <h1 class="text-2xl font-bold mb-6">Edit Category</h1>
-        <form action="{{ route('admin.categories.update', $category->id) }}" method="POST">
+        <form action="{{ route('admin.catalog.categories.update', $category->id) }}" method="POST">
             @csrf
             @method('PUT')
             <div class="mb-4">

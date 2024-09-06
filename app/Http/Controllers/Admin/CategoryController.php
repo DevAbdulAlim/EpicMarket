@@ -11,12 +11,12 @@ class CategoryController extends Controller
     public function index()
     {
         $categories = Category::paginate(5);
-        return view('admin.categories.page', compact('categories'));
+        return view('admin.catalog.categories.page', compact('categories'));
     }
 
     public function create()
     {
-        return view('admin.categories.create.page');
+        return view('admin.catalog.categories.create.page');
     }
 
     public function store(Request $request)
@@ -30,13 +30,13 @@ class CategoryController extends Controller
             'slug' => \Illuminate\Support\Str::slug($request->name),
             'description' => $request->description,
         ]);
-        return redirect()->route('admin.categories.index')->with('success', 'Category created successfully.');
+        return redirect()->route('admin.catalog.categories.index')->with('success', 'Category created successfully.');
     }
 
     public function edit($id)
     {
         $category = Category::findOrFail($id);
-        return view('admin.categories.edit.page', compact('category'));
+        return view('admin.catalog.categories.edit.page', compact('category'));
     }
 
     public function update(Request $request, $id)
@@ -50,13 +50,13 @@ class CategoryController extends Controller
             'name' => $request->name,
             'description' => $request->description,
         ]);
-        return redirect()->route('admin.categories.index')->with('success', 'Category updated successfully.');
+        return redirect()->route('admin.catalog.categories.index')->with('success', 'Category updated successfully.');
     }
 
     public function destroy($id)
     {
         $category = Category::findOrFail($id);
         $category->delete();
-        return redirect()->route('admin.categories.index')->with('success', 'Category deleted successfully.');
+        return redirect()->route('admin.catalog.categories.index')->with('success', 'Category deleted successfully.');
     }
 }

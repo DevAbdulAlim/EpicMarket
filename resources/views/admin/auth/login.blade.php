@@ -1,7 +1,7 @@
 <x-guest-layout>
     <div class="flex items-center justify-center h-screen">
         <div class="w-full max-w-md">
-            <form method="POST" action="{{ route('admin.login') }}"
+            <form method="POST" action="{{ route('admin.auth.login') }}"
                 class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
                 @csrf
                 <h2 class="text-center text-2xl font-bold mb-6">Admin Login</h2>

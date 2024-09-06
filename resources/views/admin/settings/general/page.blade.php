@@ -1,5 +1,12 @@
 <!-- resources/views/admin/settings/general.blade.php -->
 <x-admin-layout>
+    <!-- Breadcrumb Component -->
+    <x-breadcrumb :items="[
+        ['name' => 'Dashboard', 'url' => route('admin.index'), 'icon' => 'fa-chart-line'],
+        ['name' => 'Settings', 'url' => route('admin.settings.index'), 'icon' => 'fa-cogs'],
+        ['name' => 'General Settings', 'url' => route('admin.settings.general.edit'), 'icon' => 'fa-cog'],
+    ]" />
+
     <div class="container mx-auto py-6">
         <!-- Page Header -->
         <div class="flex justify-between items-center">
@@ -16,12 +23,7 @@
                 <h2 class="text-lg font-medium text-gray-900">Site Information</h2>
                 <div class="mt-4 space-y-4">
                     <!-- Site Name -->
-                    <div>
-                        <label for="site_name" class="block text-sm font-medium text-gray-700">Site Name</label>
-                        <input type="text" name="site_name" id="site_name"
-                            value="{{ old('site_name', 'My Awesome Site') }}"
-                            class="mt-1 block w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-primary focus:border-primary">
-                    </div>
+                    <x-input label="Site Name" name="site_name" value="{{ old('site_name', 'My Awesome Site') }}" />
 
                     <!-- Site Logo -->
                     <div>
@@ -31,12 +33,8 @@
                     </div>
 
                     <!-- Contact Email -->
-                    <div>
-                        <label for="contact_email" class="block text-sm font-medium text-gray-700">Contact Email</label>
-                        <input type="email" name="contact_email" id="contact_email"
-                            value="{{ old('contact_email', 'info@example.com') }}"
-                            class="mt-1 block w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-primary focus:border-primary">
-                    </div>
+                    <x-input type="email" label="Contact Email" name="contact_email"
+                        value="{{ old('contact_email', 'info@example.com') }}" />
                 </div>
             </div>
 
@@ -84,7 +82,8 @@
                 <h2 class="text-lg font-medium text-gray-900">Maintenance Mode</h2>
                 <div class="mt-4">
                     <label for="maintenance_mode" class="flex items-center space-x-2">
-                        <input type="checkbox" name="maintenance_mode" id="maintenance_mode" checked
+                        <input type="checkbox" name="maintenance_mode" id="maintenance_mode"
+                            {{ old('maintenance_mode', 'checked') }}
                             class="h-4 w-4 text-primary focus:ring-primary border-gray-300 rounded">
                         <span class="text-sm text-gray-700">Enable Maintenance Mode</span>
                     </label>

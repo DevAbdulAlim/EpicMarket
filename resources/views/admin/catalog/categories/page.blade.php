@@ -2,8 +2,9 @@
     <div class="container mx-auto py-6 px-4 md:px-6">
         <!-- Breadcrumb Component -->
         <x-breadcrumb :items="[
-            ['name' => 'Dashboard', 'url' => '/admin', 'icon' => 'fa-chart-line'],
-            ['name' => 'Categories', 'url' => '/admin/categories', 'icon' => 'fa-list'],
+            ['name' => 'Dashboard', 'url' => route('admin.index'), 'icon' => 'fa-chart-line'],
+            ['name' => 'Catalog', 'url' => route('admin.catalog.index'), 'icon' => 'fa-list'],
+            ['name' => 'Categories', 'url' => route('admin.catalog.categories.index'), 'icon' => 'fa-list'],
         ]" />
 
 
@@ -13,7 +14,7 @@
             <h1 class="text-2xl md:text-3xl font-extrabold text-gray-800">Category Listing</h1>
             <!-- Add New Category Button -->
             <x-button type="button" variant="solid" color="blue" size="md"
-                onclick="window.location='{{ route('admin.categories.create') }}'">
+                onclick="window.location='{{ route('admin.catalog.categories.create') }}'">
                 Add New Category
             </x-button>
         </div>
@@ -80,14 +81,14 @@
                             'label' => 'Edit',
                             'variant' => 'outline',
                             'color' => 'green',
-                            'route' => route('admin.categories.edit', ['id' => $category->id]),
+                            'route' => route('admin.catalog.categories.edit', ['id' => $category->id]),
                         ],
                         [
                             'type' => 'delete',
                             'label' => 'Delete',
                             'variant' => 'outline',
                             'color' => 'red',
-                            'route' => route('admin.categories.destroy', ['id' => $category->id]),
+                            'route' => route('admin.catalog.categories.destroy', ['id' => $category->id]),
                         ],
                     ]" />
                 @endforeach

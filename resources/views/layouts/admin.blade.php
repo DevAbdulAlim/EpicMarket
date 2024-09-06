@@ -9,51 +9,50 @@
     @livewireStyles
 </head>
 
-<body class="bg-gray-100">
-    <div x-data="{ isOpen: false, isCompact: false }" class="flex h-screen">
-        <!-- Sidebar Navigation -->
-        <x-sidebar isOpen="isOpen" isCompact="isCompact" />
-        <!-- Main Content -->
-        <div :class="{ 'md:ml-10': isCompact }"
-            class="flex-1 md:ml-64 flex flex-col transition-all duration-500 ease-in-out">
-            <!-- Topbar -->
-            <header class="relative flex items-center justify-between bg-white shadow-md p-4">
-                <!-- Hamburger Button for Small Screens -->
-                <button @click="isOpen = !isOpen, isCompact = false"
-                    class="text-gray-800 bg-gray-200 rounded-md p-2 md:hidden">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
-                        stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M4 6h16M4 12h16m-7 6h7" />
-                    </svg>
-                </button>
+<body x-data="{ isOpen: false, isCompact: false }" class="flex flex-col h-screen">
+    {{-- Screen Loader --}}
+    <x-spinner />
 
-                <button @click="isCompact = !isCompact"
-                    class="text-gray-800 bg-gray-200 rounded-md items-center justify-center h-10 w-10 p-2 hidden md:flex">
-                    <i class="fa-solid fa-bars"></i>
-                </button>
+    <!-- Sidebar Navigation -->
+    <x-sidebar isOpen="isOpen" isCompact="isCompact" />
+
+    <!-- Topbar -->
+    <header :class="{ 'md:ml-10': isCompact, 'md:ml-64': !isCompact }"
+        class="sticky top-0 z-10 flex items-center justify-between transition-all md:ml-64 duration-500 ease-in-out bg-white shadow-md p-4">
+        <!-- Hamburger Button for Small Screens -->
+        <button @click="isOpen = !isOpen, isCompact = false" class="text-gray-800 bg-gray-200 rounded-md p-2 md:hidden">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
+            </svg>
+        </button>
+
+        <button @click="isCompact = !isCompact"
+            class="text-gray-800 bg-gray-200 rounded-md items-center justify-center h-10 w-10 p-2 hidden md:flex">
+            <i class="fa-solid fa-bars"></i>
+        </button>
 
 
-                <!-- Topbar Title -->
-                <div class="text-lg font-semibold text-gray-800">{{ config('app.name', 'Laravel') }} Admin</div>
+        <!-- Topbar Title -->
+        <div class="text-lg font-semibold text-gray-800">{{ config('app.name', 'Laravel') }} Admin</div>
 
-                <!-- Topbar Icons (Profile, Notifications, etc.) -->
-                <div class="flex items-center space-x-4">
-                    <button class="text-gray-600 hover:text-gray-800">
-                        <i class="fas fa-bell"></i>
-                    </button>
-                    <button class="text-gray-600 hover:text-gray-800">
-                        <i class="fas fa-user-circle"></i>
-                    </button>
-                </div>
-            </header>
-
-            <!-- Main Content Area -->
-            <main class="flex-1 p-6">
-                {{ $slot }}
-            </main>
+        <!-- Topbar Icons (Profile, Notifications, etc.) -->
+        <div class="flex items-center space-x-4">
+            <button class="text-gray-600 hover:text-gray-800">
+                <i class="fas fa-bell"></i>
+            </button>
+            <button class="text-gray-600 hover:text-gray-800">
+                <i class="fas fa-user-circle"></i>
+            </button>
         </div>
-    </div>
+    </header>
+
+    <!-- Main Content Area -->
+    <main :class="{ 'md:ml-10': isCompact, 'md:ml-64': !isCompact }"
+        class="flex-1 p-6 transition-all md:ml-64 duration-500 ease-in-out">
+        {{ $slot }}
+    </main>
+
     @livewireScripts
 </body>
 

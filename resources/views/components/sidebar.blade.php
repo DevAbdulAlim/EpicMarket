@@ -10,7 +10,7 @@
         <div @click="isOpen = false" class="absolute w-full h-full"></div>
 
         <!-- Sidebar Content Area with Compact and Expanded States -->
-        <div class="relative h-full overflow-auto bg-primary text-white  flex-1 w-64 transition-all duration-500 ease-in-out"
+        <div class="relative h-full overflow-y-auto overflow-x-hidden bg-primary text-white  flex-1 w-64 transition-all duration-500 ease-in-out"
             :class="{ 'w-10': isCompact, 'w-64': !isCompact, }">
             <!-- Sidebar Header -->
             <div class="sticky top-0 flex items-center bg-primary z-10 border-b justify-between">
@@ -29,20 +29,21 @@
             <!-- Sidebar items -->
             <nav class="flex flex-col mt-4 space-y-2 mb-4">
                 <!-- Dashboard Section -->
-                <a href="/admin/dashboard"
+                <a href="{{ route('admin.index') }}"
                     class="flex items-center p-2 hover:border-l-2 border-primary  text-white bg-parimary/10">
                     <i class="fas fa-chart-line"></i>
                     <span :class="{ 'hidden': isCompact }" class="ml-2">Dashboard</span>
                 </a>
 
                 <!-- Catalog Section -->
-                <a href="/admin/catalog"
+                <a href="{{ route('admin.catalog.index') }}"
                     class="flex items-center p-2 hover:border-l-2 border-primary  text-white bg-parimary/10">
                     <i class="fas fa-list"></i>
                     <span :class="{ 'hidden': isCompact }" class="ml-2">Catalog</span>
                 </a>
                 <ul :class="{ 'hidden': isCompact }" class="ml-7 space-y-1">
-                    <li><a href="/admin/categories" class=" text-white hover:text-secondary">Categories</a></li>
+                    <li><a href="{{ route('admin.catalog.categories.index') }}"
+                            class=" text-white hover:text-secondary">Categories</a></li>
                     <li><a href="/admin/products" class=" text-white hover:text-secondary">Products</a></li>
                     <li><a href="/admin/brands" class=" text-white hover:text-secondary">Brands</a></li>
                     <li><a href="/admin/tags" class=" text-white hover:text-secondary">Tags</a></li>
@@ -50,7 +51,7 @@
                 </ul>
 
                 <!-- Sales Section -->
-                <a href="/admin/sales"
+                <a href="{{ route('admin.sales.index') }}"
                     class="flex items-center p-2 hover:border-l-2 border-primary  text-white bg-parimary/10">
                     <i class="fas fa-shopping-cart"></i>
                     <span :class="{ 'hidden': isCompact }" class="ml-2">Sales</span>
@@ -67,7 +68,7 @@
                 </ul>
 
                 <!-- Marketing Section -->
-                <a href="/admin/marketing"
+                <a href="{{ route('admin.marketing.index') }}"
                     class="flex items-center p-2 hover:border-l-2 border-primary  text-white bg-parimary/10">
                     <i class="fas fa-bullhorn"></i>
                     <span :class="{ 'hidden': isCompact }" class="ml-2">Marketing</span>
@@ -85,7 +86,7 @@
                 </ul>
 
                 <!-- Engagement Section -->
-                <a href="/admin/engagements"
+                <a href="{{ route('admin.engagements.index') }}"
                     class="flex items-center p-2 hover:border-l-2 border-primary  text-white bg-parimary/10">
                     <i class="fas fa-users"></i>
                     <span :class="{ 'hidden': isCompact }" class="ml-2">Engagements</span>
@@ -102,7 +103,7 @@
                 </ul>
 
                 <!-- Settings Section -->
-                <a href="/admin/settings"
+                <a href="{{ route('admin.settings.index') }}"
                     class="flex items-center p-2 hover:border-l-2 border-primary  text-white bg-parimary/10">
                     <i class="fas fa-cogs"></i>
                     <span :class="{ 'hidden': isCompact }" class="ml-2">Settings</span>
@@ -110,7 +111,8 @@
                 <ul :class="{ 'hidden': isCompact }" class="ml-7 space-y-1">
                     <li><a href="{{ route('admin.settings.general.edit') }}"
                             class=" text-white hover:text-secondary">General</a></li>
-                    <li><a href="/admin/business" class=" text-white hover:text-secondary">Business</a></li>
+                    <li><a href="{{ route('admin.settings.business.edit') }}"
+                            class=" text-white hover:text-secondary">Business</a></li>
                     <li><a href="/admin/site" class=" text-white hover:text-secondary">Site</a></li>
                     <li><a href="/admin/shipping" class=" text-white hover:text-secondary">Shipping</a></li>
                     <li><a href="/admin/payment" class=" text-white hover:text-secondary">Payment</a></li>
