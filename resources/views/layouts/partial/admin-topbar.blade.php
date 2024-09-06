@@ -1,5 +1,5 @@
 <header :class="{ 'md:ml-10': isCompact, 'md:ml-64': !isCompact }"
-    class="sticky top-0 z-10 md:ml-64 flex items-center justify-between transition-all duration-500 ease-in-out bg-white shadow-md p-4">
+    class="sticky top-0 z-10 md:ml-64 flex items-center justify-between transition-all duration-500 ease-in-out bg-white shadow-md p-6">
     <!-- Hamburger Button for Small Screens -->
     <button @click="isOpen = !isOpen, isCompact = false" class="text-gray-800 bg-gray-200 rounded-md p-2 md:hidden">
         <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -93,13 +93,91 @@
 
 
 
-    <!-- Topbar Icons (Profile, Notifications, etc.) -->
-    <div class="flex items-center space-x-4">
-        <button class="text-gray-600 hover:text-gray-800">
-            <i class="fas fa-bell"></i>
-        </button>
-        <button class="text-gray-600 hover:text-gray-800">
-            <i class="fas fa-user-circle"></i>
-        </button>
+    <div class="flex items-center justify-between p-2 space-x-6 text-gray-800">
+
+        <!-- Language Selector -->
+        <x-dropdown>
+            <x-slot:trigger>
+                <i class="fas fa-globe text-xl"></i>
+                <span class="ml-2 text-sm">Language</span>
+            </x-slot:trigger>
+            <div class="p-2 hover:bg-gray-100 cursor-pointer text-sm">English</div>
+            <div class="p-2 hover:bg-gray-100 cursor-pointer text-sm">Bangla</div>
+            <div class="p-2 hover:bg-gray-100 cursor-pointer text-sm">Spanish</div>
+        </x-dropdown>
+
+        <!-- Theme Toggle -->
+        <div x-data="{ darkMode: false }">
+            <button @click="darkMode = !darkMode; document.documentElement.classList.toggle('dark')"
+                class="flex items-center text-sm font-medium hover:text-gray-900 transition duration-300">
+                <i :class="darkMode ? 'fas fa-sun text-xl' : 'fas fa-moon text-xl'"></i>
+                <span class="ml-2" x-text="darkMode ? 'Light' : 'Dark'"></span>
+            </button>
+        </div>
+
+        <!-- Notification Dropdown -->
+        <x-dropdown>
+            <x-slot:trigger>
+                <div class="relative">
+                    <i class="fas fa-bell text-xl"></i>
+                    <span
+                        class="absolute -top-2 -right-2 bg-red-500 text-xs text-white rounded-full w-5 h-5 flex items-center justify-center">3</span>
+                </div>
+            </x-slot:trigger>
+            <!-- Realistic Notification Design -->
+            <div class="p-4 bg-white shadow-lg rounded-lg w-72">
+                <h4 class="font-semibold text-base mb-2">Notifications</h4>
+                <ul>
+                    <!-- Notification 1 -->
+                    <li
+                        class="flex items-start p-2 hover:bg-gray-100 cursor-pointer transition duration-200 ease-in-out rounded-lg">
+                        <img src="https://via.placeholder.com/40" alt="Avatar"
+                            class="rounded-full w-8 h-8 flex-shrink-0">
+                        <div class="ml-3">
+                            <p class="text-sm font-semibold">New Message</p>
+                            <p class="text-xs text-gray-500">You have a new message from John Doe.</p>
+                            <p class="text-xs text-gray-400">2 mins ago</p>
+                        </div>
+                    </li>
+
+                    <!-- Notification 2 -->
+                    <li
+                        class="flex items-start p-2 hover:bg-gray-100 cursor-pointer transition duration-200 ease-in-out rounded-lg">
+                        <img src="https://via.placeholder.com/40" alt="Avatar"
+                            class="rounded-full w-8 h-8 flex-shrink-0">
+                        <div class="ml-3">
+                            <p class="text-sm font-semibold">Server Update</p>
+                            <p class="text-xs text-gray-500">Scheduled maintenance at 11:00 PM.</p>
+                            <p class="text-xs text-gray-400">1 hour ago</p>
+                        </div>
+                    </li>
+
+                    <!-- Notification 3 -->
+                    <li
+                        class="flex items-start p-2 hover:bg-gray-100 cursor-pointer transition duration-200 ease-in-out rounded-lg">
+                        <img src="https://via.placeholder.com/40" alt="Avatar"
+                            class="rounded-full w-8 h-8 flex-shrink-0">
+                        <div class="ml-3">
+                            <p class="text-sm font-semibold">New Follower</p>
+                            <p class="text-xs text-gray-500">Alice started following you.</p>
+                            <p class="text-xs text-gray-400">3 hours ago</p>
+                        </div>
+                    </li>
+                </ul>
+                <div class="text-center text-sm text-blue-500 mt-2 cursor-pointer hover:underline">View All</div>
+            </div>
+        </x-dropdown>
+
+        <!-- Profile Icon -->
+        <x-dropdown>
+            <x-slot:trigger>
+                <i class="fas fa-user-circle text-xl"></i>
+            </x-slot:trigger>
+            <div class="p-2 hover:bg-gray-100 cursor-pointer text-sm">My Profile</div>
+            <div class="p-2 hover:bg-gray-100 cursor-pointer text-sm">Settings</div>
+            <div class="p-2 hover:bg-gray-100 cursor-pointer text-sm">Logout</div>
+        </x-dropdown>
+
     </div>
+
 </header>
