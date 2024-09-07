@@ -193,8 +193,8 @@ Route::prefix('admin')
                 Route::get('notifications', [SettingsController::class, 'editNotifications'])->name('notifications.edit');
                 Route::post('notifications', [SettingsController::class, 'updateNotifications'])->name('notifications.update');
                 // Integrations Settings
-                Route::get('integrations', [SettingsController::class, 'editIntegrations'])->name('integrations.edit');
-                Route::post('integrations', [SettingsController::class, 'updateIntegrations'])->name('integrations.update');
+                Route::get('advanced', [SettingsController::class, 'editAdvanced'])->name('advanced.edit');
+                Route::post('advanced', [SettingsController::class, 'updateAdvanced'])->name('advanced.update');
             });
 
         });

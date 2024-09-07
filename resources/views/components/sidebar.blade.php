@@ -113,16 +113,21 @@
                             class=" text-white hover:text-secondary">General</a></li>
                     <li><a href="{{ route('admin.settings.business.edit') }}"
                             class=" text-white hover:text-secondary">Business</a></li>
-                    <li><a href="/admin/site" class=" text-white hover:text-secondary">Site</a></li>
-                    <li><a href="/admin/shipping" class=" text-white hover:text-secondary">Shipping</a></li>
-                    <li><a href="/admin/payment" class=" text-white hover:text-secondary">Payment</a></li>
-                    <li><a href="/admin/tax" class=" text-white hover:text-secondary">Tax</a></li>
-                    <li><a href="/admin/advanced" class=" text-white hover:text-secondary">Advanced</a></li>
-                    <li><a href="/admin/security" class=" text-white hover:text-secondary">Security</a></li>
-                    <li><a href="/admin/notifications" class=" text-white hover:text-secondary">Notifications</a>
-                    </li>
-                    <li><a href="/admin/integrations" class=" text-white hover:text-secondary">Integrations</a>
-                    </li>
+                    <li><a href="{{ route('admin.settings.site.edit') }}"
+                            class=" text-white hover:text-secondary">Site</a></li>
+                    <li><a href="{{ route('admin.settings.shipping.edit') }}"
+                            class=" text-white hover:text-secondary">Shipping</a></li>
+                    <li><a href="{{ route('admin.settings.payment.edit') }}"
+                            class=" text-white hover:text-secondary">Payment</a></li>
+                    <li><a href="{{ route('admin.settings.tax.edit') }}"
+                            class=" text-white hover:text-secondary">Tax</a></li>
+                    <li><a href="{{ route('admin.settings.security.edit') }}"
+                            class=" text-white hover:text-secondary">Security</a></li>
+                    <li><a href="{{ route('admin.settings.notifications.edit') }}"
+                            class=" text-white hover:text-secondary">Notifications</a></li>
+                    <li><a href="{{ route('admin.settings.advanced.edit') }}"
+                            class=" text-white hover:text-secondary">Advanced</a></li>
+
                 </ul>
             </nav>
 

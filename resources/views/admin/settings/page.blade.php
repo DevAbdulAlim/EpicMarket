@@ -37,7 +37,7 @@
                 <i class="fas fa-globe mr-2"></i> Site
             </h3>
             <p class="text-sm text-gray-600 mt-1">Configure site appearance and behavior</p>
-            <a href=""
+            <a href="{{ route('admin.settings.site.edit') }}"
                 class="inline-block mt-3 px-3 py-1 bg-green-600 text-white text-sm rounded-md hover:bg-green-700 transition">
                 View Site Settings
             </a>
@@ -49,7 +49,7 @@
                 <i class="fas fa-shipping-fast mr-2"></i> Shipping
             </h3>
             <p class="text-sm text-gray-600 mt-1">Manage shipping methods and rates</p>
-            <a href=""
+            <a href="{{ route('admin.settings.shipping.edit') }}"
                 class="inline-block mt-3 px-3 py-1 bg-yellow-600 text-white text-sm rounded-md hover:bg-yellow-700 transition">
                 View Shipping Settings
             </a>
@@ -61,7 +61,7 @@
                 <i class="fas fa-credit-card mr-2"></i> Payment
             </h3>
             <p class="text-sm text-gray-600 mt-1">Configure payment methods</p>
-            <a href=""
+            <a href="{{ route('admin.settings.payment.edit') }}"
                 class="inline-block mt-3 px-3 py-1 bg-indigo-600 text-white text-sm rounded-md hover:bg-indigo-700 transition">
                 View Payment Settings
             </a>
@@ -73,7 +73,7 @@
                 <i class="fas fa-percentage mr-2"></i> Tax
             </h3>
             <p class="text-sm text-gray-600 mt-1">Manage tax rates and policies</p>
-            <a href=""
+            <a href="{{ route('admin.settings.tax.edit') }}"
                 class="inline-block mt-3 px-3 py-1 bg-red-600 text-white text-sm rounded-md hover:bg-red-700 transition">
                 View Tax Settings
             </a>
@@ -85,7 +85,7 @@
                 <i class="fas fa-lock mr-2"></i> Security
             </h3>
             <p class="text-sm text-gray-600 mt-1">Manage security settings</p>
-            <a href=""
+            <a href="{{ route('admin.settings.security.edit') }}"
                 class="inline-block mt-3 px-3 py-1 bg-teal-600 text-white text-sm rounded-md hover:bg-teal-700 transition">
                 View Security Settings
             </a>
@@ -97,7 +97,7 @@
                 <i class="fas fa-bell mr-2"></i> Notifications
             </h3>
             <p class="text-sm text-gray-600 mt-1">Configure notifications and alerts</p>
-            <a href=""
+            <a href="{{ route('admin.settings.notifications.edit') }}"
                 class="inline-block mt-3 px-3 py-1 bg-pink-600 text-white text-sm rounded-md hover:bg-pink-700 transition">
                 View Notification Settings
             </a>
@@ -109,7 +109,7 @@
                 <i class="fas fa-tools mr-2"></i> Advanced
             </h3>
             <p class="text-sm text-gray-600 mt-1">Configure advanced system settings</p>
-            <a href=""
+            <a href="{{ route('admin.settings.advanced.edit') }}"
                 class="inline-block mt-3 px-3 py-1 bg-purple-600 text-white text-sm rounded-md hover:bg-purple-700 transition">
                 View Advanced Settings
             </a>
