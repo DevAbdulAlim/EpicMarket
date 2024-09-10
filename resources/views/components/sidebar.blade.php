@@ -44,7 +44,8 @@
                 <ul :class="{ 'hidden': isCompact }" class="ml-7 space-y-1">
                     <li><a href="{{ route('admin.catalog.categories.index') }}"
                             class=" text-white hover:text-secondary">Categories</a></li>
-                    <li><a href="/admin/products" class=" text-white hover:text-secondary">Products</a></li>
+                    <li><a href="{{ route('admin.catalog.products.index') }}"
+                            class=" text-white hover:text-secondary">Products</a></li>
                     <li><a href="/admin/brands" class=" text-white hover:text-secondary">Brands</a></li>
                     <li><a href="/admin/tags" class=" text-white hover:text-secondary">Tags</a></li>
                     <li><a href="/admin/attributes" class=" text-white hover:text-secondary">Attributes</a></li>
