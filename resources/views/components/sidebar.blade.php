@@ -99,7 +99,7 @@
             <!-- Sidebar Header -->
             <div class="sticky top-0 flex items-center bg-primary z-10 border-b justify-between">
                 <div :class="{ 'hidden': isCompact }" class="text-lg p-2 font-bold whitespace-nowrap">Admin Panel</div>
-                <div x-show="isCompact" class="text-lg font-bold p-2 hidden md:block" x-cloak>AP</div>
+                <div x-show="isCompact" class="text-lg font-bold p-2 hidden md:block">AP</div>
                 <button @click="isOpen = false"
                     class="text-primary rounded-full p-2 m-2 bg-light focus:outline-none md:hidden">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
@@ -125,8 +125,7 @@
                         {{-- compact --}}
                         <div class="z-10" :class="{ 'hidden': !isCompact }"
                             @mouseenter="activeDropdown === '{{ strtolower($item['name']) }}' ? activeDropdown = null : activeDropdown = '{{ strtolower($item['name']) }}'"
-                            @mouseleave="activeDropdown === '{{ strtolower($item['name']) }}' ? activeDropdown = null : activeDropdown = '{{ strtolower($item['name']) }}'"
-                            x-cloak>
+                            @mouseleave="activeDropdown === '{{ strtolower($item['name']) }}' ? activeDropdown = null : activeDropdown = '{{ strtolower($item['name']) }}'">
                             <div
                                 class="flex items-center p-2 hover:border-l-2 border-primary text-white cursor-pointer">
                                 <a href="{{ $item['route'] }}">
@@ -155,7 +154,7 @@
                             </ul>
                         </div>
                         {{-- non-compact --}}
-                        <div class="z-10" :class="{ 'hidden': isCompact }" x-cloak>
+                        <div class="z-10" :class="{ 'hidden': isCompact }">
                             <div
                                 class="flex items-center p-2 hover:border-l-2 border-primary text-white cursor-pointer">
                                 <a href="{{ $item['route'] }}" class="whitespace-nowrap">
