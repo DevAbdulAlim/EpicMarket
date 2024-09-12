@@ -7,7 +7,7 @@
                     @click="goToStep(index)"
                     :class="{
                         'bg-green-500 text-white': currentStep > index, // Completed step
-                        'bg-blue-600 text-white shadow-lg': currentStep === index, // Active step
+                        'bg-rose-600 text-white shadow-lg': currentStep === index, // Active step
                         'bg-gray-100 text-gray-600': currentStep < index // Upcoming step
                     }"
                     class="rounded-none h-16 flex items-center justify-center mx-auto border md:border-0"

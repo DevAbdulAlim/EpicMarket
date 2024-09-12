@@ -6,29 +6,57 @@
         {{-- Product Name --}}
         <div class="mb-4">
             <label for="name" class="block text-sm font-medium text-gray-700">Product Name</label>
-            <input type="text" name="name" id="name"
-                class="mt-1 block w-full border border-gray-300 p-2 rounded-md" placeholder="Enter product name"
-                required>
+            <input type="text" wire:model.defer="basicInfo.name" id="name" @class([
+                'mt-1 block w-full border p-2 rounded-md',
+                'border-red-500' => $errors->has('basicInfo.name'),
+                'border-gray-300' => !$errors->has('basicInfo.name'),
+            ])
+                placeholder="Enter product name" required>
+            @error('basicInfo.name')
+                <span class="text-red-500 text-sm">{{ $message }}</span>
+            @enderror
         </div>
 
         {{-- Product Slug --}}
         <div class="mb-4">
             <label for="slug" class="block text-sm font-medium text-gray-700">Product Slug</label>
-            <input type="text" name="slug" id="slug"
-                class="mt-1 block w-full border border-gray-300 p-2 rounded-md" placeholder="Enter product slug">
+            <input type="text" wire:model.defer="basicInfo.slug" id="slug" @class([
+                'mt-1 block w-full border p-2 rounded-md',
+                'border-red-500' => $errors->has('basicInfo.slug'),
+                'border-gray-300' => !$errors->has('basicInfo.slug'),
+            ])
+                placeholder="Enter product slug">
+            @error('basicInfo.slug')
+                <span class="text-red-500 text-sm">{{ $message }}</span>
+            @enderror
         </div>
 
         {{-- SKU --}}
         <div class="mb-4">
             <label for="sku" class="block text-sm font-medium text-gray-700">SKU</label>
-            <input type="text" name="sku" id="sku"
-                class="mt-1 block w-full border border-gray-300 p-2 rounded-md" placeholder="Enter product SKU">
+            <input type="text" wire:model.defer="basicInfo.sku" id="sku" @class([
+                'mt-1 block w-full border p-2 rounded-md',
+                'border-red-500' => $errors->has('basicInfo.sku'),
+                'border-gray-300' => !$errors->has('basicInfo.sku'),
+            ])
+                placeholder="Enter product SKU">
+            @error('basicInfo.sku')
+                <span class="text-red-500 text-sm">{{ $message }}</span>
+            @enderror
         </div>
+
         {{-- Tags --}}
         <div class="mb-4">
             <label for="tags" class="block text-sm font-medium text-gray-700">Tags (comma-separated)</label>
-            <input type="text" name="tags" id="tags"
-                class="mt-1 block w-full border border-gray-300 p-2 rounded-md" placeholder="Enter tags">
+            <input type="text" wire:model.defer="basicInfo.tags" id="tags" @class([
+                'mt-1 block w-full border p-2 rounded-md',
+                'border-red-500' => $errors->has('basicInfo.tags'),
+                'border-gray-300' => !$errors->has('basicInfo.tags'),
+            ])
+                placeholder="Enter tags">
+            @error('basicInfo.tags')
+                <span class="text-red-500 text-sm">{{ $message }}</span>
+            @enderror
         </div>
     </div>
 
@@ -36,50 +64,66 @@
         {{-- Category --}}
         <div class="mb-4">
             <label for="category" class="block text-sm font-medium text-gray-700">Category</label>
-            <select id="category" name="category" class="mt-1 block w-full border border-gray-300 p-2 rounded-md">
-                <option>Select Category</option>
-                <option>Category 1</option>
-                <option>Category 2</option>
-                <option>Category 3</option>
+            <select wire:model.defer="basicInfo.category" id="category" @class([
+                'mt-1 block w-full border p-2 rounded-md',
+                'border-red-500' => $errors->has('basicInfo.category'),
+                'border-gray-300' => !$errors->has('basicInfo.category'),
+            ])>
+                <option value="">Select Category</option>
+                <option value="Category 1">Category 1</option>
+                <option value="Category 2">Category 2</option>
+                <option value="Category 3">Category 3</option>
             </select>
+            @error('basicInfo.category')
+                <span class="text-red-500 text-sm">{{ $message }}</span>
+            @enderror
         </div>
 
         {{-- Brand --}}
         <div class="mb-4">
             <label for="brand" class="block text-sm font-medium text-gray-700">Brand</label>
-            <select id="brand" name="brand" class="mt-1 block w-full border border-gray-300 p-2 rounded-md">
-                <option>Select Brand</option>
-                <option>Brand 1</option>
-                <option>Brand 2</option>
-                <option>Brand 3</option>
+            <select wire:model.defer="basicInfo.brand" id="brand" @class([
+                'mt-1 block w-full border p-2 rounded-md',
+                'border-red-500' => $errors->has('basicInfo.brand'),
+                'border-gray-300' => !$errors->has('basicInfo.brand'),
+            ])>
+                <option value="">Select Brand</option>
+                <option value="Brand 1">Brand 1</option>
+                <option value="Brand 2">Brand 2</option>
+                <option value="Brand 3">Brand 3</option>
             </select>
+            @error('basicInfo.brand')
+                <span class="text-red-500 text-sm">{{ $message }}</span>
+            @enderror
         </div>
-
-
     </div>
 
     <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-4">
         {{-- Primary Image --}}
         <div class="mb-4">
             <label for="primary_image" class="block text-sm font-medium text-gray-700">Primary Image</label>
-            <input type="file" name="primary_image" id="primary_image"
-                class="mt-1 block w-full border border-gray-300 p-2 rounded-md">
+            <input type="file" wire:model="basicInfo.primary_image" id="primary_image" @class([
+                'mt-1 block w-full border p-2 rounded-md',
+                'border-red-500' => $errors->has('basicInfo.primary_image'),
+                'border-gray-300' => !$errors->has('basicInfo.primary_image'),
+            ])>
+            @error('basicInfo.primary_image')
+                <span class="text-red-500 text-sm">{{ $message }}</span>
+            @enderror
         </div>
 
         {{-- Gallery Images --}}
         <div class="mb-4">
             <label for="gallery_images" class="block text-sm font-medium text-gray-700">Gallery Images</label>
-            <input type="file" name="gallery_images[]" id="gallery_images" multiple
-                class="mt-1 block w-full border border-gray-300 p-2 rounded-md">
-        </div>
-    </div>
-
-    <div class="grid grid-cols-1  gap-6 mt-4">
-        {{-- Product Video URL --}}
-        <div class="mb-4">
-            <label for="video_url" class="block text-sm font-medium text-gray-700">Product Video URL</label>
-            <input type="url" name="video_url" id="video_url"
-                class="mt-1 block w-full border border-gray-300 p-2 rounded-md" placeholder="Enter video URL">
+            <input type="file" wire:model="basicInfo.gallery_images" multiple id="gallery_images"
+                @class([
+                    'mt-1 block w-full border p-2 rounded-md',
+                    'border-red-500' => $errors->has('basicInfo.gallery_images.*'),
+                    'border-gray-300' => !$errors->has('basicInfo.gallery_images.*'),
+                ])>
+            @error('basicInfo.gallery_images.*')
+                <span class="text-red-500 text-sm">{{ $message }}</span>
+            @enderror
         </div>
     </div>
 
@@ -87,14 +131,29 @@
         {{-- Short Description --}}
         <div class="mb-4">
             <label for="short_description" class="block text-sm font-medium text-gray-700">Short Description</label>
-            <textarea name="short_description" id="short_description" rows="4"
-                class="mt-1 block w-full border border-gray-300 p-2 rounded-md" placeholder="Enter short description"></textarea>
+            <textarea wire:model.defer="basicInfo.short_description" id="short_description" rows="4"
+                @class([
+                    'mt-1 block w-full border p-2 rounded-md',
+                    'border-red-500' => $errors->has('basicInfo.short_description'),
+                    'border-gray-300' => !$errors->has('basicInfo.short_description'),
+                ]) placeholder="Enter short description"></textarea>
+            @error('basicInfo.short_description')
+                <span class="text-red-500 text-sm">{{ $message }}</span>
+            @enderror
         </div>
+
         {{-- Long Description --}}
         <div class="mb-4">
             <label for="long_description" class="block text-sm font-medium text-gray-700">Long Description</label>
-            <textarea name="long_description" id="long_description" rows="6"
-                class="mt-1 block w-full border border-gray-300 p-2 rounded-md" placeholder="Enter detailed product description"></textarea>
+            <textarea wire:model.defer="basicInfo.long_description" id="long_description" rows="6"
+                @class([
+                    'mt-1 block w-full border p-2 rounded-md',
+                    'border-red-500' => $errors->has('basicInfo.long_description'),
+                    'border-gray-300' => !$errors->has('basicInfo.long_description'),
+                ]) placeholder="Enter detailed product description"></textarea>
+            @error('basicInfo.long_description')
+                <span class="text-red-500 text-sm">{{ $message }}</span>
+            @enderror
         </div>
     </div>
 </fieldset>
