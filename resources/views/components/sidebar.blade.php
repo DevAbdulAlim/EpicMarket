@@ -141,12 +141,12 @@
 
                             <!-- Dropdown Items -->
                             <ul x-show="activeDropdown === '{{ strtolower($item['name']) }}'" x-collapse
-                                class="ml-7 z-10 space-y-1"
-                                :class="{ 'absolute left-2 p-2 z-50 bg-white w-fit shadow-2xl -mt-8': isCompact }">
+                                class="ml-8 z-10"
+                                :class="{ 'absolute left-2 z-50 rounded-md bg-white w-48 shadow-2xl -mt-10': isCompact }">
                                 @foreach ($item['items'] as $subItem)
-                                    <li>
-                                        <a href="{{ $subItem['route'] }}"
-                                            :class="{ 'text-blue-800 hover:text-blue-500': isCompact }" @click.stop>
+                                    <li
+                                        :class="{ ' px-4 py-2 text-blue-800 hover:bg-blue-500 hover:text-white': isCompact }">
+                                        <a href="{{ $subItem['route'] }}" @click.stop>
                                             {{ $subItem['name'] }}
                                         </a>
                                     </li>
