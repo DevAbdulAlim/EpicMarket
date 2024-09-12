@@ -9,7 +9,7 @@
     @livewireStyles
 </head>
 
-<body x-data="{ isOpen: false, isCompact: false }" class="flex flex-col min-h-screen" x-cloak>
+<body x-data="{ isOpen: false, isCompact: false }" class="flex flex-col min-h-screen overflow-x-hidden" x-cloak>
     {{-- Screen Loader --}}
     <x-spinner />
 
