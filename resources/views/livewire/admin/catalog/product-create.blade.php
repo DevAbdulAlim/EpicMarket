@@ -1,4 +1,5 @@
-<div class="container mx-auto p-4">
+<!-- Assuming this is inside the <main> element which already has ml-64 -->
+<div class="container mx-auto p-4 relative w-full">
     <form wire:submit.prevent="submitForm">
         <!-- Stepper Component -->
         <div class="flex flex-col md:flex-row justify-between items-center mb-8 w-full">
@@ -14,7 +15,7 @@
         </div>
 
         <!-- Step Content -->
-        <div class="p-6 border border-gray-200 rounded shadow-md bg-white">
+        <div class="p-6 border border-gray-200 rounded shadow-md bg-white mb-16"> <!-- Added mb-16 for bottom padding -->
             @if ($currentStep === 1)
                 @include('admin.catalog.products.create.basic')
             @endif
@@ -40,25 +41,28 @@
             @endif
         </div>
 
-        <!-- Navigation Buttons -->
-        <div class="mt-4 flex justify-between">
-            <button type="button" wire:click="goToPreviousStep"
-                class="px-4 py-2 bg-gray-300 text-gray-700 hover:bg-gray-400 rounded transition"
-                @if ($currentStep === 1) disabled @endif>
-                Back
-            </button>
+        <!-- Fixed Navigation Buttons within Main Content (Adjusted for ml-64) -->
+        <div class="fixed bottom-0 left-0 right-0 ml-64 bg-white py-4 shadow-lg">
+            <div class="flex justify-between px-4">
+                <button type="button" wire:click="goToPreviousStep"
+                    class="px-4 py-2 bg-gray-300 text-gray-700 hover:bg-gray-400 rounded transition"
+                    @if ($currentStep === 1) disabled @endif>
+                    Back
+                </button>
 
-            @if ($currentStep < count($steps))
-                <button type="button" wire:click="submitStep"
-                    class="px-4 py-2 bg-blue-600 text-white hover:bg-blue-700 rounded ml-auto transition">
-                    Next
-                </button>
-            @else
-                <button type="submit"
-                    class="px-4 py-2 bg-green-600 text-white hover:bg-green-700 rounded ml-auto transition">
-                    Submit
-                </button>
-            @endif
+                @if ($currentStep < count($steps))
+                    <button type="button" wire:click="submitStep"
+                        class="px-4 py-2 bg-blue-600 text-white hover:bg-blue-700 rounded transition">
+                        Next
+                    </button>
+                @else
+                    <button type="submit"
+                        class="px-4 py-2 bg-green-600 text-white hover:bg-green-700 rounded transition">
+                        Submit
+                    </button>
+                @endif
+            </div>
         </div>
+
     </form>
 </div>

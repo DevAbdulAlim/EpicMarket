@@ -106,7 +106,7 @@ class ProductCreate extends Component
 
     public function submitStep()
     {
-        $this->validate($this->getCurrentStepValidationRules());
+        // $this->validate($this->getCurrentStepValidationRules());
 
         if ($this->currentStep < 6) {
             $this->currentStep++;
@@ -175,7 +175,18 @@ class ProductCreate extends Component
                     'seo.og_tags' => 'nullable|string',
                     'seo.alt_text' => 'nullable|string|max:255',
                 ];
-            // Add cases for other steps
+            case 4:
+                return [
+
+                ];
+            case 5:
+                return [
+
+                ];
+            case 6:
+                return [
+
+                ];
             default:
                 return [];
         }
