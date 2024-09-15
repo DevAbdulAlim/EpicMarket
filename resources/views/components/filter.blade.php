@@ -41,7 +41,7 @@
     </button>
 
     <!-- Modal for Filter Options -->
-    <x-modal id="filterModal" title="Filter Options" size="md" open="open">
+    <x-modal id="filterModal" title="Filter Options" size="xs" open="open">
         <form x-ref="form">
             <div class="space-y-4">
                 @foreach ($fields as $field)

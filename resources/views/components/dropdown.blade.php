@@ -1,6 +1,6 @@
 <div x-data="{ open: false }" class="relative" @click.away="open = false">
     <button @click="open = !open; if (open) { $nextTick(() => adjustDropdownPosition($refs.dropdown)); }"
-        class="flex items-center text-lg font-medium hover:text-gray-900 transition duration-300">
+        class="flex items-center text-gray-800 bg-gray-50 hover:bg-indigo-100 px-4 py-2 rounded-lg transition duration-300">
         {{ $trigger }}
         @if ($showIcon ?? false)
             <i class="fas fa-chevron-down ml-2 transition-transform duration-300" :class="open ? 'rotate-180' : ''"></i>
@@ -8,28 +8,25 @@
     </button>
 
     <div x-ref="dropdown" x-show="open" x-transition.opacity
-        class="absolute mt-2 w-64 bg-white text-gray-700 shadow-md rounded-lg z-20 py-2"
-        style="min-width: 12rem; left: 0;" @click.away="open = false">
+        class="absolute mt-2 min-w-36 bg-white text-gray-700 shadow-md rounded-lg z-20" style="min-width: 12rem; left: 0;"
+        @click.away="open = false">
         {{ $slot }}
     </div>
 </div>
 
 <script>
     function adjustDropdownPosition(dropdown) {
-        // Reset right style before recalculating
-        dropdown.style.right = 'auto'; // Default right side is not constrained
-        dropdown.style.visibility = 'hidden'; // Hide during position calculation
-        dropdown.style.display = 'block'; // Force render for position calculation
+        dropdown.style.right = 'auto';
+        dropdown.style.visibility = 'hidden';
+        dropdown.style.display = 'block';
 
         const rect = dropdown.getBoundingClientRect();
 
-        // Adjust dropdown position based on viewport width before showing
         if (rect.right > window.innerWidth) {
-            dropdown.style.right = '0'; // Align to the right if it exceeds viewport width
-            dropdown.style.left = 'auto'; // Clear the left side if aligning to the right
+            dropdown.style.right = '0';
+            dropdown.style.left = 'auto';
         }
 
-        // Show the dropdown after positioning is adjusted
         dropdown.style.visibility = 'visible';
     }
 </script>

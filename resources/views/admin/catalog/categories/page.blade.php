@@ -99,5 +99,6 @@
         <div class="mt-6">
             {{ $categories->links('vendor.pagination.tailwind') }}
         </div>
+
     </div>
 </x-admin-layout>

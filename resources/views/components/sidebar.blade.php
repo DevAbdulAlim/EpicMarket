@@ -19,7 +19,7 @@
             'items' => [
                 ['name' => 'Categories', 'route' => route('admin.catalog.categories.index')],
                 ['name' => 'Products', 'route' => route('admin.catalog.products.index')],
-                ['name' => 'Brands', 'route' => '/admin/brands'],
+                ['name' => 'Brands', 'route' => route('admin.catalog.brands.index')],
                 ['name' => 'Tags', 'route' => '/admin/tags'],
                 ['name' => 'Attributes', 'route' => '/admin/attributes'],
             ],
