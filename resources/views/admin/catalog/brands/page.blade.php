@@ -249,5 +249,7 @@
         <div class="mt-6">
             {{-- {{ $brands->links('vendor.pagination.tailwind') }} --}}
         </div>
+
+
     </div>
 </x-admin-layout>

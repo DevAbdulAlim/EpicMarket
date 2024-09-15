@@ -10,8 +10,11 @@
 </head>
 
 <body x-data="{ isOpen: false, isCompact: false }" class="flex flex-col min-h-screen overflow-x-hidden" x-cloak>
-    {{-- Screen Loader --}}
+    <!-- Screen Loader -->
     <x-spinner />
+
+    <!-- Include the x-toast component on the page -->
+    <x-toast />
 
     <!-- Sidebar Navigation -->
     <x-sidebar isOpen="isOpen" isCompact="isCompact" />

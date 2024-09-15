@@ -11,7 +11,9 @@
             </a>
             <h3 class="text-lg font-semibold text-gray-900 mb-2">Product Name</h3>
             <p class="text-sm text-gray-500 mb-4">$49.99</p>
-            <button class="w-full bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600">
+            <!-- Button to trigger a success toast -->
+            <button onclick="addNotification('Item added to cart!', 'success')"
+                class="px-4 py-2 bg-green-600 text-white rounded-lg">
                 Add to Cart
             </button>
         </div>

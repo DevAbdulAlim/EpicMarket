@@ -10,6 +10,9 @@
 </head>
 
 <body class="flex flex-col min-h-screen">
+    <!-- Include the x-toast component on the page -->
+    <x-toast />
+
     @include('layouts.partial.header')
     <main class="flex-grow">
         {{ $slot }}
