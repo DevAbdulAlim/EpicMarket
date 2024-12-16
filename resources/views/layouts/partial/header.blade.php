@@ -42,9 +42,7 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center h-12">
             <!-- Category Dropdown Button -->
             <div>
-                <button class="text-gray-700 hover:text-blue-500 px-3 py-2 rounded-md text-sm font-medium">
-                    Categories
-                </button>
+                @include('layouts.partial.category-dropdown')
             </div>
 
             <!-- Static Page Links -->
