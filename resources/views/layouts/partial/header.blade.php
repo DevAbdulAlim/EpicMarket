@@ -55,9 +55,9 @@ $categories = [['name' => 'Electronics', 'subcategories' => [['name' => 'Mobile 
         'sticky top-0 z-10 translate-y-0 bg-white shadow-md  transition-transform duration-300 ease-out': showHeader
     }">
     <!-- Desktop Header -->
-    <div class="hidden md:block border-b border-gray-200">
+    <div class="hidden md:block border-b border-gray-200  px-4">
         <!-- First Row: Logo, Search, Theme Changer, Account, Wishlist, Cart -->
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center h-16">
+        <div class="max-w-7xl mx-auto flex justify-between items-center h-16">
             <!-- Logo -->
             <div class="flex-shrink-0">
                 <a href="{{ route('home') }}">
@@ -94,7 +94,7 @@ $categories = [['name' => 'Electronics', 'subcategories' => [['name' => 'Mobile 
         </div>
 
         <!-- Second Row: Category Dropdown, Static Links, Language and Currency Selectors -->
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center h-12">
+        <div class="max-w-7xl mx-auto flex justify-between items-center h-12">
             <!-- Category Dropdown Button -->
             <div>
                 @include('layouts.partial.category-dropdown')

@@ -1,23 +1,17 @@
-<section class="relative min-h-[70vh] flex">
-    <!-- Background Image -->
-    <div class="absolute inset-0">
-        <img class="w-full h-full object-cover opacity-60" src="https://via.placeholder.com/1920x600"
-            alt="Hero Background Image">
-        <div class="absolute inset-0 bg-gradient-to-r from-black via-transparent to-black opacity-50"></div>
-    </div>
-
+<section class="relative min-h-[70vh] bg-gray-50 border-t">
     <!-- Content Container -->
-    <div class="container mx-auto relative flex">
+    <div class="max-w-7xl mx-auto flex min-h-[70vh] p-8">
         <!-- Empty Div for Left Gap -->
         <div class="w-72"></div>
 
         <!-- Hero Content -->
-        <div
-            class="flex-grow bg-gray-800 relative px-4 sm:px-6 lg:px-8 xl:py-32 flex flex-col items-center justify-center text-center text-white">
-            <h1 class="text-4xl md:text-6xl font-extrabold mb-4">Welcome to Our Store</h1>
-            <p class="text-lg md:text-xl mb-8">Discover the latest trends in fashion, electronics, and more!</p>
+        <div class="flex-grow rounded-xl bg-white flex flex-col items-center justify-center text-center p-12">
+            <h1 class="text-4xl md:text-5xl font-bold mb-4 text-gray-800">Welcome to Our Store</h1>
+            <p class="text-lg md:text-xl mb-6 text-gray-600">
+                Discover the latest trends in fashion, electronics, and more!
+            </p>
             <a href="#"
-                class="inline-block bg-blue-500 text-white px-8 py-3 rounded-md text-lg font-medium hover:bg-blue-600">
+                class="inline-block bg-blue-500 text-white px-6 py-3 rounded-full text-lg font-medium shadow hover:bg-blue-600 transition">
                 Shop Now
             </a>
         </div>

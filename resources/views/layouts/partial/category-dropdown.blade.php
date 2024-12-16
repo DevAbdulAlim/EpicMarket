@@ -1,15 +1,15 @@
 <div class="relative z-50" @mouseleave="closeDropdown">
     <!-- Categories Button -->
     <div @mouseenter="openDropdown('categories')"
-        class="cursor-pointer py-2 -mb-2 px-4 w-72 bg-gray-50 text-gray-700 rounded-tl-md rounded-tr-md hover:bg-gray-100">
+        class="cursor-pointer -mb-2 py-2 px-4 w-72 bg-gray-50 text-gray-700 rounded-tl-md rounded-tr-md hover:bg-gray-100">
         Categories
     </div>
 
     <!-- Categories Dropdown -->
-    <div x-show="activeDropdown === 'categories'" class="absolute top-full left-0 z-10 flex"
-        :class="{ 'shadow-2xl border': showHeader || location.pathname !== '/' }">
+    <div x-show="activeDropdown === 'categories'" class="absolute top-full border left-0 z-10 flex"
+        :class="{ 'shadow-2xl': showHeader || location.pathname !== '/' }">
         <!-- Main Categories (on the left) -->
-        <div class="relative flex flex-col top-0 w-72 min-h-[71vh] bg-white">
+        <div class="relative flex flex-col top-0 w-72 min-h-[70vh] bg-white">
             @foreach ($categories as $item)
                 <div @mouseover="showSubcategoriesFor = '{{ strtolower($item['name']) }}'" class="group relative">
                     <div
@@ -26,7 +26,7 @@
         </div>
 
         <!-- Subcategories Box (on the right) -->
-        <div class="absolute left-full top-0 min-w-[40vw] min-h-[71vh] bg-white p-4 border-l"
+        <div class="absolute left-full top-0 min-w-[40vw] min-h-[70vh] bg-white p-4 border"
             x-show="selectedCategory !== null || showSubcategoriesFor !== null" x-cloak>
             <!-- Display Subcategories based on the hovered or selected Category -->
             <template x-if="showSubcategoriesFor || selectedCategory">

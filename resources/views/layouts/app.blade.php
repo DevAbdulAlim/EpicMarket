@@ -9,7 +9,7 @@
     @livewireStyles
 </head>
 
-<body class="flex flex-col min-h-screen">
+<body class="flex flex-col min-h-screen overflow-x-hidden">
     <!-- Include the x-toast component on the page -->
     <x-toast />
 
