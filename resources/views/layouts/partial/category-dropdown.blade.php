@@ -1,4 +1,4 @@
-<div class="relative" @mouseleave="closeDropdown">
+<div class="relative z-50" @mouseleave="closeDropdown">
     <!-- Categories Button -->
     <div @mouseenter="openDropdown('categories')"
         class="cursor-pointer py-2 -mb-2 px-4 w-72 bg-gray-50 text-gray-700 rounded-tl-md rounded-tr-md hover:bg-gray-100">
@@ -6,7 +6,8 @@
     </div>
 
     <!-- Categories Dropdown -->
-    <div x-show="activeDropdown === 'categories'" class="absolute top-full left-0 z-10 flex">
+    <div x-show="activeDropdown === 'categories'" class="absolute top-full left-0 z-10 flex"
+        :class="{ 'shadow-2xl border': showHeader || location.pathname !== '/' }">
         <!-- Main Categories (on the left) -->
         <div class="relative flex flex-col top-0 w-72 min-h-[71vh] bg-white">
             @foreach ($categories as $item)
