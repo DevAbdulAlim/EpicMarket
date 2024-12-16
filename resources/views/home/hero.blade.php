@@ -1,4 +1,4 @@
-<div class="relative bg-gray-900">
+<div class="relative bg-gray-900 min-h-[70vh]">
     <!-- Background Image -->
     <div class="absolute inset-0">
         <img class="w-full h-full object-cover opacity-60" src="https://via.placeholder.com/1920x600"

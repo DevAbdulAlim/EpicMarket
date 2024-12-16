@@ -1,4 +1,47 @@
-<header class="sticky top-0 z-10 bg-white shadow-md">
+<?php
+// Dynamic Category Data (example: fetched from a database or another source)
+$categories = [['name' => 'Electronics', 'subcategories' => [['name' => 'Mobile Phones', 'nested' => [['name' => 'Smartphones'], ['name' => 'Feature Phones']]], ['name' => 'Laptops', 'nested' => [['name' => 'Gaming Laptops'], ['name' => 'Business Laptops']]]]], ['name' => 'Fashion', 'subcategories' => [['name' => 'Men\'s Clothing', 'nested' => [['name' => 'Shirts'], ['name' => 'Pants']]], ['name' => 'Women\'s Clothing', 'nested' => [['name' => 'Dresses'], ['name' => 'Skirts']]]]], ['name' => 'Groceries', 'subcategories' => [['name' => 'Fruits', 'nested' => [['name' => 'Apples'], ['name' => 'Bananas']]], ['name' => 'Vegetables', 'nested' => [['name' => 'Carrots'], ['name' => 'Potatoes']]]]]];
+?>
+
+<header x-data="{
+    scrollState: 0,
+    hideHeader: false,
+    showHeader: false,
+    activeDropdown: window.location.pathname === '/' && window.location.hash === '' ? 'categories' : null,
+    selectedCategory: null,
+    showSubcategoriesFor: null,
+    openDropdown(name) {
+        this.activeDropdown = name;
+    },
+    closeDropdown() {
+        this.selectedCategory = null;
+        this.showSubcategoriesFor = null;
+
+        if (window.scrollY > 700) {
+            this.activeDropdown = null;
+        }
+    }
+}" x-init="window.addEventListener('scroll', () => {
+    scrollState = window.scrollY;
+
+    // Manage dropdown visibility based on scroll position
+    if (scrollState > 700) {
+        activeDropdown = null;
+        selectedCategory = null;
+        showSubcategoriesFor = null;
+    } else if (scrollState <= 700) {
+        activeDropdown = 'categories'; // Re-enable the dropdown when scroll is less than 200
+    }
+
+    // Header visibility logic
+    hideHeader = scrollState > 700;
+    showHeader = scrollState > 800;
+})"
+    :class="{
+        'bg-transparent': true,
+        'translate-y-[-100%]': hideHeader && !showHeader,
+        'sticky top-0 z-10 translate-y-0 bg-white shadow-md  transition-transform duration-300 ease-out': showHeader
+    }">
     <!-- Desktop Header -->
     <div class="hidden md:block border-b border-gray-200">
         <!-- First Row: Logo, Search, Theme Changer, Account, Wishlist, Cart -->
