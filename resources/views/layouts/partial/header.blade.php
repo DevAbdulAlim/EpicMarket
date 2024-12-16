@@ -5,6 +5,7 @@ $categories = [['name' => 'Electronics', 'subcategories' => [['name' => 'Mobile 
 
 <header x-data="{
     scrollState: 0,
+    homePage: false,
     hideHeader: false,
     showHeader: false,
     activeDropdown: window.location.pathname === '/' && window.location.hash === '' ? 'categories' : null,
@@ -16,26 +17,37 @@ $categories = [['name' => 'Electronics', 'subcategories' => [['name' => 'Mobile 
     closeDropdown() {
         this.selectedCategory = null;
         this.showSubcategoriesFor = null;
-
-        if (window.scrollY > 700) {
+        if (location.pathname === '/' && location.hash === '') {
+            if (window.scrollY > 700) {
+                this.activeDropdown = null;
+            }
+        } else {
             this.activeDropdown = null;
         }
     }
 }" x-init="window.addEventListener('scroll', () => {
     scrollState = window.scrollY;
+    homePage = window.location.pathname === '/' && window.location.hash === '';
+
+
 
     // Manage dropdown visibility based on scroll position
-    if (scrollState > 700) {
+    if (window.scrollY > 700) {
         activeDropdown = null;
         selectedCategory = null;
         showSubcategoriesFor = null;
-    } else if (scrollState <= 700) {
-        activeDropdown = 'categories'; // Re-enable the dropdown when scroll is less than 200
+    }
+
+
+
+    if (scrollState < 700 && homePage) {
+        activeDropdown = 'categories';
+
     }
 
     // Header visibility logic
     hideHeader = scrollState > 700;
-    showHeader = scrollState > 800;
+    showHeader = scrollState > 800 || (scrollState > 200 && window.location.pathname !== '/');
 })"
     :class="{
         'bg-transparent': true,
