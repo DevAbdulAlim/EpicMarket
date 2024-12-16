@@ -47,7 +47,7 @@ $categories = [['name' => 'Electronics', 'subcategories' => [['name' => 'Mobile 
 
     // Header visibility logic
     hideHeader = scrollState > 700;
-    showHeader = scrollState > 800 || (scrollState > 200 && window.location.pathname !== '/');
+    showHeader = scrollState > 700 || (scrollState > 200 && window.location.pathname !== '/');
 })"
     :class="{
         'bg-transparent': true,

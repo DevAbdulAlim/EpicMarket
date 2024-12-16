@@ -1,6 +1,6 @@
 <div class="container mx-auto py-10">
     <!-- Cart Drawer with Custom Trigger -->
-    <x-drawer position="right" width="96" title="Your Cart">
+    <x-drawer position="right" width="96" height="min-h-[100vh]" title="Your Cart">
         <!-- Trigger Slot Content -->
         <x-slot name="trigger">
             <button class="relative px-4 py-2 bg-blue-600 text-white rounded-md focus:outline-none">
@@ -21,7 +21,7 @@
         </x-slot>
 
         <!-- Drawer Content: Cart Items -->
-        <div class="space-y-4">
+        <div class="space-y-4 h-full">
             <!-- Example Cart Item -->
             <div class="flex items-center justify-between p-4 border-b border-gray-200">
                 <div class="flex items-center">

@@ -14,11 +14,11 @@
     <!-- Drawer Overlay and Panel -->
     <div x-show="show" x-cloak>
         <!-- Drawer Overlay -->
-        <div class="fixed inset-0 z-40 bg-white bg-opacity-50 transition-opacity duration-500" x-show="open"
-            x-transition:enter="transition-opacity ease-out duration-500" x-transition:enter-start="opacity-0"
-            x-transition:enter-end="opacity-100" x-transition:leave="transition-opacity ease-in-out duration-500"
-            x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0"
-            @click="open = false; setTimeout(() => show = false, 500)">
+        <div class="fixed inset-0 z-40 bg-white bg-opacity-50 transition-opacity duration-500 {{ $height }}"
+            x-show="open" x-transition:enter="transition-opacity ease-out duration-500"
+            x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100"
+            x-transition:leave="transition-opacity ease-in-out duration-500" x-transition:leave-start="opacity-100"
+            x-transition:leave-end="opacity-0" @click="open = false; setTimeout(() => show = false, 500)">
         </div>
 
         <!-- Drawer Panel -->
@@ -45,7 +45,7 @@
             x-transition:leave="transition ease-in-out duration-500 transform"
             x-transition:leave-start="opacity-100 translate-x-0"
             x-transition:leave-end="opacity-0 {{ $position === 'right' ? '-translate-x-full' : ($position === 'left' ? 'translate-x-full' : ($position === 'top' ? 'translate-y-full' : '-translate-y-full')) }}"
-            class="fixed z-50 {{ $position === 'left' || $position === 'right' ? 'top-0 bottom-0' : 'left-0 right-0' }} {{ $position === 'left' ? 'left-0' : ($position === 'right' ? 'right-0' : ($position === 'top' ? 'top-0' : 'bottom-0')) }} {{ $position === 'left' || $position === 'right' ? 'w-' . $width : 'h-' . $height }} max-w-full bg-white shadow-xl overflow-auto transform transition-transform"
+            class="fixed z-50 {{ $position === 'left' || $position === 'right' ? 'top-0 bottom-0' : 'left-0 right-0' }} {{ $position === 'left' ? 'left-0' : ($position === 'right' ? 'right-0' : ($position === 'top' ? 'top-0' : 'bottom-0')) }} {{ 'w-' . $width }} {{ $height }} max-w-full bg-white shadow-xl overflow-auto transform transition-transform"
             @click.stop>
             <div class="p-6 h-full flex flex-col">
                 <!-- Drawer Header -->

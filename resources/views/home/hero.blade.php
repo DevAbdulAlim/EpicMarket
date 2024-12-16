@@ -13,7 +13,7 @@
 
         <!-- Hero Content -->
         <div
-            class="flex-grow bg-gray-800 relative px-4 sm:px-6 lg:px-8 lg:py-32 flex flex-col items-center justify-center text-center text-white">
+            class="flex-grow bg-gray-800 relative px-4 sm:px-6 lg:px-8 xl:py-32 flex flex-col items-center justify-center text-center text-white">
             <h1 class="text-4xl md:text-6xl font-extrabold mb-4">Welcome to Our Store</h1>
             <p class="text-lg md:text-xl mb-8">Discover the latest trends in fashion, electronics, and more!</p>
             <a href="#"
